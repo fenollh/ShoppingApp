@@ -31,6 +31,7 @@ export default class Router extends React.Component{
     TabNavigator(_) {
         return(
             <Tab.Navigator
+            initialRouteName='Shops'
             screenOptions={({ route }) => ({
                 tabBarIcon: ({}) => {
                     let iconName;
