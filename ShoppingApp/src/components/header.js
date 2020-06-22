@@ -6,35 +6,24 @@ import {
     StyleSheet
 } from 'react-native'
 
-const UserIcon = <Ionicons name='md-person' size={60} style={{alignSelf: 'center'}}/>
-const SettingsIcon = <Ionicons name='ios-settings' size={60} style={{alignSelf: 'center'}}/>
-
-
 const Header = _ => {
     return(
         <View style={styles.container}>
-            <View style={{flex:1, justifyContent: 'center'}}>
-                {SettingsIcon}
-            </View>
-            <View style={{flex:2, justifyContent: 'center'}}>
-                <Text style={styles.title}>SHOPPING APP</Text>
-            </View>
-            <View style={{flex:1, justifyContent: 'center'}}>
-                {UserIcon}
-            </View>
+            <Text style={styles.title}>SHOPPING APP</Text>
         </View>
     );
 }; export default Header
 
 const styles = StyleSheet.create({
     container:{
-        flex: 0.1, 
+        flex: 0.02, 
         flexDirection: 'row',
-        backgroundColor: 'rgb(255,255,255)',
+        backgroundColor: 'rgb(80,130,255)',
+        justifyContent: 'center'
     },
     title:{
         alignSelf: 'center',
-        fontSize: 18,
+        fontSize: 14,
         fontWeight: 'bold',
     }
 })

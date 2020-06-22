@@ -5,7 +5,8 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
-import Ionicons from 'react-native-vector-icons/Entypo'
+import Entypo from 'react-native-vector-icons/Entypo'
+import Ionicons from 'react-native-vector-icons/Ionicons'
 
 import { 
     View,
@@ -13,8 +14,12 @@ import {
 } from 'react-native';
 
 
-import ShoppingList from '../screens/shoppingList'
-import Shops from '../screens/shops'
+import ShoppingListScreen from '../screens/shoppingList'
+import ShopsScreen from '../screens/shops'
+import SettingsScreen from '../screens/settings'
+import ProfileScreen from '../screens/profile'
+import AboutUsScreen from '../screens/aboutus'
+import ContactUsScreen from '../screens/contactus'
 
 
 const Tab = createMaterialTopTabNavigator();
@@ -23,8 +28,7 @@ const Drawer = createDrawerNavigator();
 
 export default class Router extends React.Component{
     
-    
-    TabNavigator({navigation}) {
+    TabNavigator(_) {
         return(
             <Tab.Navigator
             screenOptions={({ route }) => ({
@@ -32,20 +36,20 @@ export default class Router extends React.Component{
                     let iconName;
                     if (route.name === 'ShoppingList')  { iconName = 'list' }
                     else if (route.name === 'Shops') { iconName = 'shop' }
-                    return <Ionicons name={iconName} size={25} color='rgb(52,251,167)' />;
+                    return <Entypo name={iconName} size={25} color='rgb(52,251,167)' />;
                 },
             })}      
             tabBarOptions={{
                 showIcon: true,
                 showLabel: false,
             }}>
-                <Tab.Screen name="ShoppingList" component={ShoppingList} />
-                <Tab.Screen name="Shops" component={Shops} />
+                <Tab.Screen name="ShoppingList" component={ShoppingListScreen} />
+                <Tab.Screen name="Shops" component={ShopsScreen} />
             </Tab.Navigator>
         )
     }
 
-    StackNavigator({navigation}) {
+    StackNavigator(_) {
         return(
             <Stack.Navigator headerMode= 'none'>
                 <Stack.Screen name="main" component={this.TabNavigator} />
@@ -58,13 +62,27 @@ export default class Router extends React.Component{
             <View style={{flex:1}}>
                 <NavigationContainer theme={MyTheme}>
                     <Drawer.Navigator 
+                        edgeWidth={40}
                         drawerStyle={styles.drawer}
                         drawerContentOptions={{
-                            activeTintColor: '#e91e63',
-                            itemStyle: { marginVertical: 30 },
+                            inactiveTintColor: 'rgb(52,167,251)',
+                            activeTintColor: 'rgb(52,167,251)',
+                            itemStyle: { marginVertical: 10 },
                         }}>
-                        <Drawer.Screen name="main" component={this.TabNavigator} options={{
-                            drawerIcon: config => <Ionicons name='list' size={25} color='rgb(52,251,167)' />
+                        <Drawer.Screen name='Main' component={this.TabNavigator} options={{
+                            drawerIcon: _ => <Entypo name='list' size={25} color='rgb(52,167,251)' />
+                        }}/>
+                        <Drawer.Screen name='Profile' component={ProfileScreen} options={{
+                            drawerIcon: _ => <Ionicons name='md-person' size={25} color='rgb(52,167,251)' />
+                        }}/>
+                        <Drawer.Screen name='Settings' component={SettingsScreen} options={{
+                            drawerIcon: _ => <Ionicons name='ios-settings' size={25} color='rgb(52,167,251)' />
+                        }}/>
+                        <Drawer.Screen name='About Us' component={AboutUsScreen} options={{
+                            drawerIcon: _ => <Ionicons name='ios-information-circle-outline' size={25} color='rgb(52,167,251)' />
+                        }}/>
+                        <Drawer.Screen name='Contact Us' component={ContactUsScreen} options={{
+                            drawerIcon: _ => <Ionicons name='ios-mail' size={25} color='rgb(52,167,251)' />
                         }}/>
                     </Drawer.Navigator>
                 </NavigationContainer>
