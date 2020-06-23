@@ -1,5 +1,6 @@
 import React from 'react'
 import AntDesign from 'react-native-vector-icons/AntDesign'
+import {State} from '../components/state'
 import { 
     View,
     Text,
@@ -15,19 +16,11 @@ export default class ShoppingList extends React.Component{
         super(props)
         this.state={
             newItem: '',
-            shoppingList: [
-                {name:'Leche', id:0}, 
-                {name:'Cereales', id:1}, 
-                {name:'Galletas', id:2}, 
-                {name:'Carne', id:3}, 
-                {name:'Verduras', id:4}, 
-                {name:'Pan', id:5}
-            ]
         }
     }
     deleteItem = (index) => {
-        Alert.alert(this.state.shoppingList[index].name + ' deleted')
-        const removedItem = this.state.shoppingList.splice(index, 1)
+        Alert.alert(State.shoppingList[index].name + ' deleted')
+        const removedItem = State.shoppingList.splice(index, 1)
         this.forceUpdate()
     }
 
@@ -48,7 +41,7 @@ export default class ShoppingList extends React.Component{
             <View style={styles.container}>
                 <View style={styles.list}>
                     <FlatList
-                    data={state.shoppingList}
+                    data={State.shoppingList}
                     keyExtractor={item => item.id.toString()}
                     renderItem={({ item, index }) => this.renderListItem(item, index)}
                     />
@@ -64,7 +57,8 @@ export default class ShoppingList extends React.Component{
                     <TouchableOpacity  
                         style={{flex:1, alignItems: 'center', justifyContent: 'center'}} 
                         onPress={_=> {
-                            this.setState({ shoppingList: [...state.shoppingList, {name: state.newItem, id: state.shoppingList.length}] })
+                            State.shoppingList= [...State.shoppingList, {name: state.newItem, id: State.shoppingList.length}]
+                            this.forceUpdate()
                             this.textInput.clear()
                         }}>
                             <AntDesign name='pluscircleo' size={50} color='rgb(52,167,251)'/>

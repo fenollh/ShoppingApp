@@ -13,7 +13,7 @@ import {
     StyleSheet,
 } from 'react-native';
 
-
+import LoginScreen from '../screens/login'
 import ShoppingListScreen from '../screens/shoppingList'
 import ShopsScreen from '../screens/shops'
 import SettingsScreen from '../screens/settings'
@@ -50,42 +50,44 @@ export default class Router extends React.Component{
         )
     }
 
-    StackNavigator(_) {
+    DrawerNavigator = _ => {
         return(
-            <Stack.Navigator headerMode= 'none'>
-                <Stack.Screen name="main" component={this.TabNavigator} />
-            </Stack.Navigator>
+            <Drawer.Navigator 
+                edgeWidth={40}
+                drawerStyle={styles.drawer}
+                drawerContentOptions={{
+                    inactiveTintColor: 'rgb(52,167,251)',
+                    activeTintColor: 'rgb(52,167,251)',
+                    itemStyle: { marginVertical: 10 },
+                }}>
+                <Drawer.Screen name='Main' component={this.TabNavigator} options={{
+                    drawerIcon: _ => <Entypo name='list' size={25} color='rgb(52,167,251)' />
+                }}/>
+                <Drawer.Screen name='Profile' component={ProfileScreen} options={{
+                    drawerIcon: _ => <Ionicons name='md-person' size={25} color='rgb(52,167,251)' />
+                }}/>
+                <Drawer.Screen name='Settings' component={SettingsScreen} options={{
+                    drawerIcon: _ => <Ionicons name='ios-settings' size={25} color='rgb(52,167,251)' />
+                }}/>
+                <Drawer.Screen name='About Us' component={AboutUsScreen} options={{
+                    drawerIcon: _ => <Ionicons name='ios-information-circle-outline' size={25} color='rgb(52,167,251)' />
+                }}/>
+                <Drawer.Screen name='Contact Us' component={ContactUsScreen} options={{
+                    drawerIcon: _ => <Ionicons name='ios-mail' size={25} color='rgb(52,167,251)' />
+                }}/>
+            </Drawer.Navigator>
         )
     }
+
 
     render(){
         return(
             <View style={{flex:1}}>
                 <NavigationContainer theme={MyTheme}>
-                    <Drawer.Navigator 
-                        edgeWidth={40}
-                        drawerStyle={styles.drawer}
-                        drawerContentOptions={{
-                            inactiveTintColor: 'rgb(52,167,251)',
-                            activeTintColor: 'rgb(52,167,251)',
-                            itemStyle: { marginVertical: 10 },
-                        }}>
-                        <Drawer.Screen name='Main' component={this.TabNavigator} options={{
-                            drawerIcon: _ => <Entypo name='list' size={25} color='rgb(52,167,251)' />
-                        }}/>
-                        <Drawer.Screen name='Profile' component={ProfileScreen} options={{
-                            drawerIcon: _ => <Ionicons name='md-person' size={25} color='rgb(52,167,251)' />
-                        }}/>
-                        <Drawer.Screen name='Settings' component={SettingsScreen} options={{
-                            drawerIcon: _ => <Ionicons name='ios-settings' size={25} color='rgb(52,167,251)' />
-                        }}/>
-                        <Drawer.Screen name='About Us' component={AboutUsScreen} options={{
-                            drawerIcon: _ => <Ionicons name='ios-information-circle-outline' size={25} color='rgb(52,167,251)' />
-                        }}/>
-                        <Drawer.Screen name='Contact Us' component={ContactUsScreen} options={{
-                            drawerIcon: _ => <Ionicons name='ios-mail' size={25} color='rgb(52,167,251)' />
-                        }}/>
-                    </Drawer.Navigator>
+                    <Stack.Navigator headerMode= 'none' initialRouteName='Login'>
+                        <Stack.Screen name="Login" component={LoginScreen} />
+                        <Stack.Screen name="Main" component={this.DrawerNavigator} />
+                    </Stack.Navigator>
                 </NavigationContainer>
             </View>
         )
