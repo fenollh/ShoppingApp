@@ -14,7 +14,7 @@ export default class LoginScreen extends React.Component{
     constructor(props){
         super(props)
         this.state={
-            username: '',
+            usermail: '',
             password: '',
         }
     }
@@ -27,10 +27,10 @@ export default class LoginScreen extends React.Component{
                 <View style={{height: 250, padding: '2%'}}>
                     <View style={styles.formBox}>
                         <TextInput
-                        value={this.state.username}
-                        onChangeText={username=>this.setState({ username })}
+                        value={this.state.usermail}
+                        onChangeText={usermail=>this.setState({ usermail })}
                         style={styles.input}
-                        placeholder='email'
+                        placeholder='Email'
                         autoCapitalize='none'
                         maxLength={20}
                         />
@@ -38,7 +38,7 @@ export default class LoginScreen extends React.Component{
                         value={this.state.password}
                         onChangeText={password=>this.setState({ password })}
                         style={styles.input}
-                        placeholder='password'
+                        placeholder='Password'
                         autoCapitalize='none'
                         maxLength={50}
                         secureTextEntry={true}
@@ -47,16 +47,19 @@ export default class LoginScreen extends React.Component{
                         <Text style={{alignSelf: 'center', marginTop: 20}}> Terms and conditions </Text>
                     </View>
                 </View>
-                <View style={{height:'20%'}}>
+                <View style={{height:'25%'}}>
                     <TouchableOpacity 
-                    style={[styles.boton, {backgroundColor: 'rgb(100,230,150)', marginTop: '10%'}]} 
+                    style={[styles.boton, {backgroundColor: 'rgb(100,230,150)', marginTop: '10%', flex: 2}]} 
                     activeOpacity={0.6} 
                     onPress={_=>loginFunc(this.state.username, this.state.password, this.props.navigation)}>
                         <Text style={styles.botonTxt}>LOGIN</Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity style={[styles.boton]} activeOpacity={0.6} onPress={_=>this.props.navigation.navigate('Register')}>
-                        <Text style={[styles.botonTxt, {fontSize: 15}]}>CREATE AN ACCOUNT</Text>
+                        <Text style={[styles.botonTxt, {fontSize: 15}]}>CREATE A COSTUMER ACCOUNT</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={[styles.boton]} activeOpacity={0.6} onPress={_=>this.props.navigation.navigate('Register')}>
+                        <Text style={[styles.botonTxt, {fontSize: 15}]}>CREATE A SHOP ACCOUNT</Text>
                     </TouchableOpacity>
                 </View>
             </View>

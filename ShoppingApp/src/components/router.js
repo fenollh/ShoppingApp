@@ -7,6 +7,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 
 import Entypo from 'react-native-vector-icons/Entypo'
 import Ionicons from 'react-native-vector-icons/Ionicons'
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 
 import { 
     View,
@@ -17,6 +18,7 @@ import LoginScreen from '../screens/login'
 import RegisterScreen from '../screens/register'
 import ShoppingListScreen from '../screens/shoppingList'
 import ShopsScreen from '../screens/shops'
+import OrdersScreen from '../screens/orders'
 import SettingsScreen from '../screens/settings'
 import ProfileScreen from '../screens/profile'
 import AboutUsScreen from '../screens/aboutus'
@@ -35,10 +37,11 @@ export default class Router extends React.Component{
             initialRouteName='Shops'
             screenOptions={({ route }) => ({
                 tabBarIcon: ({}) => {
-                    let iconName;
-                    if (route.name === 'ShoppingList')  { iconName = 'list' }
-                    else if (route.name === 'Shops') { iconName = 'shop' }
-                    return <Entypo name={iconName} size={25} color='rgb(52,251,167)' />;
+                    let icon;
+                    if (route.name === 'ShoppingList')  { icon=<Entypo name='list' size={25} color='rgb(52,251,167)' /> }
+                    else if (route.name === 'Shops') { icon=<Entypo name='shop' size={25} color='rgb(52,251,167)' /> }
+                    else if (route.name === 'Orders') { icon=<Entypo name='shopping-cart' size={25} color='rgb(52,251,167)' /> }
+                    return icon
                 },
             })}      
             tabBarOptions={{
@@ -47,6 +50,7 @@ export default class Router extends React.Component{
             }}>
                 <Tab.Screen name="ShoppingList" component={ShoppingListScreen} />
                 <Tab.Screen name="Shops" component={ShopsScreen} />
+                <Tab.Screen name="Orders" component={OrdersScreen} />
             </Tab.Navigator>
         )
     }
@@ -104,7 +108,7 @@ const MyTheme = {
 
 const styles = StyleSheet.create({
     drawer:{
-        backgroundColor: 'rgb(100,100,100)',
+        backgroundColor: 'rgb(255,255,255)',
         width: 250,
     },
 })

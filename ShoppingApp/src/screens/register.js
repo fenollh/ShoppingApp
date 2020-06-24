@@ -27,9 +27,11 @@ export default class LoginScreen extends React.Component{
     checkForm = _ => {
         if(this.state.password.length < 5){
             Alert.alert("The password must have more than 5 characters")
+            return
         }
         if(this.state.username.length < 5){
             Alert.alert("The username must have more than 5 characters")
+            return
         }
         if(this.state.password !==this.state.password2){
             Alert.alert("The first and second password doesn't match")
@@ -139,7 +141,8 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         fontWeight: 'bold',
         color: 'rgb(52,167,251)',
-        fontSize: 30
+        fontSize: 30,
+        textAlign: 'center',
     },
     formBox: {
         flex: 1,

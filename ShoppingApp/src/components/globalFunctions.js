@@ -32,7 +32,6 @@ const loginFunc = (usermail, password, navigation) => {
         handleSession(usermail)
         initState() //descargar todos los datos de usuario al State de la DB
         navigation.navigate('Main')
-        State.usermail = usermail
     }
     else{
         navigation.navigate('Login')

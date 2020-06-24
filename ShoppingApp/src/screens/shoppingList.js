@@ -19,8 +19,8 @@ export default class ShoppingList extends React.Component{
         }
     }
     deleteItem = (index) => {
-        Alert.alert(State.shoppingList[index].name + ' deleted')
-        const removedItem = State.shoppingList.splice(index, 1)
+        Alert.alert(State.shoppingList.items[index].name + ' deleted')
+        const removedItem = State.shoppingList.items.splice(index, 1)
         this.forceUpdate()
     }
 
@@ -41,7 +41,7 @@ export default class ShoppingList extends React.Component{
             <View style={styles.container}>
                 <View style={styles.list}>
                     <FlatList
-                    data={State.shoppingList}
+                    data={State.shoppingList.items}
                     keyExtractor={item => item.id.toString()}
                     renderItem={({ item, index }) => this.renderListItem(item, index)}
                     />
@@ -57,7 +57,7 @@ export default class ShoppingList extends React.Component{
                     <TouchableOpacity  
                         style={{flex:1, alignItems: 'center', justifyContent: 'center'}} 
                         onPress={_=> {
-                            State.shoppingList= [...State.shoppingList, {name: state.newItem, id: State.shoppingList.length}]
+                            State.shoppingList.items= [...State.shoppingList.items, {name: state.newItem, id: State.shoppingList.items.length}]
                             this.forceUpdate()
                             this.textInput.clear()
                         }}>
