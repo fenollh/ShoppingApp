@@ -55,12 +55,10 @@ export default class LoginScreen extends React.Component{
                         <Text style={styles.botonTxt}>LOGIN</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={[styles.boton]} activeOpacity={0.6}>
+                    <TouchableOpacity style={[styles.boton]} activeOpacity={0.6} onPress={_=>this.props.navigation.navigate('Register')}>
                         <Text style={[styles.botonTxt, {fontSize: 15}]}>CREATE AN ACCOUNT</Text>
                     </TouchableOpacity>
                 </View>
-
-                {/*<TouchableOpacity style={{height: 100, width: 100, backgroundColor: 'blue'}} onPress={()=> this.props.navigation.navigate('Main')}/>*/}
             </View>
         )
     }

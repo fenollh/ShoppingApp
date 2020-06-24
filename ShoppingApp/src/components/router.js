@@ -14,6 +14,7 @@ import {
 } from 'react-native';
 
 import LoginScreen from '../screens/login'
+import RegisterScreen from '../screens/register'
 import ShoppingListScreen from '../screens/shoppingList'
 import ShopsScreen from '../screens/shops'
 import SettingsScreen from '../screens/settings'
@@ -86,6 +87,7 @@ export default class Router extends React.Component{
                 <NavigationContainer theme={MyTheme}>
                     <Stack.Navigator headerMode= 'none' initialRouteName='Login'>
                         <Stack.Screen name="Login" component={LoginScreen} />
+                        <Stack.Screen name="Register" component={RegisterScreen} />
                         <Stack.Screen name="Main" component={this.DrawerNavigator} />
                     </Stack.Navigator>
                 </NavigationContainer>

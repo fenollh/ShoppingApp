@@ -18,6 +18,3 @@ let State = {
 }
 export {State}
 
-const initState = _ => {
-    //descargar los datos de la DB al state. Se usa al hacer login
-}
