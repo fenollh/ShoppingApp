@@ -1,15 +1,12 @@
 import React from 'react'
 import { 
     View,
-    Text,
-    ScrollView,
     FlatList,
     StyleSheet,
-    TouchableOpacity,
-    Alert,
 } from 'react-native'
 
 import TagsSection from '../components/tagsSec'
+import ShopsListSection from '../components/renderShops'
 
 export default class Shops extends React.Component{
     
@@ -25,8 +22,8 @@ export default class Shops extends React.Component{
                 <View style={{flex: 1}}>
                     <TagsSection/>
                 </View>
-                <View style={styles.main}>
-
+                <View style={{flex:20}}>
+                    <ShopsListSection/>
                 </View>
             </View>
         )
@@ -38,9 +35,4 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         backgroundColor: 'rgb(240,245,240)',
     },
-
-    main: {
-        flex: 20,
-    }
-
 })

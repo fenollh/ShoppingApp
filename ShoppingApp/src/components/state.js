@@ -10,7 +10,7 @@ let State = {
     accountType: 'Costumer', //Costumer / Shop
     shopDetails: {takeaway: null, delivery: null ,restaurant: null}, //for costumer accounts the 3  fields are null
     renderedShops: [],
-    tags: ['Favourites', 'Near', 'Fast Food', 'Italian', 'Chinese'],
+    tags: [' All ','Favourites', 'Near', 'Fast Food', 'Italian', 'Chinese'],
     favouriteShops: [],
     shoppingList: { // in shops accounts this object is null
         public: true,
