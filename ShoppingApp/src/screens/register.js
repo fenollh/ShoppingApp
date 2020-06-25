@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
     container:{
         flex:1,
         padding: '3%',
-        backgroundColor: 'rgb(220,245,240)'
+        backgroundColor: 'rgb(240,245,240)'
     },
     header:{
         height: '10%',
@@ -165,7 +165,7 @@ const styles = StyleSheet.create({
         color: 'rgb(50,50,50)',
     },
     input: {
-        backgroundColor: 'rgb(220,255,255)',
+        backgroundColor: 'rgb(240,245,240)',
         marginVertical: '3%',
         borderRadius: 10,
         padding: '2%',

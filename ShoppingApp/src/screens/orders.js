@@ -3,7 +3,8 @@ import {State} from '../components/state'
 import {
     View,
     Text, 
-    StyleSheet
+    Image,
+    StyleSheet,
 } from 'react-native'
 
 export default class OrdersScreen extends React.Component{
@@ -16,7 +17,12 @@ export default class OrdersScreen extends React.Component{
         }
         if(State.accountType == 'shop'){
             page=(
-                <View style={{flex: 1, backgroundColor: 'blue'}}></View>
+                <View style={{flex: 1, backgroundColor: 'blue'}}>
+                    <Image
+                    style={{ height: 100, width: 100, }}
+                    source={{ uri: State.profileImage }}
+                    />
+                </View>
             )
         }
         return(
