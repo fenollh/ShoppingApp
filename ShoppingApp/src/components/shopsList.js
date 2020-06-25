@@ -13,6 +13,7 @@ const Shops = {
     phone: '644-41-53-37',
     managerName: 'Pepe Gonzalez',
     accountType: 'Shop',
+    shopDetails: {takeaway: true, delivery: false ,restaurant: false},
     stars: [1,1,1,1,0],
     profileDescription: 'Asador de pollos ubicado en hoyo de manzanares. Tambien ofrecemos todo tipo de comida para lllevar y paellas por encargo',
     profileImage: 'https://media-cdn.tripadvisor.com/media/photo-s/06/e5/1c/29/getlstd-property-photo.jpg',

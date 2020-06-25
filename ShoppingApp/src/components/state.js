@@ -8,6 +8,7 @@ let State = {
     profileDescription: {profession: 'Estudiante y creador de esta app', hobbies: 'Esqui de montaña y tecnologia', location: 'Hoyo de Manzanares'},
     profileImage: 'https://www.skimostats.com/images/athletes/372-5e2587fe35036.png',
     accountType: 'Costumer', //Costumer / Shop
+    shopDetails: {takeaway: null, delivery: null ,restaurant: null}, //for costumer accounts the 3  fields are null
     renderedShops: [],
     tags: ['Favourites', 'Near', 'Fast Food', 'Italian', 'Chinese'],
     favouriteShops: [],

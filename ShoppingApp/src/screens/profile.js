@@ -35,7 +35,6 @@ export default class ProfileScreen extends React.Component{
         }
         else{  
             valoraciones= 
-            valoraciones= 
             <View style={{margin: '2%', flex: 1}}>
                 <Text style={{flex:1, fontWeight: 'bold', textDecorationLine: 'underline'}}> CUSTOMER RATINGS </Text>
                 <View style={{flex:2, flexDirection: 'row', alignItems: 'center'}}>
