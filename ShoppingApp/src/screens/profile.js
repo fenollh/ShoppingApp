@@ -1,4 +1,5 @@
 import React from 'react'
+import AntDesign from 'react-native-vector-icons/AntDesign'
 import {State} from '../components/state'
 import {
     View,
@@ -8,14 +9,49 @@ import {
     StyleSheet,
     Alert
 } from 'react-native'
+import { FlatList } from 'react-native-gesture-handler'
 
 export default class ProfileScreen extends React.Component{
     render(){
-        if(State.accountType == 'costumer'){
-            
+        let valoraciones
+        if(State.accountType == 'Costumer'){
+            valoraciones= 
+                <View style={{margin: '2%', flex: 1}}>
+                    <Text style={{flex:1, fontWeight: 'bold', textDecorationLine: 'underline'}}> RELIABILITY </Text>
+                    <View style={{flex:2, flexDirection: 'row', alignItems: 'center'}}>
+                        <FlatList
+                        style={{flex:1}}
+                        horizontal={true}
+                        data={State.stars}
+                        keyExtractor={({index}) => index}
+                        renderItem={({item})=> (item) 
+                            ?<AntDesign name='star' size={30} color='yellow'/> 
+                            :<AntDesign name='staro' size={30} color='yellow'/>}
+                        />
+                        
+                        <Text style={{marginLeft: '3%', fontSize: 20, flex:1.2}}>{State.stars[0]+State.stars[1]+State.stars[2]+State.stars[3]+State.stars[4]}</Text>
+                    </View>
+                </View>
         }
-        else{
-
+        else{  
+            valoraciones= 
+            valoraciones= 
+            <View style={{margin: '2%', flex: 1}}>
+                <Text style={{flex:1, fontWeight: 'bold', textDecorationLine: 'underline'}}> CUSTOMER RATINGS </Text>
+                <View style={{flex:2, flexDirection: 'row', alignItems: 'center'}}>
+                    <FlatList
+                    style={{flex:1}}
+                    horizontal={true}
+                    data={State.stars}
+                    keyExtractor={({index}) => index}
+                    renderItem={({item})=> (item) 
+                        ?<AntDesign name='star' size={30} color='yellow'/> 
+                        :<AntDesign name='staro' size={30} color='yellow'/>}
+                    />
+                    
+                    <Text style={{marginLeft: '3%', fontSize: 20, flex:1.2}}>{State.stars[0]+State.stars[1]+State.stars[2]+State.stars[3]+State.stars[4]}</Text>
+                </View>
+            </View>
         }
 
         return(
@@ -42,6 +78,9 @@ export default class ProfileScreen extends React.Component{
                             </TouchableOpacity>
                         </View>
                     </View>
+                </View>
+                <View style={{flex:0.5}}>
+                    {valoraciones}
                 </View>
                 <View style={styles.body}>
                 </View>
@@ -93,6 +132,6 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgb(80,130,255)', 
     },  
     body: {
-        flex: 3,
+        flex: 2.5,
     },
 })

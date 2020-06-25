@@ -19,7 +19,6 @@ export default class ShoppingList extends React.Component{
         }
     }
     deleteItem = (index) => {
-        Alert.alert(State.shoppingList.items[index].name + ' deleted')
         const removedItem = State.shoppingList.items.splice(index, 1)
         this.forceUpdate()
     }
@@ -72,7 +71,7 @@ export default class ShoppingList extends React.Component{
 const styles = StyleSheet.create({
     container:{
         flex: 1,
-        backgroundColor: 'white',
+        backgroundColor: 'rgb(240,245,240)',
         padding: '2%'
     },
     list: {
