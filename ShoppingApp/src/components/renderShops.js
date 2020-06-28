@@ -14,12 +14,12 @@ import {
 } from 'react-native'
 
 export default class ShopsListSection extends React.Component {
-    
-    
+    constructor(props){
+        super(props)
+    }
     renderShop = (item) => {
-        
         return(
-            <TouchableOpacity style={styles.shopBox} activeOpacity={0.6}>
+            <TouchableOpacity style={styles.shopBox} activeOpacity={0.6} onPress={()=>this.props.navigation.navigate('SelectedShop', {item: item})}>
                 <View style={{flex:1}}>
                     <Image
                     style={{height: '100%', width: '100%', borderRadius: 10}}
@@ -32,12 +32,12 @@ export default class ShopsListSection extends React.Component {
                 </View>
                 <View style={{flex:1, alignItems: 'center', marginTop: '2%'}}>
                     <View style={{flex: 1, flexDirection: 'row'}}>
-                        <Entypo name='shopping-bag' color='black' size={30} style={{marginHorizontal: '1%'}}/>
-                        <MaterialIcons name='restaurant' color='black' size={30} style={{marginHorizontal: '1%'}}/>
+                        <Entypo name='shopping-bag' color={(item.shopDetails.takeaway)?'green':'red'} size={30} style={{marginHorizontal: '1%'}}/>
+                        <MaterialIcons name='restaurant' color={(item.shopDetails.restaurant)?'green':'red'} size={30} style={{marginHorizontal: '1%'}}/>
                     </View>
                     <View style={{flex: 1, flexDirection: 'row'}}>
-                        <MaterialCommunityIcons name='truck-delivery' color='black' size={30} style={{marginHorizontal: '1%'}}/>
-                        <Entypo name='credit-card' color='black' size={30} style={{marginHorizontal: '1%'}}/>
+                        <MaterialCommunityIcons name='truck-delivery' color={(item.shopDetails.delivery)?'green':'red'} size={30} style={{marginHorizontal: '1%'}}/>
+                        <Entypo name='credit-card' color={(item.shopDetails.card)?'green':'red'} size={30} style={{marginHorizontal: '1%'}}/>
                     </View>
                 </View>
             </TouchableOpacity>
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
         marginVertical: '2%',
         flexDirection: 'row',
         backgroundColor: 'rgb(240, 245, 255)',
-        borderColor: 'rgb(0,0,0)',
+        borderColor: 'rgb(100,150,200)',
         borderRadius: 10,
         borderWidth: 1,
         height: 100, 

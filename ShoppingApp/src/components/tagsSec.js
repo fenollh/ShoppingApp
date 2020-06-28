@@ -13,8 +13,6 @@ export default class TagsSection extends React.Component{
     
     constructor(props){
         super(props)
-        this.state={
-        }
     }
     
     renderShops = (item) => {
@@ -37,7 +35,7 @@ export default class TagsSection extends React.Component{
                 <FlatList
                 showsHorizontalScrollIndicator={false}
                 horizontal={true}
-                data={State.tags}
+                data={this.props.data}
                 keyExtractor={item => item}
                 renderItem={({ item, index }) => this.renderTag(item)}
                 />

@@ -16,6 +16,7 @@ import {
 
 import LoginScreen from '../screens/login'
 import RegisterScreen from '../screens/register'
+import SelectedShopScreen from '../screens/selectedShop'
 import ShoppingListScreen from '../screens/shoppingList'
 import ShopsScreen from '../screens/shops'
 import OrdersScreen from '../screens/orders'
@@ -93,6 +94,7 @@ export default class Router extends React.Component{
                         <Stack.Screen name="Login" component={LoginScreen} />
                         <Stack.Screen name="Register" component={RegisterScreen} />
                         <Stack.Screen name="Main" component={this.DrawerNavigator} />
+                        <Stack.Screen name="SelectedShop" component={SelectedShopScreen} />
                     </Stack.Navigator>
                 </NavigationContainer>
             </View>

@@ -7,6 +7,7 @@ import {
 
 import TagsSection from '../components/tagsSec'
 import ShopsListSection from '../components/renderShops'
+import { State } from '../components/state'
 
 export default class Shops extends React.Component{
     
@@ -20,10 +21,10 @@ export default class Shops extends React.Component{
         return(
             <View style={styles.container}>
                 <View style={{flex: 1}}>
-                    <TagsSection/>
+                    <TagsSection data={State.tags}/>
                 </View>
                 <View style={{flex:20}}>
-                    <ShopsListSection/>
+                    <ShopsListSection navigation={this.props.navigation}/>
                 </View>
             </View>
         )

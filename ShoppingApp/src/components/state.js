@@ -16,12 +16,6 @@ let State = {
         public: true,
         users: ['fenollh@gmail.com', 'fenollmi@gmail.com', 'tejedorc@gmail.com', 'jafenoll@gmail.com'],
         items: [
-            {name:'Leche', id:0}, 
-            {name:'Cereales', id:1}, 
-            {name:'Galletas', id:2}, 
-            {name:'Carne', id:3}, 
-            {name:'Verduras', id:4}, 
-            {name:'Pan', id:5}
             ]
     },
     myOrders: [
