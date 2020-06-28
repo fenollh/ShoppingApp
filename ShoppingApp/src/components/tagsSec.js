@@ -1,12 +1,12 @@
 import React from 'react'
 import {State} from './state'
+import {filterData} from './globalFunctions'
 import {
     View,
     Text,
     FlatList,
     StyleSheet,
     TouchableOpacity,
-    Alert,
 } from 'react-native'
 
 export default class TagsSection extends React.Component{
@@ -14,16 +14,10 @@ export default class TagsSection extends React.Component{
     constructor(props){
         super(props)
     }
-    
-    renderShops = (item) => {
-        Alert.alert(item)
-        //this.state.shops = consulta de tiendas con tag selecionado
-        //.then(render de this.state.shops)
-    }
 
     renderTag = (item) => {
         return(
-            <TouchableOpacity style={styles.tag} onPress={_=> this.renderShops(item)}>
+            <TouchableOpacity style={styles.tag} onPress={_=> filterData(item, this.props.totalData)}>
                 <Text style={styles.tagTxt}>{item}</Text>
             </TouchableOpacity>
         )

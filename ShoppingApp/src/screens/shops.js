@@ -8,8 +8,9 @@ import {
 import TagsSection from '../components/tagsSec'
 import ShopsListSection from '../components/renderShops'
 import { State } from '../components/state'
+import { Shops } from '../components/shopsList'
 
-export default class Shops extends React.Component{
+export default class ShopsScreen extends React.Component{
     
     constructor(props){
         super(props)
@@ -21,7 +22,7 @@ export default class Shops extends React.Component{
         return(
             <View style={styles.container}>
                 <View style={{flex: 1}}>
-                    <TagsSection data={State.tags}/>
+                    <TagsSection data={State.tags} totalData={Shops}/>
                 </View>
                 <View style={{flex:20}}>
                     <ShopsListSection navigation={this.props.navigation}/>

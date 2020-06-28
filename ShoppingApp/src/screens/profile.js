@@ -1,6 +1,7 @@
 import React from 'react'
 import AntDesign from 'react-native-vector-icons/AntDesign'
 import {State} from '../components/state'
+import StarsRating from '../components/startsRating'
 import {
     View,
     Text,
@@ -19,17 +20,8 @@ export default class ProfileScreen extends React.Component{
                 <View style={{margin: '2%', flex: 1}}>
                     <Text style={{flex:1, fontWeight: 'bold', textDecorationLine: 'underline'}}> RELIABILITY </Text>
                     <View style={{flex:2, flexDirection: 'row', alignItems: 'center'}}>
-                        <FlatList
-                        style={{flex:1}}
-                        horizontal={true}
-                        data={State.stars}
-                        keyExtractor={({index}) => index}
-                        renderItem={({item})=> (item) 
-                            ?<AntDesign name='star' size={30} color='yellow'/> 
-                            :<AntDesign name='staro' size={30} color='yellow'/>}
-                        />
-                        
-                        <Text style={{marginLeft: '3%', fontSize: 20, flex:1.2}}>{State.stars[0]+State.stars[1]+State.stars[2]+State.stars[3]+State.stars[4]}</Text>
+                        <StarsRating data={State.stars} style={{flex:1}}/>
+                        <Text style={{marginLeft: '3%', fontSize: 20, flex:2}}>{State.stars[0]+State.stars[1]+State.stars[2]+State.stars[3]+State.stars[4]}</Text>
                     </View>
                 </View>
         }
@@ -38,17 +30,8 @@ export default class ProfileScreen extends React.Component{
             <View style={{margin: '2%', flex: 1}}>
                 <Text style={{flex:1, fontWeight: 'bold', textDecorationLine: 'underline'}}> CUSTOMER RATINGS </Text>
                 <View style={{flex:2, flexDirection: 'row', alignItems: 'center'}}>
-                    <FlatList
-                    style={{flex:1}}
-                    horizontal={true}
-                    data={State.stars}
-                    keyExtractor={({index}) => index}
-                    renderItem={({item})=> (item) 
-                        ?<AntDesign name='star' size={30} color='yellow'/> 
-                        :<AntDesign name='staro' size={30} color='yellow'/>}
-                    />
-                    
-                    <Text style={{marginLeft: '3%', fontSize: 20, flex:1.2}}>{State.stars[0]+State.stars[1]+State.stars[2]+State.stars[3]+State.stars[4]}</Text>
+                    <StarsRating data={State.stars} style={{flex:1}}/>
+                    <Text style={{marginLeft: '3%', fontSize: 20, flex:2}}>{State.stars[0]+State.stars[1]+State.stars[2]+State.stars[3]+State.stars[4]}</Text>
                 </View>
             </View>
         }

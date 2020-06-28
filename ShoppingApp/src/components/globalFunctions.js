@@ -37,5 +37,11 @@ const loginFunc = (usermail, password, navigation) => {
         navigation.navigate('Login')
     }
 }
+
+const filterData = (type, data) => { //el parametro data es la totalidad de los datos y type el criterio que se usara para filtar
+    return true
+}
+
 export {loginFunc}
 export {updateUserDB}
+export {filterData}

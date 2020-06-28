@@ -18,7 +18,7 @@ const Shops = [
     profileDescription: 'Asador de pollos con servicio de comida para llevar ubicado en Hoyo de Manzanares.',
     profileImage: 'https://media-cdn.tripadvisor.com/media/photo-s/06/e5/1c/29/getlstd-property-photo.jpg',
     tags: ['asador', 'hoyo de manzanares', 'para llevar'],
-    categories: ['pollos', 'patatas', 'empanadillas'],
+    categories: ['Pollos', 'Patatas', 'Empanadillas'],
     stock: {
         availableTables: 0,
         availableProducts: [
@@ -41,7 +41,7 @@ const Shops = [
     profileDescription: 'Restaurante de comida rapida ubicado en el centro comercial de Torrelodones',
     profileImage: 'https://deresiduos.s3.amazonaws.com/uploads/news/image/14651/Mcdonalds-90s-logo.svg.png',
     tags: ['haburguesas', 'torrelodones', 'fast food'],
-    categories: ['menus', 'hamburguesas', 'patatas', 'refrescos'],
+    categories: ['Menus', 'Hamburguesas', 'Patatas', 'Refrescos'],
     stock: {
         availableTables: 0,
         availableProducts: [

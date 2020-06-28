@@ -1,5 +1,7 @@
 import React from 'react'
 import AntDesign from 'react-native-vector-icons/AntDesign'
+import StarsRating from '../components/startsRating'
+import TagsSection from '../components/tagsSec'
 import {State} from '../components/state'
 
 import {
@@ -24,16 +26,8 @@ export default class SelectedShopScreen extends React.Component{
                         <Image
                             style={styles.profileImage}
                             source={{uri: item.profileImage}}
-                        />
-                        <FlatList
-                            style={{flex:1, marginStart: '7%'}}
-                            horizontal={true}
-                            data={item.stars}
-                            keyExtractor={({index}) => index}
-                            renderItem={({item})=> (item) 
-                                ?<AntDesign name='star' size={20} color='yellow'/> 
-                                :<AntDesign name='staro' size={20} color='yellow'/>}
-                        />
+                        /> 
+                        <StarsRating data={item.stars} style={{flex:1, marginStart: '7%'}}/>
                         <Text style={{alignSelf: 'center', flex:1}}>{item.stars[0]+item.stars[1]+item.stars[2]+item.stars[3]+item.stars[4]}</Text>
                     </View>
                     <View style={{flex: 2.3}}>
@@ -49,6 +43,10 @@ export default class SelectedShopScreen extends React.Component{
                     </View>
                 </View>
                 <View style={styles.body}>
+                    <View style={{flex:1}}>
+                        <TagsSection data={item.categories} totalData={item.stock.availableProducts}/>
+                    </View>
+                    <View style={{flex:15}}></View>
                 </View>
             </View>
         )
