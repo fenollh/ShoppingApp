@@ -43,7 +43,7 @@ const Shops = [
     tags: ['haburguesas', 'torrelodones', 'fast food'],
     categories: ['Menus', 'Hamburguesas', 'Patatas', 'Refrescos'],
     stock: {
-        availableTables: 0,
+        availableTables: 7,
         availableProducts: [
             {name: 'hamburguesa', description: 'Hamburgesa con bacon y queso', image: 'https://s1.eestatic.com/2016/02/23/cocinillas/Cocinillas_104501450_134854388_1706x960.jpg', cost: 15, quantity: -1, tags: ['hamburgesas'] }, //si en el parametro quantity se pone un numero negativo la cantidad del producto es indefinida
             {name: 'patatas', description: 'Patatas fritas', image: 'https://s.libertaddigital.com/2018/02/06/1920/1080/fit/patatas-mcdonalds.jpg', cost: 4, quantity: -1, tags: ['patatas'] },

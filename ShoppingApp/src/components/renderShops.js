@@ -61,16 +61,16 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         paddingTop: '7%',
-        marginHorizontal: '2%',
+        marginHorizontal: '1%',
     },
     shopBox: {
         flex: 1,
-        marginVertical: '2%',
+        marginVertical: '1%',
         flexDirection: 'row',
-        backgroundColor: 'rgb(240, 245, 255)',
+        backgroundColor: 'rgb(240, 250, 255)',
         borderColor: 'rgb(100,150,200)',
         borderRadius: 10,
-        borderWidth: 1,
+        borderWidth: 0.3,
         height: 100, 
         width: '100%', 
         padding: '2%'

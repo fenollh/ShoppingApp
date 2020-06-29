@@ -18,7 +18,18 @@ export default class SelectedShopScreen extends React.Component{
         super(props)
     }
     render(){
+        let tablesSection
         const {item} = this.props.route.params
+
+        if(item.shopDetails.restaurant){
+            tablesSection = 
+                <View style={{flexDirection: 'row', }}>
+                    <Text style={styles.availableTablesTxt}>Total number of tables available: {item.stock.availableTables}</Text>
+                    <TouchableOpacity style={styles.reserveButton}><Text style={styles.availableTablesTxt}>Reserve</Text></TouchableOpacity>
+                </View>
+        }else {
+            tablesSection= <Text style={[styles.availableTablesTxt, {marginTop:'3%'}]}>This shop doesn't offer restaurant service</Text>
+        }
         return(
             <View style={styles.container}>
                 <View style={styles.header}>
@@ -43,10 +54,17 @@ export default class SelectedShopScreen extends React.Component{
                     </View>
                 </View>
                 <View style={styles.body}>
-                    <View style={{flex:1}}>
-                        <TagsSection data={item.categories} totalData={item.stock.availableProducts}/>
+                    
+                    <View style={{flex:15}}>
+                        <View style={styles.tablesSection}>
+                            {tablesSection}
+                        </View>
+                        <View style={{flex:0.7}}>
+                            <TagsSection data={item.categories} totalData={item.stock.availableProducts}/>
+                        </View>
+                        <View style={{flex: 10}}>
+                        </View>
                     </View>
-                    <View style={{flex:15}}></View>
                 </View>
             </View>
         )
@@ -97,5 +115,28 @@ const styles = StyleSheet.create({
     },  
     body: {
         flex: 3,
+    },
+    tablesSection: {
+        flex:1, 
+        backgroundColor: 'rgb(200,230,255)',
+        marginTop:'2%',
+        paddingStart: '2%', 
+        justifyContent: 'center', 
+        borderBottomColor: 'black', 
+        borderBottomWidth:1
+    },
+    reserveButton: {
+        backgroundColor: 'rgb(80,130,255)', 
+        height: 30, 
+        width: 100,
+        borderRadius: 20,
+        marginEnd: '2%',
+        paddingTop: '1%',
+    },
+    availableTablesTxt:{ 
+        flex:3, 
+        fontWeight: 'bold', 
+        fontSize:15,
+        alignSelf:'center'
     },
 })
