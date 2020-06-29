@@ -18,12 +18,12 @@ export default class RenderProductsSection extends React.Component{
     renderProduct = (item) => {
         let itemsRemaining
         if(item.quantity < 0){
-            itemsRemaining= <Text style={{ color:'rgb(0,200,0)', textAlign: 'center', alignSelf:'center', marginTop: '10%'}}> Este producto se prepara por encargo </Text>
+            itemsRemaining= <Text style={[styles.itemsRemaining, {color:'rgb(0,200,0)'}]}> Este producto se prepara por encargo </Text>
         }
         else if(item.quantity >= 10){
-            itemsRemaining= <Text style={{ color:'rgb(0,200,0)', textAlign: 'center', alignSelf:'center', marginTop: '10%'}}> Aun quedan {item.quantity} unidades </Text>
+            itemsRemaining= <Text style={[styles.itemsRemaining, {color:'rgb(0,200,0)'}]}> Aun quedan {item.quantity} unidades </Text>
         }else{
-            itemsRemaining= <Text style={{ color:'rgb(200,0,0)', textAlign: 'center', alignSelf:'center', marginTop: '10%'}}> Tan solo quedan {item.quantity} unidades </Text>
+            itemsRemaining= <Text style={[styles.itemsRemaining, {color:'rgb(200,0,0)'}]}> Tan solo quedan {item.quantity} unidades </Text>
         }
         return(
             <TouchableOpacity style={styles.productBox} activeOpacity={0.6}>
@@ -34,9 +34,11 @@ export default class RenderProductsSection extends React.Component{
                     />
                 </View>
                 <View style={{flex:2}}>
-                    <Text style={{alignSelf: 'center', fontWeight: 'bold', fontSize: 17, marginBottom: '3%'}}>{item.name}</Text>
-                    <Text style={{textAlign: 'center'}}>{item.description}</Text>
-                    {itemsRemaining}
+                    <Text style={{alignSelf: 'center', flex:1, fontWeight: 'bold', fontSize: 17, marginBottom: '3%'}}>{item.name}</Text>
+                    <Text style={{textAlign: 'center', flex:1}}>{item.description}</Text>
+                    <View style={{flex:1, justifyContent: 'flex-end'}}>
+                        {itemsRemaining}
+                    </View>
                 </View>
                 <View style={{flex:1, alignItems:'center', justifyContent: 'center'}}>
                     <Text style={{fontSize:30, flex:1}}>{item.cost}€</Text>
@@ -76,5 +78,10 @@ const styles = StyleSheet.create({
         height: 110, 
         width: '100%', 
         padding: '2%'
+    },
+    itemsRemaining: {
+        flex:1, 
+        textAlign: 'center', 
+        alignSelf:'center',
     },
 })

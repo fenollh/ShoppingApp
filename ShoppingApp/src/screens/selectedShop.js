@@ -26,7 +26,7 @@ export default class SelectedShopScreen extends React.Component{
         if(item.shopDetails.restaurant){
             tablesSection = 
                 <View style={{flexDirection: 'row', }}>
-                    <Text style={styles.availableTablesTxt}>Total number of tables available: {item.stock.availableTables}</Text>
+                    <Text style={styles.availableTablesTxt}>Total number of tables: {item.stock.availableTables}</Text>
                     <TouchableOpacity style={styles.reserveButton}><Text style={styles.availableTablesTxt}>Reserve</Text></TouchableOpacity>
                 </View>
         }else {
