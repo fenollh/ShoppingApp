@@ -3,6 +3,7 @@ import AntDesign from 'react-native-vector-icons/AntDesign'
 import StarsRating from '../components/startsRating'
 import TagsSection from '../components/tagsSec'
 import {State} from '../components/state'
+import RenderProductsSection from '../components/renderProducts' 
 
 import {
     View,
@@ -17,6 +18,7 @@ export default class SelectedShopScreen extends React.Component{
     constructor(props){
         super(props)
     }
+
     render(){
         let tablesSection
         const {item} = this.props.route.params
@@ -62,7 +64,8 @@ export default class SelectedShopScreen extends React.Component{
                         <View style={{flex:0.7}}>
                             <TagsSection data={item.categories} totalData={item.stock.availableProducts}/>
                         </View>
-                        <View style={{flex: 10}}>
+                        <View style={{flex: 10, marginTop: '1%'}}>
+                            <RenderProductsSection item={item}/>
                         </View>
                     </View>
                 </View>
@@ -134,9 +137,23 @@ const styles = StyleSheet.create({
         paddingTop: '1%',
     },
     availableTablesTxt:{ 
-        flex:3, 
+        flex:3,
+        color: 'rgb(0,0,0)', 
         fontWeight: 'bold', 
         fontSize:15,
         alignSelf:'center'
+    },
+    productBox: {
+        flex: 1,
+        marginVertical: '1%',
+        marginHorizontal: '1%',
+        flexDirection: 'row',
+        backgroundColor: 'rgb(240, 250, 255)',
+        borderColor: 'rgb(100,150,200)',
+        borderRadius: 10,
+        borderWidth: 0.3,
+        height: 100, 
+        width: '100%', 
+        padding: '2%'
     },
 })
