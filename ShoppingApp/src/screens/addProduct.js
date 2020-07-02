@@ -10,6 +10,7 @@ import {
 import Entypo from 'react-native-vector-icons/Entypo'
 import Fontisto from 'react-native-vector-icons/Fontisto'
 import Ionicons from 'react-native-vector-icons/Ionicons'
+import AntDesign from 'react-native-vector-icons/AntDesign'
 
 import {addOrder} from '../components/globalFunctions'
 import { State } from '../components/state'
@@ -22,14 +23,17 @@ export default class AddProductScreen extends React.Component {
         this.state={
             date: new Date(),
             time: new Date(),
+            quantity: 0,
             showCalendar: false,
             showClock: false,
+            showQuantityErr: false,
         }
     }
     render(){
         let dateTime = new Date(this.state.date.toString().slice(4,15)+' '+this.state.time.toString().slice(16))
         const {shop, item} = this.props.route.params
         let clockSec
+        let quantityErr
         let calensarSec
         if(this.state.showCalendar){
             calensarSec=(
@@ -69,7 +73,7 @@ export default class AddProductScreen extends React.Component {
                         />
                         <Text style ={{fontSize: 17, fontWeight: 'bold'}}>Order: {item.name}</Text>
                     </View>
-                    <View style={{flex:6, alignItems: 'center', marginTop: 45}}>
+                    <View style={{flex:4, alignItems: 'center', marginTop: 45}}>
                         <View style={styles.formBox}>
                             <Text style={styles.dateTxt}>Order for day: {this.state.date.toString().slice(4,15)}</Text>
                             <Entypo 
@@ -90,6 +94,39 @@ export default class AddProductScreen extends React.Component {
                                 onPress={()=>this.setState({showClock: true})}/>
                         </View>
                         {clockSec}
+                        <View style={styles.formBox}>
+                            <Text style={styles.dateTxt}>Quantity: {this.state.quantity}</Text>
+                            <AntDesign 
+                                name='minus' 
+                                size={50} 
+                                color='black' 
+                                style={{flex:1.5, alignSelf: 'center'}} 
+                                onPress={()=>{
+                                    if(this.state.quantity > 0){
+                                        this.setState({quantity: this.state.quantity-1})
+                                    }
+                                    }}/>
+                            <Ionicons 
+                                name='ios-add' 
+                                size={50} 
+                                color='black' 
+                                style={{flex:1.5, alignSelf: 'center'}} 
+                                onPress={()=>{
+                                    if(item.quantity<0 || this.state.quantity < item.quantity){
+                                        this.setState({quantity: this.state.quantity+1, showQuantityErr: false})
+                                    }else 
+                                    this.setState({showQuantityErr: true})
+                                    }}/>
+                        </View>
+                        {
+                        (this.state.quantity>=item.quantity && item.quantity>0)
+                        ?<Text style={{color:'red'}}> Maximun quantity reached: {item.quantity}</Text>
+                        :<Text/>
+                        }
+                    </View>
+                    <View style={{flex: 2, marginBottom: 30, marginEnd: 30, flexDirection: 'row', justifyContent: 'flex-end'}}>
+                        <Text style={{fontSize:20, fontWeight: 'bold'}}>Cost:</Text>
+                        <Text style={{fontSize:100, marginHorizontal: 10}}>{item.cost*this.state.quantity}€</Text>
                     </View>
                     <View style={{flex:1, flexDirection: 'row'}}>
                         <TouchableOpacity 
