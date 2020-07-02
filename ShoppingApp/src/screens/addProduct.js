@@ -8,7 +8,9 @@ import {
     Alert,
 } from 'react-native'
 import Entypo from 'react-native-vector-icons/Entypo'
+import Fontisto from 'react-native-vector-icons/Fontisto'
 import Ionicons from 'react-native-vector-icons/Ionicons'
+
 import {addOrder} from '../components/globalFunctions'
 import { State } from '../components/state'
 import RNDateTimePicker from '@react-native-community/datetimepicker';
@@ -19,11 +21,15 @@ export default class AddProductScreen extends React.Component {
         super(props)
         this.state={
             date: new Date(),
-            showCalendar: false
+            time: new Date(),
+            showCalendar: false,
+            showClock: false,
         }
     }
     render(){
+        let dateTime = new Date(this.state.date.toString().slice(4,15)+' '+this.state.time.toString().slice(16))
         const {shop, item} = this.props.route.params
+        let clockSec
         let calensarSec
         if(this.state.showCalendar){
             calensarSec=(
@@ -37,10 +43,21 @@ export default class AddProductScreen extends React.Component {
                         : this.setState({ showCalendar: false })
                     }} />
             )
-        }
-        else{
-            calensarSec= <View/>
-        }
+        } else calensarSec=<View/>
+        if(this.state.showClock){
+            clockSec=(
+                <RNDateTimePicker 
+                    value={ this.state.time }
+                    is24Hour={true}
+                    mode='time'
+                    display='default'
+                    onChange={ (_,newTime) => {
+                        (newTime)
+                        ? this.setState({ time: newTime, showClock: false }) 
+                        : this.setState({ showClock: false })
+                    }} />
+            )
+        } else clockSec=<View/>
         
         return(
             <View style={styles.container}>
@@ -63,6 +80,16 @@ export default class AddProductScreen extends React.Component {
                                 onPress={()=>this.setState({showCalendar: true})}/>
                         </View>
                         {calensarSec}
+                        <View style={styles.formBox}>
+                            <Text style={styles.dateTxt}>Order for time: {this.state.time.toString().slice(16,21)}</Text>
+                            <Fontisto 
+                                name='clock' 
+                                size={30} 
+                                color='black' 
+                                style={{flex:1, alignSelf: 'center'}} 
+                                onPress={()=>this.setState({showClock: true})}/>
+                        </View>
+                        {clockSec}
                     </View>
                     <View style={{flex:1, flexDirection: 'row'}}>
                         <TouchableOpacity 
@@ -74,7 +101,10 @@ export default class AddProductScreen extends React.Component {
                         <TouchableOpacity 
                             style={[styles.button, {flexDirection: 'row'}]} 
                             activeOpacity={0.6}
-                            onPress={()=>addOrder(item.name, item.cost, shop.email, 5, Date.now(), State.usermail, State.username)}>
+                            onPress={()=>{
+                                addOrder(item.name, item.cost, shop.email, 5, Date.now(), State.usermail, State.username)
+                                this.props.navigation.goBack()
+                                }}>
                             <Text style={styles.buttonTxt}>ORDER</Text>
                             <Ionicons name='ios-add' size={50} color='rgb(0,255,0)' style={styles.icon}/>
                         </TouchableOpacity>
