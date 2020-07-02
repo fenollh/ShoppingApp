@@ -24,6 +24,7 @@ import SettingsScreen from '../screens/settings'
 import ProfileScreen from '../screens/profile'
 import AboutUsScreen from '../screens/aboutus'
 import ContactUsScreen from '../screens/contactus'
+import AddProductScreen from '../screens/addProduct'
 
 
 const Tab = createMaterialTopTabNavigator();
@@ -95,6 +96,7 @@ export default class Router extends React.Component{
                         <Stack.Screen name="Register" component={RegisterScreen} />
                         <Stack.Screen name="Main" component={this.DrawerNavigator} />
                         <Stack.Screen name="SelectedShop" component={SelectedShopScreen} />
+                        <Stack.Screen name="AddProduct" component={AddProductScreen} />
                     </Stack.Navigator>
                 </NavigationContainer>
             </View>

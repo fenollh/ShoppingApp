@@ -5,9 +5,10 @@ const initState = _ => {
     //descargar los datos de la DB al state. Se usa al hacer login
 }
 
-const authentication = (usermail, password) => {
+const authentication = (usermail, password, sessionID) => {
     //check in the database is the email exists
     //check if the password is correct
+    //or check if the sessionID is correct
     return true
 }
 
@@ -42,6 +43,22 @@ const filterData = (type, data) => { //el parametro data es la totalidad de los 
     return true
 }
 
+const addOrder = (itemName, itemCost ,shopmail, quantity, hour, usermail) => {
+    authentication(usermail, State.sessionID)
+    const order = {
+        itemName:itemName,
+        itemCost: itemCost,
+        shop: shopmail,
+        quantity: quantity,
+        hour: hour,
+        costumermail: usermail
+    }
+    //Se crea una entrada en la tabla 'Orders' con el objeto order
+    State.myOrders.push(order)
+    console.log(State.myOrders)
+}
+
 export {loginFunc}
 export {updateUserDB}
 export {filterData}
+export {addOrder}

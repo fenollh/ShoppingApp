@@ -65,7 +65,7 @@ export default class SelectedShopScreen extends React.Component{
                             <TagsSection data={item.categories} totalData={item.stock.availableProducts}/>
                         </View>
                         <View style={{flex: 10, marginTop: '1%'}}>
-                            <RenderProductsSection item={item}/>
+                            <RenderProductsSection item={item} navigation={this.props.navigation}/>
                         </View>
                     </View>
                 </View>

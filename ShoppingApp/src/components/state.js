@@ -19,16 +19,6 @@ let State = {
             ]
     },
     myOrders: [
-        {shop: 'Pio Pio', dateHour: '2-dic 14:30', costumer: 'fenollh@gmail.com',order: [
-            {name: 'pollo', quantity: 2, cost: 15}, 
-            {name: 'lasaña', quantity: 2, cost: 15}
-        ]},
-        {shop: 'Fruteria Hoyo', dateHour: '2-dic 14:40', costumer: 'fenollh@gmail.com' ,order: [
-            {name: 'tomates', quantity: 2, cost: 5}, 
-            {name: 'manzanas', quantity: 2, cost: 7},
-            {name: 'sandia', quantity: 1, cost: 10},
-            {name: 'melocotones', quantity: 5, cost: 4}
-        ]},
     ],
     myStock: { // in costumer accounts this object is null
         availableTables: 10,
