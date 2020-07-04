@@ -10,7 +10,6 @@ import {
     StyleSheet,
     Alert
 } from 'react-native'
-import { FlatList } from 'react-native-gesture-handler'
 
 export default class ProfileScreen extends React.Component{
     render(){

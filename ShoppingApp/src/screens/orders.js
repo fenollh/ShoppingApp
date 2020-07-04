@@ -6,7 +6,7 @@ import {
     Image,
     StyleSheet,
 } from 'react-native'
-import RenderOrdersSection from './renderOrders'
+import RenderOrdersSection from '../components/renderOrders'
 
 export default class OrdersScreen extends React.Component{
     
@@ -21,7 +21,7 @@ export default class OrdersScreen extends React.Component{
             console.log('rendered')
             page=(
                 <View style={{flex:1}}>
-                    <View style={styles.mainBox}>
+                    <View style={{flex:8}}>
                         <RenderOrdersSection/>
                     </View>
                     <View style={styles.costView}>
@@ -50,14 +50,7 @@ export default class OrdersScreen extends React.Component{
 const styles = StyleSheet.create({
     container:{
         flex: 1,
-        padding: '3%',
-        backgroundColor: 'rgb(240,245,240)',
-    },
-    mainBox: {
-        flex:8,
-        borderRadius: 20,
-        borderWidth: 1,
-        borderColor: 'black',
+        //padding: '3%',
         backgroundColor: 'rgb(240,245,240)',
     },
     costView:{
