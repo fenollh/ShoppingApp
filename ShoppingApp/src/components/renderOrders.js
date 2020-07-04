@@ -1,5 +1,6 @@
 import React from 'react'
 import {State} from './state'
+import {Shops} from './shopsList'
 import AntDesign from 'react-native-vector-icons/AntDesign'
 
 import { 
@@ -17,13 +18,20 @@ export default class RenderOrdersSection extends React.Component{
         super(props)
     }
 
+    findImage = (item) => {
+        const shop = Shops.find(elem => elem.email == item.shop)
+        const product = shop.stock.availableProducts.find(elem => elem.name==item.itemName)
+        return product.image
+    }
+
     renderItem = (item, index) => {
+        let image = this.findImage(item)
         return(
             <View style={styles.productBox}>
                 <View style={{flex:1.5}}>
                     <Image
                     style={{height:100, width:100, resizeMode:'cover', borderRadius:10}}
-                    source={{uri: item.image}}
+                    source={{uri: image}}
                     />
                 </View>
                 <View style={{flex:2}}>
