@@ -57,7 +57,6 @@ const addOrder = (itemName, itemCost ,shopmail, quantity, hour, usermail) => {
     }
     //Se crea una entrada en la tabla 'Orders' con el objeto order
     State.myOrders.push(order)
-    console.log(State.myOrders)
 }
 
 export {loginFunc}

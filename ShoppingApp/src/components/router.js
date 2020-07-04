@@ -33,6 +33,8 @@ const Drawer = createDrawerNavigator();
 
 export default class Router extends React.Component{
     
+    addProduct = (props) => <AddProductScreen router={this} props={props}/>
+
     TabNavigator(_) {
         return(
             <Tab.Navigator
@@ -96,7 +98,7 @@ export default class Router extends React.Component{
                         <Stack.Screen name="Register" component={RegisterScreen} />
                         <Stack.Screen name="Main" component={this.DrawerNavigator} />
                         <Stack.Screen name="SelectedShop" component={SelectedShopScreen} />
-                        <Stack.Screen name="AddProduct" component={AddProductScreen} />
+                        <Stack.Screen name="AddProduct" component={this.addProduct} />
                     </Stack.Navigator>
                 </NavigationContainer>
             </View>

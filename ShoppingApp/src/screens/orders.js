@@ -4,6 +4,7 @@ import {
     View,
     Text, 
     Image,
+    TouchableOpacity,
     StyleSheet,
 } from 'react-native'
 import RenderOrdersSection from '../components/renderOrders'
@@ -11,22 +12,24 @@ import RenderOrdersSection from '../components/renderOrders'
 export default class OrdersScreen extends React.Component{
     
     calculateCost = () =>{
-        let cost
-        return 30
+        let cost=0
+        for(let i=0; i<=State.myOrders.length -1; i++){
+            cost = cost + State.myOrders[i].quantity*State.myOrders[i].itemCost
+        }
+        return cost
     }
     
     render(){
         let page
         if(State.accountType == 'Costumer'){
-            console.log('rendered')
             page=(
                 <View style={{flex:1}}>
                     <View style={{flex:8}}>
-                        <RenderOrdersSection/>
+                        <RenderOrdersSection father={this}/>
                     </View>
-                    <View style={styles.costView}>
+                    <TouchableOpacity style={styles.costView} onPress={()=>this.forceUpdate()}>
                         <Text style={styles.costTxt}>TOTAL COST: {this.calculateCost()}€</Text>
-                    </View>
+                    </TouchableOpacity>
                 </View>
             )
         }

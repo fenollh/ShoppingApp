@@ -47,7 +47,7 @@ export default class RenderOrdersSection extends React.Component{
                             color='rgb(80,130,255)' 
                             onPress={()=> {
                                 State.myOrders.splice(index, 1)
-                                this.forceUpdate()
+                                this.props.father.forceUpdate()
                                 }}/>
                 </TouchableOpacity>
             </View>

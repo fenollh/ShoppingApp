@@ -31,7 +31,7 @@ export default class AddProductScreen extends React.Component {
     }
     render(){
         let dateTime = new Date(this.state.date.toString().slice(4,15)+' '+this.state.time.toString().slice(16))
-        const {shop, item} = this.props.route.params
+        const {shop, item} = this.props.props.route.params
         let clockSec
         let calensarSec
         if(this.state.showCalendar){
@@ -160,7 +160,7 @@ export default class AddProductScreen extends React.Component {
                         <TouchableOpacity 
                             style={styles.button} 
                             activeOpacity={0.6}
-                            onPress={()=>this.props.navigation.goBack()}>
+                            onPress={()=>this.props.props.navigation.goBack()}>
                             <Entypo name='cross' size={50} color='red' style={styles.icon}/>
                         </TouchableOpacity>
                         <TouchableOpacity 
@@ -168,7 +168,7 @@ export default class AddProductScreen extends React.Component {
                             activeOpacity={0.6}
                             onPress={()=>{
                                 addOrder(item.name, item.cost, shop.email, this.state.quantity, dateTime, State.usermail, State.username)
-                                this.props.navigation.goBack()
+                                this.props.props.navigation.goBack()
                                 }}>
                             <Text style={styles.buttonTxt}>ORDER</Text>
                             <Ionicons name='ios-add' size={50} color='rgb(0,255,0)' style={styles.icon}/>

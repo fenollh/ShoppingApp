@@ -19,7 +19,6 @@ export default class ShopsListSection extends React.Component {
         super(props)
     }
     renderShop = (item) => {
-        console.log(State.selectedTag)
         if (item.accountType != State.selectedTag && State.selectedTag != ' All ') return
         let servicesSec
         switch (item.accountType) {

@@ -51,7 +51,7 @@ export default class SelectedShopScreen extends React.Component{
                             <Text style={{fontSize: 15, textAlign: 'center'}}>{item.profileDescription}</Text>
                         </View>
                         <View style={{flex:1.2}}>
-                            <TouchableOpacity style={styles.editButton}>
+                            <TouchableOpacity style={styles.editButton} onPress={_=>this.props.navigation.goBack()}>
                                 <Text style={styles.buttonTxt}>Contact Manager</Text>
                             </TouchableOpacity>
                         </View>
