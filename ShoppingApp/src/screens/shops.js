@@ -22,7 +22,7 @@ export default class ShopsScreen extends React.Component{
         return(
             <View style={styles.container}>
                 <View style={{flex: 1}}>
-                    <TagsSection data={State.tags} totalData={Shops}/>
+                    <TagsSection data={State.tags} totalData='Shops' fatherComp={this}/>
                 </View>
                 <View style={{flex:20}}>
                     <ShopsListSection navigation={this.props.navigation}/>

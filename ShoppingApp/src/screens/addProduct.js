@@ -33,7 +33,6 @@ export default class AddProductScreen extends React.Component {
         let dateTime = new Date(this.state.date.toString().slice(4,15)+' '+this.state.time.toString().slice(16))
         const {shop, item} = this.props.route.params
         let clockSec
-        let quantityErr
         let calensarSec
         if(this.state.showCalendar){
             calensarSec=(
@@ -75,7 +74,7 @@ export default class AddProductScreen extends React.Component {
                     </View>
                     <View style={{flex:4, alignItems: 'center', marginTop: 45}}>
                         <View style={styles.formBox}>
-                            <Text style={styles.dateTxt}>Order for day: {this.state.date.toString().slice(4,15)}</Text>
+                            <Text style={styles.dateTxt}>Order for day:      {this.state.date.toString().slice(4,15)}</Text>
                             <Entypo 
                                 name='calendar' 
                                 size={30} 
@@ -83,9 +82,23 @@ export default class AddProductScreen extends React.Component {
                                 style={{flex:1, alignSelf: 'center'}} 
                                 onPress={()=>this.setState({showCalendar: true})}/>
                         </View>
-                        {calensarSec}
+                        {
+                            (this.state.showCalendar)
+                            ?(
+                                <RNDateTimePicker 
+                                    value={ this.state.date }
+                                    mode='default'
+                                    display='default'
+                                    onChange={ (_,newDate) => {
+                                        (newDate)
+                                        ? this.setState({ date: newDate, showCalendar: false }) 
+                                        : this.setState({ showCalendar: false })
+                                    }} />
+                            )
+                            :<Text/>
+                        }
                         <View style={styles.formBox}>
-                            <Text style={styles.dateTxt}>Order for time: {this.state.time.toString().slice(16,21)}</Text>
+                            <Text style={styles.dateTxt}>Order for time:      {this.state.time.toString().slice(16,21)}</Text>
                             <Fontisto 
                                 name='clock' 
                                 size={30} 
@@ -93,9 +106,24 @@ export default class AddProductScreen extends React.Component {
                                 style={{flex:1, alignSelf: 'center'}} 
                                 onPress={()=>this.setState({showClock: true})}/>
                         </View>
-                        {clockSec}
+                        {
+                            (this.state.showClock)
+                            ?(
+                                <RNDateTimePicker 
+                                    value={ this.state.time }
+                                    is24Hour={true}
+                                    mode='time'
+                                    display='default'
+                                    onChange={ (_,newTime) => {
+                                        (newTime)
+                                        ? this.setState({ time: newTime, showClock: false }) 
+                                        : this.setState({ showClock: false })
+                                    }} />
+                            )
+                            :<Text/>
+                        }
                         <View style={styles.formBox}>
-                            <Text style={styles.dateTxt}>Quantity: {this.state.quantity}</Text>
+                            <Text style={styles.dateTxt}>Quantity:      {this.state.quantity}</Text>
                             <AntDesign 
                                 name='minus' 
                                 size={50} 
@@ -119,9 +147,9 @@ export default class AddProductScreen extends React.Component {
                                     }}/>
                         </View>
                         {
-                        (this.state.quantity>=item.quantity && item.quantity>0)
-                        ?<Text style={{color:'red'}}> Maximun quantity reached: {item.quantity}</Text>
-                        :<Text/>
+                            (this.state.quantity>=item.quantity && item.quantity>0)
+                            ?<Text style={{color:'red'}}> Maximun quantity reached: {item.quantity}</Text>
+                            :<Text/>
                         }
                     </View>
                     <View style={{flex: 2, marginBottom: 30, marginEnd: 30, flexDirection: 'row', justifyContent: 'flex-end'}}>
@@ -139,7 +167,7 @@ export default class AddProductScreen extends React.Component {
                             style={[styles.button, {flexDirection: 'row'}]} 
                             activeOpacity={0.6}
                             onPress={()=>{
-                                addOrder(item.name, item.cost, shop.email, 5, Date.now(), State.usermail, State.username)
+                                addOrder(item.name, item.cost, shop.email, this.state.quantity, dateTime, State.usermail, State.username)
                                 this.props.navigation.goBack()
                                 }}>
                             <Text style={styles.buttonTxt}>ORDER</Text>
@@ -156,7 +184,7 @@ const styles = StyleSheet.create({
         flex:1, 
         alignItems: 'center', 
         justifyContent: 'center', 
-        backgroundColor:'rgba(0,0,0, 0.6)',
+        backgroundColor:'rgba(0,0,0, 0.7)',
     },
     mainBox: {
         backgroundColor: 'white', 
@@ -184,7 +212,7 @@ const styles = StyleSheet.create({
     formBox: {
         height: 50,
         width: '90%',
-        backgroundColor: 'rgb(200,200,200)',
+        backgroundColor: 'rgb(200,230,255)',
         flexDirection: 'row',
         marginVertical: '2%',
         borderRadius: 5

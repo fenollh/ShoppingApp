@@ -7,10 +7,12 @@ let State = {
     stars: [1, 1, 1, 1, 1], // de 0-5
     profileDescription: {profession: 'Estudiante y creador de esta app', hobbies: 'Esqui de montaña y tecnologia', location: 'Hoyo de Manzanares'},
     profileImage: 'https://www.skimostats.com/images/athletes/372-5e2587fe35036.png',
-    accountType: 'Costumer', //Costumer / Shop
+    accountType: 'Costumer', //Costumer / Other
     shopDetails: {takeaway: null, delivery: null ,restaurant: null}, //for costumer accounts the 3  fields are null
     renderedShops: [],
-    tags: [' All ','Favourites', 'Near', 'Fast Food', 'Italian', 'Chinese'],
+    tags: [' All ', 'Restaurants', 'Sport',],
+    selectedTag: ' All ',
+    selectedCategorie: ' All ',
     favouriteShops: [],
     shoppingList: { // in shops accounts this object is null
         public: true,
@@ -19,6 +21,8 @@ let State = {
             ]
     },
     myOrders: [
+        {costumermail: "fenollh@gmail.com", hour: Date.now(), itemCost: 15, itemName: "Pollo asado", quantity: 4, shop: "piopio@gmail.com"},
+        {costumermail: "fenollh@gmail.com", hour: Date.now(), itemCost: 4, itemName: "Patatas", quantity: 2, shop: "piopio@gmail.com"},
     ],
     myStock: { // in costumer accounts this object is null
         availableTables: 10,

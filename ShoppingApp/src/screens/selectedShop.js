@@ -20,17 +20,19 @@ export default class SelectedShopScreen extends React.Component{
     }
 
     render(){
-        let tablesSection
+        let spaceSection
         const {item} = this.props.route.params
 
-        if(item.shopDetails.restaurant){
-            tablesSection = 
+        if(item.shopDetails.restaurant && item.accountType == 'Food'){
+            spaceSection = 
                 <View style={{flexDirection: 'row', }}>
-                    <Text style={styles.availableTablesTxt}>Total number of tables: {item.stock.availableTables}</Text>
+                    <Text style={styles.availableTablesTxt}>Total number of tables: {item.stock.availableSpace}</Text>
                     <TouchableOpacity style={styles.reserveButton}><Text style={styles.availableTablesTxt}>Reserve</Text></TouchableOpacity>
                 </View>
-        }else {
-            tablesSection= <Text style={[styles.availableTablesTxt, {marginTop:'3%'}]}>This shop doesn't offer restaurant service</Text>
+        }else if(item.accountType == 'Food'){
+            spaceSection= <Text style={[styles.availableTablesTxt, {marginTop:'3%'}]}>This shop doesn't offer restaurant service</Text>
+        }else{
+            spaceSection=<View/>
         }
         return(
             <View style={styles.container}>
@@ -58,11 +60,11 @@ export default class SelectedShopScreen extends React.Component{
                 <View style={styles.body}>
                     
                     <View style={{flex:15}}>
-                        <View style={styles.tablesSection}>
-                            {tablesSection}
+                        <View style={styles.spaceSection}>
+                            {spaceSection}
                         </View>
                         <View style={{flex:0.7}}>
-                            <TagsSection data={item.categories} totalData={item.stock.availableProducts}/>
+                            <TagsSection data={item.categories} totalData='Categories' fatherComp={this}/>
                         </View>
                         <View style={{flex: 10, marginTop: '1%'}}>
                             <RenderProductsSection item={item} navigation={this.props.navigation}/>
@@ -119,7 +121,7 @@ const styles = StyleSheet.create({
     body: {
         flex: 3,
     },
-    tablesSection: {
+    spaceSection: {
         flex:1, 
         backgroundColor: 'rgb(200,230,255)',
         marginTop:'2%',

@@ -40,6 +40,8 @@ const loginFunc = (usermail, password, navigation) => {
 }
 
 const filterData = (type, data) => { //el parametro data es la totalidad de los datos y type el criterio que se usara para filtar
+    if(data === 'Shops') State.selectedTag = type
+    else if(data== 'Categories') State.selectedCategorie = type
     return true
 }
 
