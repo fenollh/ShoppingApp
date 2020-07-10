@@ -52,6 +52,7 @@ const filterData = (type, data) => { //el parametro data es la totalidad de los 
 }
 
 const addOrder = (itemName, itemCost ,shopmail, quantity, hour, usermail) => {
+    if(quantity < 1) return
     authentication(usermail, store.getState().sessionID)
     const order = {
         itemName:itemName,

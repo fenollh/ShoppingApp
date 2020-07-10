@@ -4,7 +4,6 @@ import {
     View,
     Text, 
     Image,
-    TouchableOpacity,
     StyleSheet,
 } from 'react-native'
 import RenderOrdersSection from './renderOrders'
@@ -20,6 +19,9 @@ export default class OrdersScreen extends React.Component{
     }
     
     render(){
+        store.subscribe(()=>{
+            if(Store.myOrders != store.getState().myOrders) this.forceUpdate()
+        })
         let Store = store.getState()
         let page
         if(Store.accountType == 'Costumer'){
@@ -28,9 +30,9 @@ export default class OrdersScreen extends React.Component{
                     <View style={{flex:8}}>
                         <RenderOrdersSection father={this}/>
                     </View>
-                    <TouchableOpacity style={styles.costView} onPress={()=>this.forceUpdate()}>
+                    <View style={styles.costView}>
                         <Text style={styles.costTxt}>TOTAL COST: {this.calculateCost(Store)}€</Text>
-                    </TouchableOpacity>
+                    </View>
                 </View>
             )
         }

@@ -49,7 +49,7 @@ export default class SelectedShopScreen extends React.Component{
                         </View>
                         <View style={{flex:1.2}}>
                             <TouchableOpacity style={styles.editButton} onPress={_=>this.props.navigation.goBack()}>
-                                <Text style={styles.buttonTxt}>Contact Manager</Text>
+                                <Text style={styles.buttonTxt}>View Location</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
