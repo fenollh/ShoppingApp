@@ -18,7 +18,6 @@ export default class TagsSection extends React.Component{
         return(
             <TouchableOpacity style={styles.tag} onPress={_=> {
                 filterData(item, this.props.totalData)
-                this.props.fatherComp.forceUpdate()
                 }}>
                 <Text style={styles.tagTxt}>{item}</Text>
             </TouchableOpacity>

@@ -8,6 +8,7 @@ import {
     FlatList,
     StyleSheet, 
     TouchableOpacity,
+    Alert,
 } from 'react-native'
 
 export default class ShoppingList extends React.Component{
@@ -18,12 +19,10 @@ export default class ShoppingList extends React.Component{
         }
     }
     deleteItem = (index) => {
-        //const removedItem = State.shoppingList.items.splice(index, 1)
         store.dispatch({
             type: 'REMOVE_ITEM_SHOPPINGLIST',
             payload: index
         })
-        this.forceUpdate()
     }
 
     renderListItem = (item, index) => {
@@ -38,6 +37,10 @@ export default class ShoppingList extends React.Component{
     }
 
     render(){
+        store.subscribe(()=>{
+            if(Store.shoppingList != store.getState().shoppingList) this.forceUpdate()
+        })
+        let Store = store.getState()
         const {state} = this
         return(
             <View style={styles.container}>
@@ -59,11 +62,11 @@ export default class ShoppingList extends React.Component{
                     <TouchableOpacity  
                         style={{flex:1, alignItems: 'center', justifyContent: 'center'}} 
                         onPress={_=> {
+                            if(!state.newItem) return
                             store.dispatch({
                                 type: 'ADD_ITEM_SHOPPINGLIST',
                                 payload: {name: state.newItem, id: store.getState().shoppingList.items.length}
                             })
-                            this.forceUpdate()
                             this.textInput.clear()
                         }}>
                             <AntDesign name='pluscircleo' size={50} color='rgb(52,167,251)'/>

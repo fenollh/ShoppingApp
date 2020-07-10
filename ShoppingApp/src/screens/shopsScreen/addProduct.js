@@ -139,19 +139,19 @@ export default class AddProductScreen extends React.Component {
                                 color='black' 
                                 style={{flex:1.5, alignSelf: 'center'}} 
                                 onPress={()=>{
-                                    if(item.quantity<0 || this.state.quantity < item.quantity){
+                                    if(this.state.quantity < item.max){
                                         this.setState({quantity: this.state.quantity+1, showQuantityErr: false})
                                     }else 
-                                    this.setState({showQuantityErr: true})
+                                        this.setState({showQuantityErr: true})
                                     }}/>
                         </View>
                         {
-                            (this.state.quantity>=item.quantity && item.quantity>0)
-                            ?<Text style={{color:'red'}}> Maximun quantity reached: {item.quantity}</Text>
+                            (this.state.quantity>=item.max)
+                            ?<Text style={{color:'red'}}> Maximun quantity reached: {item.max}</Text>
                             :<Text/>
                         }
                     </View>
-                    <View style={{flex: 2, marginBottom: 30, marginEnd: 30, flexDirection: 'row', justifyContent: 'flex-end'}}>
+                    <View style={{flex: 2, margin: 30, flexDirection: 'row', justifyContent: 'flex-end'}}>
                         <Text style={{fontSize:20, fontWeight: 'bold'}}>Cost:</Text>
                         <Text style={{fontSize:100, marginHorizontal: 10}}>{item.cost*this.state.quantity}€</Text>
                     </View>
@@ -160,7 +160,7 @@ export default class AddProductScreen extends React.Component {
                             style={styles.button} 
                             activeOpacity={0.6}
                             onPress={()=>this.props.props.navigation.goBack()}>
-                            <Entypo name='cross' size={50} color='red' style={styles.icon}/>
+                            <Entypo name='cross' size={40} color='red' style={styles.icon}/>
                         </TouchableOpacity>
                         <TouchableOpacity 
                             style={[styles.button, {flexDirection: 'row'}]} 

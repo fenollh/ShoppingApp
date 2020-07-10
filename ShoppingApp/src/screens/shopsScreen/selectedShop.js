@@ -2,6 +2,7 @@ import React from 'react'
 import StarsRating from '../../components/startsRating'
 import TagsSection from '../../components/tagsSec'
 import RenderProductsSection from './renderProducts' 
+import { store } from '../../redux/state'
 
 import {
     View,
@@ -9,6 +10,7 @@ import {
     Image,
     TouchableOpacity,
     StyleSheet,
+    Alert,
 } from 'react-native'
 
 export default class SelectedShopScreen extends React.Component{
@@ -17,6 +19,10 @@ export default class SelectedShopScreen extends React.Component{
     }
 
     render(){
+        store.subscribe(()=>{
+            if(Store.selectedCategorie != store.getState().selectedCategorie) this.forceUpdate()
+        })
+        let Store = store.getState()
         let spaceSection
         const {item} = this.props.route.params
 
@@ -47,9 +53,12 @@ export default class SelectedShopScreen extends React.Component{
                         <View style={{flex:1.8, alignItems: 'center'}}>
                             <Text style={{fontSize: 15, textAlign: 'center'}}>{item.profileDescription}</Text>
                         </View>
-                        <View style={{flex:1.2}}>
-                            <TouchableOpacity style={styles.editButton} onPress={_=>this.props.navigation.goBack()}>
+                        <View style={{flex:1.2, flexDirection: 'row'}}>
+                            <TouchableOpacity style={styles.editButton} onPress={_=>Alert.alert(item.location)}>
                                 <Text style={styles.buttonTxt}>View Location</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={styles.editButton} onPress={_=>Alert.alert(item.schedule)}>
+                                <Text style={styles.buttonTxt}>View Schedule</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -108,6 +117,7 @@ const styles = StyleSheet.create({
     editButton: {
         flex:1, 
         marginBottom: 5,
+        marginHorizontal: 5,
         height:30, 
         width: 200, 
         borderRadius: 20, 
