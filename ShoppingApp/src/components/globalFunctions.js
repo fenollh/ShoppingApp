@@ -1,5 +1,5 @@
 import React from 'react'
-import { store } from './state'
+import { store } from '../redux/state'
 
 const initState = _ => {
     //descargar los datos de la DB al state. Se usa al hacer login

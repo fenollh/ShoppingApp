@@ -11,8 +11,8 @@ import Fontisto from 'react-native-vector-icons/Fontisto'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import AntDesign from 'react-native-vector-icons/AntDesign'
 
-import { addOrder } from '../components/globalFunctions'
-import { store } from '../components/state'
+import { addOrder } from '../../components/globalFunctions'
+import { store } from '../../redux/state'
 import RNDateTimePicker from '@react-native-community/datetimepicker';
 
 

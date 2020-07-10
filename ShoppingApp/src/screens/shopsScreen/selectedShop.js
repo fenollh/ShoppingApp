@@ -1,7 +1,7 @@
 import React from 'react'
-import StarsRating from '../components/startsRating'
-import TagsSection from '../components/tagsSec'
-import RenderProductsSection from '../components/renderProducts' 
+import StarsRating from '../../components/startsRating'
+import TagsSection from '../../components/tagsSec'
+import RenderProductsSection from './renderProducts' 
 
 import {
     View,

@@ -1,6 +1,6 @@
 import React from 'react'
-import { store } from './state'
-import { Shops } from './shopsList'
+import { store } from '../../redux/state'
+import { Shops } from '../../components/shopsList'
 import AntDesign from 'react-native-vector-icons/AntDesign'
 
 import { 

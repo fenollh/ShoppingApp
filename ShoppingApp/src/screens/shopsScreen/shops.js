@@ -1,13 +1,12 @@
 import React from 'react'
 import { 
     View,
-    FlatList,
     StyleSheet,
 } from 'react-native'
 
-import TagsSection from '../components/tagsSec'
-import ShopsListSection from '../components/renderShops'
-import { store } from '../components/state'
+import TagsSection from '../../components/tagsSec'
+import ShopsListSection from './renderShops'
+import { store } from '../../redux/state'
 
 export default class ShopsScreen extends React.Component{
     

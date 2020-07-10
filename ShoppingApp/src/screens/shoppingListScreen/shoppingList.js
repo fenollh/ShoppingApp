@@ -1,6 +1,6 @@
 import React from 'react'
 import AntDesign from 'react-native-vector-icons/AntDesign'
-import {State, store} from '../components/state'
+import { store } from '../../redux/state'
 import { 
     View,
     Text,
@@ -59,7 +59,6 @@ export default class ShoppingList extends React.Component{
                     <TouchableOpacity  
                         style={{flex:1, alignItems: 'center', justifyContent: 'center'}} 
                         onPress={_=> {
-                            //State.shoppingList.items= [...State.shoppingList.items, {name: state.newItem, id: State.shoppingList.items.length}]
                             store.dispatch({
                                 type: 'ADD_ITEM_SHOPPINGLIST',
                                 payload: {name: state.newItem, id: store.getState().shoppingList.items.length}

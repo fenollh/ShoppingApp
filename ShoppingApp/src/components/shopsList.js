@@ -18,7 +18,7 @@ const Shops = [
     profileDescription: 'Asador de pollos con servicio de comida para llevar ubicado en Hoyo de Manzanares.',
     profileImage: 'https://media-cdn.tripadvisor.com/media/photo-s/06/e5/1c/29/getlstd-property-photo.jpg',
     tags: ['asador', 'hoyo de manzanares', 'para llevar'],
-    categories: [' All ', 'Patatas', 'Empanadillas', 'Raciones'],
+    categories: [' All ', 'Pollos', 'Patatas', 'Empanadillas', 'Raciones'],
     stock: {
         availableSpace: 0,
         availableProducts: [

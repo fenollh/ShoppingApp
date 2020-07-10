@@ -5,7 +5,6 @@ import {
   StyleSheet
 } from 'react-native'
 
-import ShoppingList from './src/screens/shoppingList'
 import Router from './src/components/router'
 import Header from './src/components/header'
 

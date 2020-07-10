@@ -7,7 +7,7 @@ import {
     FlatList,
     StyleSheet
 } from 'react-native'
-import { store } from '../components/state'
+import { store } from '../../redux/state'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 
 

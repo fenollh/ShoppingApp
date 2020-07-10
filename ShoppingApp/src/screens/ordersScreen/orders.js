@@ -1,5 +1,5 @@
 import React from 'react'
-import { store } from '../components/state'
+import { store } from '../../redux/state'
 import {
     View,
     Text, 
@@ -7,7 +7,7 @@ import {
     TouchableOpacity,
     StyleSheet,
 } from 'react-native'
-import RenderOrdersSection from '../components/renderOrders'
+import RenderOrdersSection from './renderOrders'
 
 export default class OrdersScreen extends React.Component{
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import { store } from '../components/state'
+import { store } from '../redux/state'
 import StarsRating from '../components/startsRating'
 import {
     View,

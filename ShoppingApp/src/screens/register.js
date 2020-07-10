@@ -1,5 +1,5 @@
 import React from 'react'
-import {updateUserDB} from '../components/globalFunctions'
+import { updateUserDB } from '../components/globalFunctions'
 import {
     View,
     Text,

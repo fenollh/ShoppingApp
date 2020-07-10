@@ -3,8 +3,8 @@ import Entypo from 'react-native-vector-icons/Entypo'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 
-import { Shops } from './shopsList'
-import { store } from '../components/state'
+import { Shops } from '../../components/shopsList'
+import { store } from '../../redux/state'
 import {
     View,
     Text,

@@ -7,7 +7,6 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 
 import Entypo from 'react-native-vector-icons/Entypo'
 import Ionicons from 'react-native-vector-icons/Ionicons'
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 
 import { 
     View,
@@ -16,15 +15,15 @@ import {
 
 import LoginScreen from '../screens/login'
 import RegisterScreen from '../screens/register'
-import SelectedShopScreen from '../screens/selectedShop'
-import ShoppingListScreen from '../screens/shoppingList'
-import ShopsScreen from '../screens/shops'
-import OrdersScreen from '../screens/orders'
+import SelectedShopScreen from '../screens/shopsScreen/selectedShop'
+import ShoppingListScreen from '../screens/shoppingListScreen/shoppingList'
+import ShopsScreen from '../screens/shopsScreen/shops'
+import OrdersScreen from '../screens/ordersScreen/orders'
 import SettingsScreen from '../screens/settings'
 import ProfileScreen from '../screens/profile'
 import AboutUsScreen from '../screens/aboutus'
 import ContactUsScreen from '../screens/contactus'
-import AddProductScreen from '../screens/addProduct'
+import AddProductScreen from '../screens/shopsScreen/addProduct'
 
 
 const Tab = createMaterialTopTabNavigator();
