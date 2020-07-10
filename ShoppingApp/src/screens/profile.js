@@ -1,6 +1,5 @@
 import React from 'react'
-import AntDesign from 'react-native-vector-icons/AntDesign'
-import {State} from '../components/state'
+import { store } from '../components/state'
 import StarsRating from '../components/startsRating'
 import {
     View,
@@ -8,19 +7,19 @@ import {
     Image,
     TouchableOpacity,
     StyleSheet,
-    Alert
 } from 'react-native'
 
 export default class ProfileScreen extends React.Component{
     render(){
+        let Store = store.getState()
         let valoraciones
-        if(State.accountType == 'Costumer'){
+        if(Store.accountType == 'Costumer'){
             valoraciones= 
                 <View style={{margin: '2%', flex: 1}}>
                     <Text style={{flex:1, fontWeight: 'bold', textDecorationLine: 'underline'}}> RELIABILITY </Text>
                     <View style={{flex:2, flexDirection: 'row', alignItems: 'center'}}>
-                        <StarsRating data={State.stars} style={{flex:1}}/>
-                        <Text style={{marginLeft: '3%', fontSize: 20, flex:2}}>{State.stars[0]+State.stars[1]+State.stars[2]+State.stars[3]+State.stars[4]}</Text>
+                        <StarsRating data={Store.stars} style={{flex:1}}/>
+                        <Text style={{marginLeft: '3%', fontSize: 20, flex:2}}>{Store.stars[0]+Store.stars[1]+Store.stars[2]+Store.stars[3]+Store.stars[4]}</Text>
                     </View>
                 </View>
         }
@@ -29,8 +28,8 @@ export default class ProfileScreen extends React.Component{
             <View style={{margin: '2%', flex: 1}}>
                 <Text style={{flex:1, fontWeight: 'bold', textDecorationLine: 'underline'}}> CUSTOMER RATINGS </Text>
                 <View style={{flex:2, flexDirection: 'row', alignItems: 'center'}}>
-                    <StarsRating data={State.stars} style={{flex:1}}/>
-                    <Text style={{marginLeft: '3%', fontSize: 20, flex:2}}>{State.stars[0]+State.stars[1]+State.stars[2]+State.stars[3]+State.stars[4]}</Text>
+                    <StarsRating data={Store.stars} style={{flex:1}}/>
+                    <Text style={{marginLeft: '3%', fontSize: 20, flex:2}}>{Store.stars[0]+Store.stars[1]+Store.stars[2]+Store.stars[3]+Store.stars[4]}</Text>
                 </View>
             </View>
         }
@@ -41,17 +40,17 @@ export default class ProfileScreen extends React.Component{
                     <View style={{flex:1}}>
                         <Image
                             style={styles.profileImage}
-                            source={{uri: State.profileImage}}
+                            source={{uri: Store.profileImage}}
                         />
-                        <Text style={styles.profileName}>{State.profileName}</Text>
-                        <Text style={[styles.profileName, {fontWeight: 'normal'}]}>{State.accountType}</Text>
+                        <Text style={styles.profileName}>{Store.profileName}</Text>
+                        <Text style={[styles.profileName, {fontWeight: 'normal'}]}>{Store.accountType}</Text>
                     </View>
                     <View style={{flex: 2.3}}>
-                        <Text style={styles.username}>{State.username}</Text>
+                        <Text style={styles.username}>{Store.username}</Text>
                         <View style={{flex:1.8, alignItems: 'center'}}>
-                            <Text style={{fontSize: 15}}>{State.profileDescription.profession}</Text>
-                            <Text style={{fontSize: 15}}>{State.profileDescription.hobbies}</Text>
-                            <Text style={{fontSize: 15}}>{State.profileDescription.location}</Text>
+                            <Text style={{fontSize: 15}}>{Store.profileDescription.profession}</Text>
+                            <Text style={{fontSize: 15}}>{Store.profileDescription.hobbies}</Text>
+                            <Text style={{fontSize: 15}}>{Store.profileDescription.location}</Text>
                         </View>
                         <View style={{flex:1.2}}>
                             <TouchableOpacity style={styles.editButton}>

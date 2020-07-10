@@ -1,5 +1,5 @@
 import React from 'react'
-import {State} from './state'
+import { store } from './state'
 
 const initState = _ => {
     //descargar los datos de la DB al state. Se usa al hacer login
@@ -16,7 +16,10 @@ const updateUserDB = (user, navigation) => {
     //subir todos estos datos a la DB
     navigation.navigate('Main')
     handleSession(user.usermail)
-    State.usermail = user.usermail
+    store.dispatch({
+        type: 'EDIT_USERMAIL',
+        payload: user.usermail
+    })
 }
 
 const handleSession = (usermail) => {
@@ -24,8 +27,11 @@ const handleSession = (usermail) => {
     const sessionID = Math.round(Math.random()*10000000000)
     //reasign the sessID in the DB
     //safe the ID in the global state
-    State.sessionID = sessionID
-
+    //State.sessionID = sessionID
+    store.dispatch({
+        type: 'EDIT_SESSION',
+        payload: sessionID
+    })
 }
 
 const loginFunc = (usermail, password, navigation) => {
@@ -40,13 +46,13 @@ const loginFunc = (usermail, password, navigation) => {
 }
 
 const filterData = (type, data) => { //el parametro data es la totalidad de los datos y type el criterio que se usara para filtar
-    if(data === 'Shops') State.selectedTag = type
-    else if(data== 'Categories') State.selectedCategorie = type
+    if(data === 'Shops') store.dispatch({type: 'EDIT_SELECTEDTAG', payload: type})
+    else if(data== 'Categories') store.dispatch({type: 'EDIT_SELECTEDCATEGORIE', payload: type})
     return true
 }
 
 const addOrder = (itemName, itemCost ,shopmail, quantity, hour, usermail) => {
-    authentication(usermail, State.sessionID)
+    authentication(usermail, store.getState().sessionID)
     const order = {
         itemName:itemName,
         itemCost: itemCost,
@@ -55,8 +61,12 @@ const addOrder = (itemName, itemCost ,shopmail, quantity, hour, usermail) => {
         hour: hour,
         costumermail: usermail
     }
+    store.dispatch({
+        type: 'ADD_ORDER',
+        payload: order
+    })
     //Se crea una entrada en la tabla 'Orders' con el objeto order
-    State.myOrders.push(order)
+    //State.myOrders.push(order)
 }
 
 export {loginFunc}

@@ -1,5 +1,9 @@
+import { createStore } from 'redux'
+import { reducer } from './reducer'
+
+let store
 let State = {
-    sessionID: '',
+    sessionID: '12',
     username: 'fenollh',
     usermail: 'fenollh@gmail.com',
     profileName: 'Hugo Fenoll',
@@ -34,5 +38,10 @@ let State = {
 
     }
 }
-export {State}
+store = createStore(
+    reducer,
+    State
+)
 
+export {State}
+export {store}

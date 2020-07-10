@@ -1,5 +1,4 @@
 import React from 'react'
-import {State} from '../components/state'
 import {loginFunc} from '../components/globalFunctions'
 import {
     View,

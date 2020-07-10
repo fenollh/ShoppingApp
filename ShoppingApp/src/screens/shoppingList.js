@@ -1,6 +1,6 @@
 import React from 'react'
 import AntDesign from 'react-native-vector-icons/AntDesign'
-import {State} from '../components/state'
+import {State, store} from '../components/state'
 import { 
     View,
     Text,
@@ -8,7 +8,6 @@ import {
     FlatList,
     StyleSheet, 
     TouchableOpacity,
-    Alert
 } from 'react-native'
 
 export default class ShoppingList extends React.Component{
@@ -19,7 +18,11 @@ export default class ShoppingList extends React.Component{
         }
     }
     deleteItem = (index) => {
-        const removedItem = State.shoppingList.items.splice(index, 1)
+        //const removedItem = State.shoppingList.items.splice(index, 1)
+        store.dispatch({
+            type: 'DELETE_ITEM_SHOPPINGLIST',
+            payload: index
+        })
         this.forceUpdate()
     }
 
@@ -40,7 +43,7 @@ export default class ShoppingList extends React.Component{
             <View style={styles.container}>
                 <View style={styles.list}>
                     <FlatList
-                    data={State.shoppingList.items}
+                    data={store.getState().shoppingList.items}
                     keyExtractor={item => item.id.toString()}
                     renderItem={({ item, index }) => this.renderListItem(item, index)}
                     />
@@ -56,7 +59,11 @@ export default class ShoppingList extends React.Component{
                     <TouchableOpacity  
                         style={{flex:1, alignItems: 'center', justifyContent: 'center'}} 
                         onPress={_=> {
-                            State.shoppingList.items= [...State.shoppingList.items, {name: state.newItem, id: State.shoppingList.items.length}]
+                            //State.shoppingList.items= [...State.shoppingList.items, {name: state.newItem, id: State.shoppingList.items.length}]
+                            store.dispatch({
+                                type: 'ADD_ITEM_SHOPPINGLIST',
+                                payload: {name: state.newItem, id: store.getState().shoppingList.items.length}
+                            })
                             this.forceUpdate()
                             this.textInput.clear()
                         }}>
