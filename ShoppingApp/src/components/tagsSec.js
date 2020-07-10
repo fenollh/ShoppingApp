@@ -1,6 +1,5 @@
 import React from 'react'
-import {State} from './state'
-import {filterData} from './globalFunctions'
+import { filterData } from './globalFunctions'
 import {
     View,
     Text,

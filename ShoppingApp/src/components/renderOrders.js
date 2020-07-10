@@ -1,6 +1,6 @@
 import React from 'react'
-import {State} from './state'
-import {Shops} from './shopsList'
+import { store } from './state'
+import { Shops } from './shopsList'
 import AntDesign from 'react-native-vector-icons/AntDesign'
 
 import { 
@@ -10,7 +10,6 @@ import {
     Image,
     TouchableOpacity,
     StyleSheet,
-    Alert,
 } from 'react-native'
 
 export default class RenderOrdersSection extends React.Component{
@@ -46,7 +45,10 @@ export default class RenderOrdersSection extends React.Component{
                             size={40} 
                             color='rgb(80,130,255)' 
                             onPress={()=> {
-                                State.myOrders.splice(index, 1)
+                                store.dispatch({
+                                    type: 'REMOVE_ORDER',
+                                    payload: index
+                                })
                                 this.props.father.forceUpdate()
                                 }}/>
                 </TouchableOpacity>
@@ -58,7 +60,7 @@ export default class RenderOrdersSection extends React.Component{
         return(
             <View style={{flex:1}}>
                 <FlatList
-                data={State.myOrders}
+                data={store.getState().myOrders}
                 keyExtractor={(item) => item.itemName}
                 renderItem={({item,index}) => this.renderItem(item, index)}
                 />

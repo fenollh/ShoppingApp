@@ -7,22 +7,19 @@ import {
 
 import TagsSection from '../components/tagsSec'
 import ShopsListSection from '../components/renderShops'
-import { State } from '../components/state'
-import { Shops } from '../components/shopsList'
+import { store } from '../components/state'
 
 export default class ShopsScreen extends React.Component{
     
     constructor(props){
         super(props)
-        this.state={
-        }
     }
 
     render(){
         return(
             <View style={styles.container}>
                 <View style={{flex: 1}}>
-                    <TagsSection data={State.tags} totalData='Shops' fatherComp={this}/>
+                    <TagsSection data={store.getState().tags} totalData='Shops' fatherComp={this}/>
                 </View>
                 <View style={{flex:20}}>
                     <ShopsListSection navigation={this.props.navigation}/>

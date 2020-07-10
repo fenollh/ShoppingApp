@@ -20,7 +20,7 @@ export default class ShoppingList extends React.Component{
     deleteItem = (index) => {
         //const removedItem = State.shoppingList.items.splice(index, 1)
         store.dispatch({
-            type: 'DELETE_ITEM_SHOPPINGLIST',
+            type: 'REMOVE_ITEM_SHOPPINGLIST',
             payload: index
         })
         this.forceUpdate()

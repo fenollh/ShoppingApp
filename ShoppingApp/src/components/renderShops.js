@@ -3,8 +3,8 @@ import Entypo from 'react-native-vector-icons/Entypo'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 
-import {Shops} from './shopsList'
-import {State} from '../components/state'
+import { Shops } from './shopsList'
+import { store } from '../components/state'
 import {
     View,
     Text,
@@ -19,7 +19,7 @@ export default class ShopsListSection extends React.Component {
         super(props)
     }
     renderShop = (item) => {
-        if (item.accountType != State.selectedTag && State.selectedTag != ' All ') return
+        if (item.accountType != store.getState().selectedTag && store.getState().selectedTag != ' All ') return
         let servicesSec
         switch (item.accountType) {
             case 'Restaurants':

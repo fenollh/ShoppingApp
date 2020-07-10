@@ -5,15 +5,14 @@ import {
     Image,
     TouchableOpacity,
     StyleSheet,
-    Alert,
 } from 'react-native'
 import Entypo from 'react-native-vector-icons/Entypo'
 import Fontisto from 'react-native-vector-icons/Fontisto'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import AntDesign from 'react-native-vector-icons/AntDesign'
 
-import {addOrder} from '../components/globalFunctions'
-import { State } from '../components/state'
+import { addOrder } from '../components/globalFunctions'
+import { store } from '../components/state'
 import RNDateTimePicker from '@react-native-community/datetimepicker';
 
 
@@ -167,7 +166,7 @@ export default class AddProductScreen extends React.Component {
                             style={[styles.button, {flexDirection: 'row'}]} 
                             activeOpacity={0.6}
                             onPress={()=>{
-                                addOrder(item.name, item.cost, shop.email, this.state.quantity, dateTime, State.usermail, State.username)
+                                addOrder(item.name, item.cost, shop.email, this.state.quantity, dateTime, store.getState().usermail, store.getState().username)
                                 this.props.props.navigation.goBack()
                                 }}>
                             <Text style={styles.buttonTxt}>ORDER</Text>

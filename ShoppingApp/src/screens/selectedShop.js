@@ -1,15 +1,12 @@
 import React from 'react'
-import AntDesign from 'react-native-vector-icons/AntDesign'
 import StarsRating from '../components/startsRating'
 import TagsSection from '../components/tagsSec'
-import {State} from '../components/state'
 import RenderProductsSection from '../components/renderProducts' 
 
 import {
     View,
     Text,
     Image,
-    FlatList,
     TouchableOpacity,
     StyleSheet,
 } from 'react-native'

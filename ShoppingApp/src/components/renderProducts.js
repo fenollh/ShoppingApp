@@ -7,7 +7,7 @@ import {
     FlatList,
     StyleSheet
 } from 'react-native'
-import {State} from '../components/state'
+import { store } from '../components/state'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 
 
@@ -17,7 +17,7 @@ export default class RenderProductsSection extends React.Component{
     }
     
     renderProduct = (item) => {
-        if (item.tags != State.selectedCategorie && State.selectedCategorie != ' All ') return
+        if (item.tags != store.getState().selectedCategorie && store.getState().selectedCategorie != ' All ') return
         let itemsRemaining
         if(item.quantity < 0){
             itemsRemaining= <Text style={[styles.itemsRemaining, {color:'rgb(0,200,0)'}]}> Este producto se prepara por encargo </Text>
