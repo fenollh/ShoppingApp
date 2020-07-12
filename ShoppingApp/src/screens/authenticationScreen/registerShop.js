@@ -1,4 +1,5 @@
 import React from 'react'
+import ImagePicker from 'react-native-image-picker';
 import { updateUserDB, checkRegisterForm } from '../../components/globalFunctions'
 import {
     View,
@@ -6,9 +7,19 @@ import {
     TextInput,
     TouchableOpacity,
     StyleSheet,
+    Image,
     Alert,
 } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
+
+const options = {
+    title: 'Select Avatar',
+    storageOptions: {
+        skipBackup: true,
+        path: 'images',
+    },
+};
+
 
 export default class RegisterShopScreen extends React.Component{
     
@@ -22,8 +33,14 @@ export default class RegisterShopScreen extends React.Component{
             password2: '',
             age: '',
             phone: '',
-            photo: '',
+            photo: 'https://www.skimostats.com/images/athletes/372-5e2587fe35036.png',
         }
+    }
+
+    changeImage = () => {
+        ImagePicker.showImagePicker(options, (response) => {
+            if(response.uri) this.setState({ photo: response.uri })
+        })
     }
 
     checkForm = _ => {
@@ -37,8 +54,12 @@ export default class RegisterShopScreen extends React.Component{
             <View style={styles.container}>
                 <View style={styles.header}><Text style={styles.title}> CREATE A SHOP ACCOUNT </Text></View>
                 <View style={{height: '20%', justifyContent: 'center', alignItems: 'center'}}>
-                    <View style={{height: 100, width: 100, borderRadius: 50, backgroundColor: 'red'}}>
-                    </View>
+                    <TouchableOpacity style={{}} onPress={()=>this.changeImage()}>
+                        <Image
+                            source={{uri: this.state.photo}}
+                            style={{height: 100, width: 100, borderRadius: 50}}
+                        />
+                    </TouchableOpacity>
                     <Text style={{marginTop: 10, fontWeight: 'bold'}}>CHANGE IMAGE</Text>
                 </View>
                 <View style={{height: '60%', padding: '2%'}}>
