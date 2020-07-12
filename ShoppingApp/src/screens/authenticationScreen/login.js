@@ -1,5 +1,5 @@
 import React from 'react'
-import { loginFunc } from '../components/globalFunctions'
+import { loginFunc } from '../../components/globalFunctions'
 import {
     View,
     Text,
@@ -54,10 +54,10 @@ export default class LoginScreen extends React.Component{
                         <Text style={styles.botonTxt}>LOGIN</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={[styles.boton]} activeOpacity={0.6} onPress={_=>this.props.navigation.navigate('Register')}>
+                    <TouchableOpacity style={[styles.boton]} activeOpacity={0.6} onPress={_=>this.props.navigation.navigate('RegisterCostumer')}>
                         <Text style={[styles.botonTxt, {fontSize: 15}]}>CREATE A COSTUMER ACCOUNT</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={[styles.boton]} activeOpacity={0.6} onPress={_=>this.props.navigation.navigate('Register')}>
+                    <TouchableOpacity style={[styles.boton]} activeOpacity={0.6} onPress={_=>this.props.navigation.navigate('RegisterShop')}>
                         <Text style={[styles.botonTxt, {fontSize: 15}]}>CREATE A SHOP ACCOUNT</Text>
                     </TouchableOpacity>
                 </View>

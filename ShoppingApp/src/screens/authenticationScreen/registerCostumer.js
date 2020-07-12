@@ -1,5 +1,5 @@
 import React from 'react'
-import { updateUserDB } from '../components/globalFunctions'
+import { updateUserDB, checkRegisterForm } from '../../components/globalFunctions'
 import {
     View,
     Text,
@@ -25,25 +25,9 @@ export default class LoginScreen extends React.Component{
     }
 
     checkForm = _ => {
-        if(this.state.password.length < 5){
-            Alert.alert("The password must have more than 5 characters")
-            return
+        if(checkRegisterForm('costumer', this.state, {pass1: this.pass1, pass2: this.pass2})){
+            updateUserDB(this.state, this.props.navigation)
         }
-        if(this.state.username.length < 5){
-            Alert.alert("The username must have more than 5 characters")
-            return
-        }
-        if(this.state.password !==this.state.password2){
-            Alert.alert("The first and second password doesn't match")
-            this.pass1.clear()
-            this.pass2.clear()
-            return
-        }
-        else if(!this.state.usermail || !this.state.username || !this.state.name || !this.state.age || !this.state.password){
-            Alert.alert("complete all the fields after submitting")
-            return
-        }
-        updateUserDB(this.state, this.props.navigation)
     } 
     
     render(){

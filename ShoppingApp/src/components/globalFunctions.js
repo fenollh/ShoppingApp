@@ -1,5 +1,37 @@
 import React from 'react'
+import { Alert } from 'react-native'
 import { store } from '../redux/state'
+
+const checkRegisterForm = (type, formData, formInputs) => {
+    if(formData.password.length < 5){
+        Alert.alert("The password must have more than 5 characters")
+        return false
+    }
+    else if(formData.username.length < 5){
+        Alert.alert("The username must have more than 5 characters")
+        return false
+    }
+    else if(formData.password !== formData.password2){
+        Alert.alert("The first and second password doesn't match")
+        formInputs.pass1.clear()
+        formInputs.pass2.clear()
+        return false
+    }
+    if(type = 'costumer'){
+        if(!formData.usermail || !formData.username || !formData.name || !formData.age || !formData.password){
+            Alert.alert("complete all the fields after submitting")
+            return false
+        }
+        return true
+    }
+    else if (type = 'shop'){
+        if(!formData.usermail || !formData.username || !formData.name || !formData.password){
+            Alert.alert("complete all the fields after submitting")
+            return false
+        }
+        return true
+    }
+}
 
 const initState = _ => {
     //descargar los datos de la DB al state. Se usa al hacer login
@@ -74,3 +106,4 @@ export {loginFunc}
 export {updateUserDB}
 export {filterData}
 export {addOrder}
+export {checkRegisterForm}

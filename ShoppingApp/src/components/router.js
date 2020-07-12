@@ -13,8 +13,10 @@ import {
     StyleSheet,
 } from 'react-native';
 
-import LoginScreen from '../screens/login'
-import RegisterScreen from '../screens/register'
+import LoginScreen from '../screens/authenticationScreen/login'
+import RegisterCostumerScreen from '../screens/authenticationScreen/registerCostumer'
+import RegisterShopScreen from '../screens/authenticationScreen/registerShop'
+
 import SelectedShopScreen from '../screens/shopsScreen/selectedShop'
 import ShoppingListScreen from '../screens/shoppingListScreen/shoppingList'
 import ShopsScreen from '../screens/shopsScreen/shops'
@@ -94,7 +96,8 @@ export default class Router extends React.Component{
                 <NavigationContainer theme={MyTheme}>
                     <Stack.Navigator headerMode= 'none' initialRouteName='Login'>
                         <Stack.Screen name="Login" component={LoginScreen} />
-                        <Stack.Screen name="Register" component={RegisterScreen} />
+                        <Stack.Screen name="RegisterCostumer" component={RegisterCostumerScreen} />
+                        <Stack.Screen name="RegisterShop" component={RegisterShopScreen} />
                         <Stack.Screen name="Main" component={this.DrawerNavigator} />
                         <Stack.Screen name="SelectedShop" component={SelectedShopScreen} />
                         <Stack.Screen name="AddProduct" component={this.addProduct} />
