@@ -1,0 +1,15 @@
+1) upgrade the register page (0.75 day)
+2) add a photo picker to the register page (0.25 day)
+3) setup the server and check the connections (1 day)
+4) create 3 DB's (costumers, shops, orders) (1 day)
+5) Be able to modify the DB and allow the server to process the connection betweenn the UI and the DB (3 day)
+6) Create a simple login (2 day)
+At that point I will have a funtional app
+7) Create a better authentication and sessions system (3 day)
+8) Add some funtionality such us location, better sorting techniques and schedule block (5 day)
+9) Improve the security (---)
+10) Add and impove the last details (2 day)
+11) create a logo and a name (---)
+12) publish it in beta mode (1 day)
+
+estimated time: 20 day 
