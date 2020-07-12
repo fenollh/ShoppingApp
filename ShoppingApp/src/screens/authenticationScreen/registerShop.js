@@ -114,7 +114,7 @@ export default class RegisterShopScreen extends React.Component{
                             secureTextEntry={true}
                             />
                             <View style={styles.input}>
-                                <Text style={{flex:1}}>Shop type: Click here  </Text>
+                                <Text style={{flex:1}}>Shop type: </Text>
                                 <Picker
                                     selectedValue={this.state.shopType}
                                     style={{ flex:1, height:20 }}

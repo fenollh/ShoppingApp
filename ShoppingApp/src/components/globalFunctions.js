@@ -25,7 +25,7 @@ const checkRegisterForm = (type, formData, formInputs) => {
         return true
     }
     else if (type = 'shop'){
-        if(!formData.usermail || !formData.username || !formData.name || !formData.password){
+        if(!formData.usermail || !formData.username || !formData.name || !formData.password || !formData.shopType){
             Alert.alert("complete all the fields after submitting")
             return false
         }
