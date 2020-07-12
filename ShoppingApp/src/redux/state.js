@@ -14,7 +14,7 @@ let State = {
     accountType: 'Costumer', //Costumer / Other
     shopDetails: {takeaway: null, delivery: null ,restaurant: null}, //for costumer accounts the 3  fields are null
     renderedShops: [],
-    tags: [' All ', 'Restaurants', 'Sport',],
+    tags: [' All ', 'Food', 'Sport',],
     selectedTag: ' All ',
     selectedCategorie: ' All ',
     favouriteShops: [],

@@ -1,5 +1,5 @@
 import React from 'react'
-import ImagePicker from 'react-native-image-picker';
+import ImagePicker from 'react-native-image-picker'
 import { updateUserDB, checkRegisterForm } from '../../components/globalFunctions'
 import {
     View,
@@ -8,7 +8,7 @@ import {
     TouchableOpacity,
     StyleSheet,
     Image,
-    Alert,
+    Picker,
 } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
 
@@ -33,6 +33,7 @@ export default class RegisterShopScreen extends React.Component{
             password2: '',
             age: '',
             phone: '',
+            shopType: 'Food',
             photo: 'https://www.skimostats.com/images/athletes/372-5e2587fe35036.png',
         }
     }
@@ -50,73 +51,82 @@ export default class RegisterShopScreen extends React.Component{
     } 
     
     render(){
+        
         return(
             <View style={styles.container}>
                 <View style={styles.header}><Text style={styles.title}> CREATE A SHOP ACCOUNT </Text></View>
-                <View style={{height: '20%', justifyContent: 'center', alignItems: 'center'}}>
-                    <TouchableOpacity style={{}} onPress={()=>this.changeImage()}>
-                        <Image
-                            source={{uri: this.state.photo}}
-                            style={{height: 100, width: 100, borderRadius: 50}}
-                        />
-                    </TouchableOpacity>
+                <TouchableOpacity style={{height: '20%', justifyContent: 'center', alignItems: 'center'}} onPress={()=>this.changeImage()}>
+                    <Image
+                        source={{uri: this.state.photo}}
+                        style={{height: 100, width: 100, borderRadius: 50}}
+                    />
                     <Text style={{marginTop: 10, fontWeight: 'bold'}}>CHANGE IMAGE</Text>
-                </View>
+                </TouchableOpacity>
                 <View style={{height: '60%', padding: '2%'}}>
                     <View style={styles.formBox}>
                         <ScrollView>
-                        <TextInput
-                        value={this.state.username}
-                        onChangeText={username=>this.setState({ username })}
-                        style={styles.input}
-                        placeholder='Shop name'
-                        autoCompleteType='username'
-                        autoCapitalize='none'
-                        maxLength={20}
-                        />
-                        <TextInput
-                        value={this.state.name}
-                        onChangeText={name=>this.setState({ name })}
-                        style={styles.input}
-                        placeholder='Manager name'
-                        autoCompleteType='name'
-                        autoCapitalize='none'
-                        maxLength={20}
-                        />
-                        <TextInput
-                        value={this.state.usermail}
-                        onChangeText={usermail=>this.setState({ usermail })}
-                        style={styles.input}
-                        placeholder='Email'
-                        autoCompleteType='email'
-                        keyboardType= 'email-address'
-                        autoCapitalize='none'
-                        maxLength={20}
-                        />
-                        <TextInput
-                        ref={input => { this.pass1 = input }}
-                        value={this.state.password}
-                        onChangeText={password=>this.setState({ password })}
-                        style={styles.input}
-                        placeholder='Password'
-                        autoCapitalize='none'
-                        maxLength={50}
-                        secureTextEntry={true}
-                        />
-                        <TextInput
-                        ref={input => { this.pass2 = input }}
-                        value={this.state.password2}
-                        onChangeText={password2=>this.setState({ password2 })}
-                        style={styles.input}
-                        placeholder='Repeat the password'
-                        autoCapitalize='none'
-                        maxLength={50}
-                        secureTextEntry={true}
-                        />
+                            <TextInput
+                            value={this.state.username}
+                            onChangeText={username=>this.setState({ username })}
+                            style={styles.input}
+                            placeholder='Shop name'
+                            autoCompleteType='username'
+                            autoCapitalize='none'
+                            maxLength={20}
+                            />
+                            <TextInput
+                            value={this.state.name}
+                            onChangeText={name=>this.setState({ name })}
+                            style={styles.input}
+                            placeholder='Manager name'
+                            autoCompleteType='name'
+                            autoCapitalize='none'
+                            maxLength={20}
+                            />
+                            <TextInput
+                            value={this.state.usermail}
+                            onChangeText={usermail=>this.setState({ usermail })}
+                            style={styles.input}
+                            placeholder='Email'
+                            autoCompleteType='email'
+                            keyboardType= 'email-address'
+                            autoCapitalize='none'
+                            maxLength={20}
+                            />
+                            <TextInput
+                            ref={input => { this.pass1 = input }}
+                            value={this.state.password}
+                            onChangeText={password=>this.setState({ password })}
+                            style={styles.input}
+                            placeholder='Password'
+                            autoCapitalize='none'
+                            maxLength={50}
+                            secureTextEntry={true}
+                            />
+                            <TextInput
+                            ref={input => { this.pass2 = input }}
+                            value={this.state.password2}
+                            onChangeText={password2=>this.setState({ password2 })}
+                            style={styles.input}
+                            placeholder='Repeat the password'
+                            autoCapitalize='none'
+                            maxLength={50}
+                            secureTextEntry={true}
+                            />
+                            <View style={styles.input}>
+                                <Text style={{flex:1}}>Shop type: Click here  </Text>
+                                <Picker
+                                    selectedValue={this.state.shopType}
+                                    style={{ flex:1, height:20 }}
+                                    onValueChange={(item) => this.setState({ shopType: item })}>
+                                    <Picker.Item label="Food" value="Food" />
+                                    <Picker.Item label="Sport" value="Sport" />
+                                    <Picker.Item label="Other" value="Other" />
+                                </Picker>
+                            </View>
                         </ScrollView>
-                        
                     </View>
-                    <Text style={{alignSelf: 'center', marginTop: '2%'}}> Terms and conditions </Text>
+                <Text style={{alignSelf: 'center', marginTop: '2%'}}> Terms and conditions </Text>
                 </View>
                 <View style={{height:'8%'}}>
                     <TouchableOpacity 
@@ -170,6 +180,7 @@ const styles = StyleSheet.create({
         color: 'rgb(50,50,50)',
     },
     input: {
+        flexDirection: 'row',
         backgroundColor: 'rgb(240,245,240)',
         marginVertical: '3%',
         borderRadius: 10,

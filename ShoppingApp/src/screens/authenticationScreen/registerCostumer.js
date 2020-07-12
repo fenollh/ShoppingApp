@@ -1,14 +1,23 @@
 import React from 'react'
+import ImagePicker from 'react-native-image-picker';
 import { updateUserDB, checkRegisterForm } from '../../components/globalFunctions'
 import {
     View,
     Text,
     TextInput,
+    Image,
     TouchableOpacity,
     StyleSheet,
-    Alert,
 } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
+
+const options = {
+    title: 'Select Avatar',
+    storageOptions: {
+        skipBackup: true,
+        path: 'images',
+    },
+};
 
 export default class LoginScreen extends React.Component{
     
@@ -21,7 +30,14 @@ export default class LoginScreen extends React.Component{
             password: '',
             password2: '',
             age:'',
+            photo: 'https://www.skimostats.com/images/athletes/372-5e2587fe35036.png',
         }
+    }
+
+    changeImage = () => {
+        ImagePicker.showImagePicker(options, (response) => {
+            if(response.uri) this.setState({ photo: response.uri })
+        })
     }
 
     checkForm = _ => {
@@ -35,6 +51,13 @@ export default class LoginScreen extends React.Component{
             <View style={styles.container}>
                 
                 <View style={styles.header}><Text style={styles.title}> CREATE A COSTUMER ACCOUNT </Text></View>
+                <TouchableOpacity style={{height: '20%', justifyContent: 'center', alignItems: 'center'}}  onPress={()=>this.changeImage()}>
+                    <Image
+                        source={{uri: this.state.photo}}
+                        style={{height: 100, width: 100, borderRadius: 50}}
+                    />
+                    <Text style={{marginTop: 10, fontWeight: 'bold'}}>CHANGE IMAGE</Text>
+                </TouchableOpacity>
                 <View style={{height: '60%', padding: '2%'}}>
                     <View style={styles.formBox}>
                         <ScrollView>
@@ -51,6 +74,7 @@ export default class LoginScreen extends React.Component{
                         onChangeText={usermail=>this.setState({ usermail })}
                         style={styles.input}
                         placeholder='Email'
+                        autoCompleteType='email'
                         autoCapitalize='none'
                         maxLength={20}
                         />
@@ -60,6 +84,7 @@ export default class LoginScreen extends React.Component{
                         style={styles.input}
                         placeholder='Full name'
                         autoCapitalize='none'
+                        autoCompleteType='name'
                         maxLength={20}
                         />
                         <TextInput
@@ -105,7 +130,6 @@ export default class LoginScreen extends React.Component{
                         <Text style={styles.botonTxt}>CREATE ACCOUNT</Text>
                     </TouchableOpacity>
                 </View>
-                <View style={{height: '20%'}}/>
             </View>
         )
     }

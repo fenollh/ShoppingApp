@@ -22,7 +22,7 @@ export default class ShopsListSection extends React.Component {
         if (item.accountType != store.getState().selectedTag && store.getState().selectedTag != ' All ') return
         let servicesSec
         switch (item.accountType) {
-            case 'Restaurants':
+            case 'Food':
                 servicesSec=(
                 <View style={{flex:1, alignItems: 'center', marginTop: '2%'}}>
                     <View style={{flex: 1, flexDirection: 'row'}}>
