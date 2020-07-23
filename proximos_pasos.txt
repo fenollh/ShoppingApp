@@ -1,6 +1,6 @@
 1) upgrade the register page (0.75 day)
-2) add a photo picker to the register page (0.25 day)
-3) setup the server and check the connections (1 day)
+(done) 2) add a photo picker to the register page (0.25 day)
+(done) 3) setup the server and check the connections (1 day)
 4) create 3 DB's (costumers, shops, orders) (1 day)
 5) Be able to modify the DB and allow the server to process the connection betweenn the UI and the DB (3 day)
 6) Create a simple login (2 day)
