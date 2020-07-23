@@ -2,6 +2,14 @@ import React from 'react'
 import { Alert } from 'react-native'
 import { store } from '../redux/state'
 
+/*
+fetch golang server example
+    const route = '/0'
+    fetch('http://192.168.1.43:3000'+route)
+    .then((response) => response.json())
+    .then((responseData) => console.log(responseData))
+*/
+
 const checkRegisterForm = (type, formData, formInputs) => {
     if(formData.password.length < 5){
         Alert.alert("The password must have more than 5 characters")
