@@ -52,18 +52,21 @@ const authentication = (usermail, password, sessionID) => {
     return true
 }
 
-const updateUserDB = (user, navigation) => {
+const createUser = (user, navigation) => {
     //subir todos estos datos a la DB
-    fetch('http://192.168.1.43:3001/new', {
+    fetch('http://192.168.1.43:3001/newuser', {
         method: 'POST',
         headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            id: "3",
+            usermail: user.usermail,
             username: user.username,
-            password: user.password
+            password: user.password,
+            name: user.name,
+            age: user.age,
+            image: user.photo,
         })
     });
     navigation.navigate('Main')
@@ -123,7 +126,7 @@ const addOrder = (itemName, itemCost ,shopmail, quantity, hour, usermail) => {
 }
 
 export {loginFunc}
-export {updateUserDB}
+export {createUser}
 export {filterData}
 export {addOrder}
 export {checkRegisterForm}

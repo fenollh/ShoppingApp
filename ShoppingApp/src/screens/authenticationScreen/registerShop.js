@@ -1,6 +1,6 @@
 import React from 'react'
 import ImagePicker from 'react-native-image-picker'
-import { updateUserDB, checkRegisterForm } from '../../components/globalFunctions'
+import { createUser, checkRegisterForm } from '../../components/globalFunctions'
 import {
     View,
     Text,
@@ -46,7 +46,7 @@ export default class RegisterShopScreen extends React.Component{
 
     checkForm = _ => {
         if(checkRegisterForm('shop', this.state, {pass1: this.pass1, pass2: this.pass2})){
-            updateUserDB(this.state, this.props.navigation)
+            createUser(this.state, this.props.navigation)
         }
     } 
     
