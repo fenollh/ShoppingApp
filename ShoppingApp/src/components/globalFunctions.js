@@ -54,6 +54,18 @@ const authentication = (usermail, password, sessionID) => {
 
 const updateUserDB = (user, navigation) => {
     //subir todos estos datos a la DB
+    fetch('http://192.168.1.43:3001/new', {
+        method: 'POST',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            id: "3",
+            username: user.username,
+            password: user.password
+        })
+    });
     navigation.navigate('Main')
     handleSession(user.usermail)
     store.dispatch({

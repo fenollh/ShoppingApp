@@ -5,30 +5,49 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-	"strconv"
 
 	"github.com/gorilla/mux"
 )
 
-var users []string
+var users []User
 
+//User a class
+type User struct {
+	USERNAME string `json:"username"`
+	PASSWORD string `json:"password"`
+}
+
+//GetAll d
 func GetAll(w http.ResponseWriter, req *http.Request) {
 	json.NewEncoder(w).Encode(users)
 	return
 }
-func GetWithID(w http.ResponseWriter, req *http.Request) {
+
+//GetWithID d
+func GetWithUsername(w http.ResponseWriter, req *http.Request) {
 	params := mux.Vars(req)
-	index, _ := strconv.Atoi(params["id"])
-	json.NewEncoder(w).Encode(users[index])
+	user, _ := params["username"]
+	// data = select * from users where username=user
+	json.NewEncoder(w).Encode(user)
 	return
 }
+
+//CreateUser receive the userjson object and upload it to the DB
+func CreateUser(w http.ResponseWriter, req *http.Request) {
+	var user User
+	_ = json.NewDecoder(req.Body).Decode(&user)
+	users = append(users, user)
+	json.NewEncoder(w).Encode(users)
+	return
+}
+
 func main() {
 	fmt.Printf("Server listening in port 3001")
 	router := mux.NewRouter()
-	users = append(users, "auth0", "auth1", "auth2", "auth3", "auth4")
 
 	router.HandleFunc("/all", GetAll).Methods("GET")
-	router.HandleFunc("/{id}", GetWithID).Methods("GET")
+	router.HandleFunc("/username/{id}", GetWithUsername).Methods("GET")
+	router.HandleFunc("/new", CreateUser).Methods("POST")
 
 	log.Fatal(http.ListenAndServe(":3001", router))
 }
