@@ -53,11 +53,22 @@ func Login(w http.ResponseWriter, req *http.Request) {
 	/*
 		var expectedPass = select password from users where usermail=user.usermail
 		if(expectedPass === user.password){
-			json.NewEncoder(w).Encode(true)
-		}
+			delete from sessions where usermail=user.usermail
+			var sesID = HandleSession(user.usermail)
+			json.NewEncoder(w).Encode(sesID)
+		}else return false
 	*/
 	json.NewEncoder(w).Encode(user)
 }
+
+/*
+func HandleSession(usermail){
+	rand.Seed(time.Now().UnixNano())
+	var newSesID rand.Intn(100000)
+	insert into sessions (usermail, sesID) values (usermail, newSesID)
+	return newSesID
+}
+*/
 
 func main() {
 	fmt.Printf("Server listening in port 3001")
