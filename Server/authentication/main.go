@@ -65,6 +65,7 @@ func Login(w http.ResponseWriter, req *http.Request) {
 func HandleSession(usermail){
 	rand.Seed(time.Now().UnixNano())
 	var newSesID rand.Intn(100000)
+	if (newSesID === 0) newSesID = 1
 	insert into sessions (usermail, sesID) values (usermail, newSesID)
 	return newSesID
 }
