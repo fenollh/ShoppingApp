@@ -42,13 +42,34 @@ const checkRegisterForm = (type, formData, formInputs) => {
 }
 
 const initState = _ => {
-    //descargar los datos de la DB al state. Se usa al hacer login
+    /*
+    fetch('http://192.168.1.43:3000/getUserData/user')
+    .then((response) => response.json())
+    .then((responseData) => {
+        store.dispatch({
+            type: 'GET_USER_DATA',
+            payload: responseData
+        })
+    })
+    */
 }
 
 const authentication = (usermail, password, sessionID) => {
-    //check in the database is the email exists
-    //check if the password is correct
-    //or check if the sessionID is correct
+    /*
+    fetch('http://192.168.1.43:3001/login', {
+        method: 'POST',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            usermail: user.usermail,
+            password: user.password,
+        })
+    })
+    .then((response) => response.json())
+    .then((responseData) => responseData)
+    */
     return true
 }
 
@@ -68,7 +89,7 @@ const createUser = (user, navigation) => {
             age: user.age,
             image: user.photo,
         })
-    });
+    })
     navigation.navigate('Main')
     handleSession(user.usermail)
     store.dispatch({
@@ -77,21 +98,13 @@ const createUser = (user, navigation) => {
     })
 }
 
-const handleSession = (usermail) => {
-    //create a new ID
-    const sessionID = Math.round(Math.random()*10000000000)
-    //reasign the sessID in the DB
-    //safe the ID in the global state
-    //State.sessionID = sessionID
-    store.dispatch({
-        type: 'EDIT_SESSION',
-        payload: sessionID
-    })
-}
-
 const loginFunc = (usermail, password, navigation) => {
-    if (authentication(usermail, password)){
-        handleSession(usermail)
+    let auth = authentication(usermail, password)
+    if (auth){
+        store.dispatch({
+            type: 'EDIT_SESSION',
+            payload: auth
+        })
         initState() //descargar todos los datos de usuario al State de la DB
         navigation.navigate('Main')
     }

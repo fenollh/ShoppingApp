@@ -1,6 +1,20 @@
 import { store } from './state'
 const reducer = (state=store.getState(), action) => {
     switch(action.type) {
+        case 'GET_USER_DATA':
+            return {
+                ...state, 
+                username: action.payload.username, 
+                sessionID: action.payload.sessionID, 
+                usermail: action.payload.usermail,
+                profileName: action.payload.name,
+                age: action.payload.age,
+                profileImage: action.payload.image,
+                stars: action.payload.stars,
+                profileDescription: action.payload.description,
+                favouriteShops: action.payload.favShopsList,
+                shoppingList: action.payload.shoppingList,
+            }
         case 'EDIT_USERNAME':
             return {...state, username: action.payload}
         case 'EDIT_USERMAIL':
