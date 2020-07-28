@@ -5,7 +5,10 @@ import (
 	"encoding/json"
 	"fmt"
 	"log"
+	"math/rand"
 	"net/http"
+	"strconv"
+	"time"
 
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/gorilla/mux"
@@ -49,6 +52,8 @@ func CreateUser(w http.ResponseWriter, req *http.Request) {
 	if InsErr != nil {
 		fmt.Println(InsErr)
 	}
+	var sesID = HandleSession(user.USERMAIL)
+	fmt.Println(sesID)
 	json.NewEncoder(w).Encode(user)
 	return
 }
@@ -68,18 +73,23 @@ func Login(w http.ResponseWriter, req *http.Request) {
 	json.NewEncoder(w).Encode(user)
 }
 
-/*
-func HandleSession(usermail){
+//HandleSession create a sesID and return it
+func HandleSession(usermail string) int {
 	rand.Seed(time.Now().UnixNano())
-	var newSesID rand.Intn(100000)
-	if (newSesID === 0) newSesID = 1
-	insert into sessions (usermail, sesID) values (usermail, newSesID)
+	var newSesID = rand.Intn(100000)
+	if newSesID == 0 {
+		newSesID = 1
+	}
+	var data string = "(" + "'" + usermail + "'" + ", " + strconv.Itoa(newSesID) + ");"
+	_, InsErr := db.Query("INSERT INTO sessions VALUES " + data)
+	if InsErr != nil {
+		fmt.Println(InsErr)
+	}
 	return newSesID
 }
-*/
 
 func main() {
-
+	fmt.Printf("Server listening in port 3001")
 	db, err = sql.Open("mysql", "root:@tcp(localhost:3306)/shoppingApp")
 	if err != nil {
 		panic(err.Error())
@@ -92,5 +102,5 @@ func main() {
 	router.HandleFunc("/newuser", CreateUser).Methods("POST")
 
 	log.Fatal(http.ListenAndServe(":3001", router))
-	fmt.Printf("Server listening in port 3001")
+	defer db.Close()
 }
