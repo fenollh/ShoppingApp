@@ -14,7 +14,6 @@ import (
 	"github.com/gorilla/mux"
 )
 
-var users []User
 var db *sql.DB
 var err error
 
@@ -28,25 +27,15 @@ type User struct {
 	IMAGE    string `json:"image"`
 }
 
-//GetAll just for test porpuses
-func GetAll(w http.ResponseWriter, req *http.Request) {
-	json.NewEncoder(w).Encode(users)
-	return
-}
-
-//GetWithUsername just for test porpuses
-func GetWithUsername(w http.ResponseWriter, req *http.Request) {
-	params := mux.Vars(req)
-	user, _ := params["username"]
-	// var data = select * from users where username=user
-	json.NewEncoder(w).Encode(user)
-	return
-}
-
 //CreateUser receive the user json object and upload it to the DB
 func CreateUser(w http.ResponseWriter, req *http.Request) {
 	var user User
 	_ = json.NewDecoder(req.Body).Decode(&user)
+	var exists bool = checkIfExists(user.USERMAIL)
+	if exists {
+		json.NewEncoder(w).Encode("ERROR: USERMAIL ALREADY EXISTS")
+		return
+	}
 	var data string = "(" + "'" + user.USERMAIL + "'" + ", " + "'" + user.USERNAME + "'" + ", " + "'" + user.NAME + "'" + ", " + user.AGE + ", " + "'" + user.IMAGE + "'" + ", " + "5" + ");"
 	_, InsErr := db.Query("INSERT INTO users (usermail, username, name, age, image, stars) VALUES " + data)
 	if InsErr != nil {
@@ -88,8 +77,17 @@ func HandleSession(usermail string) int {
 	return newSesID
 }
 
+//checkIFExists a usermail when a account is created
+func checkIfExists(usermail string) bool {
+	results, _ := db.Query("SELECT * FROM users WHERE usermail= " + "'" + usermail + "';")
+	if results == nil {
+		return true
+	}
+	return false
+}
+
 func main() {
-	fmt.Printf("Server listening in port 3001")
+	fmt.Println("Server listening in port 3001")
 	db, err = sql.Open("mysql", "root:@tcp(localhost:3306)/shoppingApp")
 	if err != nil {
 		panic(err.Error())
@@ -97,8 +95,6 @@ func main() {
 
 	router := mux.NewRouter()
 
-	router.HandleFunc("/all", GetAll).Methods("GET")
-	router.HandleFunc("/username/{username}", GetWithUsername).Methods("GET")
 	router.HandleFunc("/newuser", CreateUser).Methods("POST")
 
 	log.Fatal(http.ListenAndServe(":3001", router))
