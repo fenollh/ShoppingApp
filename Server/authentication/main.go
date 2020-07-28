@@ -1,15 +1,19 @@
 package main
 
 import (
+	"database/sql"
 	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
 
+	_ "github.com/go-sql-driver/mysql"
 	"github.com/gorilla/mux"
 )
 
 var users []User
+var db *sql.DB
+var err error
 
 //User a class
 type User struct {
@@ -41,8 +45,13 @@ func CreateUser(w http.ResponseWriter, req *http.Request) {
 	var user User
 	_ = json.NewDecoder(req.Body).Decode(&user)
 	// insert into users (usermail, username, name, age, image) values (user.usermail, user.username, user.name, user.age, user.image)
-	users = append(users, user)
-	json.NewEncoder(w).Encode(users)
+	var data string = "(" + user.USERMAIL + ", " + user.USERNAME + ", " + user.NAME + ", " + user.AGE + ", " + user.IMAGE + ");"
+	fmt.Println(data)
+	_, InsErr := db.Query("INSERT INTO users (usermail, username, name, age, image) VALUES " + data)
+	if InsErr != nil {
+		fmt.Println(InsErr)
+	}
+	json.NewEncoder(w).Encode(user)
 	return
 }
 
@@ -72,7 +81,12 @@ func HandleSession(usermail){
 */
 
 func main() {
-	fmt.Printf("Server listening in port 3001")
+
+	db, err = sql.Open("mysql", "root:@tcp(localhost:3306)/shoppingApp")
+	if err != nil {
+		panic(err.Error())
+	}
+
 	router := mux.NewRouter()
 
 	router.HandleFunc("/all", GetAll).Methods("GET")
@@ -80,4 +94,5 @@ func main() {
 	router.HandleFunc("/newuser", CreateUser).Methods("POST")
 
 	log.Fatal(http.ListenAndServe(":3001", router))
+	fmt.Printf("Server listening in port 3001")
 }

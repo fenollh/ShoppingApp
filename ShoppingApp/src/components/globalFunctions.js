@@ -91,7 +91,6 @@ const createUser = (user, navigation) => {
         })
     })
     navigation.navigate('Main')
-    handleSession(user.usermail)
     store.dispatch({
         type: 'EDIT_USERMAIL',
         payload: user.usermail
