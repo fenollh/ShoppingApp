@@ -44,10 +44,8 @@ func GetWithUsername(w http.ResponseWriter, req *http.Request) {
 func CreateUser(w http.ResponseWriter, req *http.Request) {
 	var user User
 	_ = json.NewDecoder(req.Body).Decode(&user)
-	// insert into users (usermail, username, name, age, image) values (user.usermail, user.username, user.name, user.age, user.image)
-	var data string = "(" + user.USERMAIL + ", " + user.USERNAME + ", " + user.NAME + ", " + user.AGE + ", " + user.IMAGE + ");"
-	fmt.Println(data)
-	_, InsErr := db.Query("INSERT INTO users (usermail, username, name, age, image) VALUES " + data)
+	var data string = "(" + "'" + user.USERMAIL + "'" + ", " + "'" + user.USERNAME + "'" + ", " + "'" + user.NAME + "'" + ", " + user.AGE + ", " + "'" + user.IMAGE + "'" + ", " + "5" + ");"
+	_, InsErr := db.Query("INSERT INTO users (usermail, username, name, age, image, stars) VALUES " + data)
 	if InsErr != nil {
 		fmt.Println(InsErr)
 	}
