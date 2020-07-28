@@ -31,19 +31,22 @@ type User struct {
 func CreateUser(w http.ResponseWriter, req *http.Request) {
 	var user User
 	_ = json.NewDecoder(req.Body).Decode(&user)
-	var exists bool = checkIfExists(user.USERMAIL)
-	if exists {
-		json.NewEncoder(w).Encode("ERROR: USERMAIL ALREADY EXISTS")
-		return
-	}
+	/*
+		var exists bool = checkIfExists(user.USERMAIL)
+		if exists {
+			json.NewEncoder(w).Encode("ERROR: USERMAIL ALREADY EXISTS")
+			return
+		}*/
 	var data string = "(" + "'" + user.USERMAIL + "'" + ", " + "'" + user.USERNAME + "'" + ", " + "'" + user.NAME + "'" + ", " + user.AGE + ", " + "'" + user.IMAGE + "'" + ", " + "5" + ");"
 	_, InsErr := db.Query("INSERT INTO users (usermail, username, name, age, image, stars) VALUES " + data)
 	if InsErr != nil {
 		fmt.Println(InsErr)
+		json.NewEncoder(w).Encode(InsErr)
+		return
 	}
 	var sesID = HandleSession(user.USERMAIL)
 	fmt.Println(sesID)
-	json.NewEncoder(w).Encode(user)
+	json.NewEncoder(w).Encode("ACCOUNT SUCCESFULY CREATED")
 	return
 }
 
@@ -78,13 +81,15 @@ func HandleSession(usermail string) int {
 }
 
 //checkIFExists a usermail when a account is created
+/*
 func checkIfExists(usermail string) bool {
-	results, _ := db.Query("SELECT * FROM users WHERE usermail= " + "'" + usermail + "';")
-	if results == nil {
-		return true
+	_, serr := db.Query("SELECT * FROM users WHERE usermail= " + "'" + usermail + "';")
+	if serr == nil {
+		return false
 	}
-	return false
-}
+	fmt.Println(serr)
+	return true
+}*/
 
 func main() {
 	fmt.Println("Server listening in port 3001")

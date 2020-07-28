@@ -90,11 +90,19 @@ const createUser = (user, navigation) => {
             image: user.photo,
         })
     })
-    navigation.navigate('Main')
-    store.dispatch({
-        type: 'EDIT_USERMAIL',
-        payload: user.usermail
+    .then((response)=>response.json())
+    .then((responseData)=> {
+        if(responseData==="ACCOUNT SUCCESFULY CREATED"){
+            navigation.navigate('Main')
+            store.dispatch({
+                type: 'EDIT_USERMAIL',
+                payload: user.usermail
+            })
+        }else{
+            console.log(responseData)
+        }
     })
+    
 }
 
 const loginFunc = (usermail, password, navigation) => {
