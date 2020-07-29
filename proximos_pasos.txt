@@ -3,9 +3,10 @@
 (done) 3) setup the server and check the connections (1 day)
 (done) 4) create 4 DB's (costumers, shops, orders, sessions) (1 day)
 (done) 5) Be able to modify the DB and allow the server to process the connection betweenn the UI and the DB (3 day)
-6) Create a simple login (2 day)
+(done) 6) Create a simple login (2 day)
+6.2) Connect all the app functionalities with the backend (2 days)
 At that point I will have a funtional app
-7) Create a better authentication and sessions system (3 day)
+(done) 7) Create a better authentication and sessions system (3 day)
 8) Add some funtionality such us location, better sorting techniques and schedule block (5 day)
 9) Improve the security (---)
 10) Add and impove the last details (2 day)
@@ -19,3 +20,4 @@ details remaining:
 -google and facebook login
 -loading page
 -cancel orders
+-UI
