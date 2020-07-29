@@ -31,8 +31,8 @@ type User struct {
 func CreateUser(w http.ResponseWriter, req *http.Request) {
 	var user User
 	_ = json.NewDecoder(req.Body).Decode(&user)
-	var data string = "(" + "'" + user.USERMAIL + "'" + ", " + "'" + user.USERNAME + "'" + ", " + "'" + user.NAME + "'" + ", " + user.AGE + ", " + "'" + user.IMAGE + "'" + ", " + "5" + ");"
-	_, InsErr := db.Query("INSERT INTO users (usermail, username, name, age, image, stars) VALUES " + data)
+	var data string = "(" + "'" + user.USERMAIL + "'" + ", " + "'" + user.USERNAME + "'" + ", " + "'" + user.NAME + "'" + ", " + user.AGE + ", " + "'" + user.IMAGE + "'" + ", " + "5" + ", " + "'" + user.PASSWORD + "');"
+	_, InsErr := db.Query("INSERT INTO users (usermail, username, name, age, image, stars, password) VALUES " + data)
 	if InsErr != nil {
 		fmt.Println(InsErr)
 		json.NewEncoder(w).Encode(InsErr)
@@ -46,16 +46,21 @@ func CreateUser(w http.ResponseWriter, req *http.Request) {
 //Login g
 func Login(w http.ResponseWriter, req *http.Request) {
 	var user User
+	var expectedPassword string
 	_ = json.NewDecoder(req.Body).Decode(&user)
-	/*
-		var expectedPass = select password from users where usermail=user.usermail
-		if(expectedPass === user.password){
-			delete from sessions where usermail=user.usermail
-			var sesID = HandleSession(user.usermail)
-			json.NewEncoder(w).Encode(sesID)
-		}else return false
-	*/
-	json.NewEncoder(w).Encode(user)
+	SeErr := db.QueryRow("SELECT password FROM users WHERE usermail=?", user.USERMAIL).Scan(&expectedPassword)
+	if SeErr != nil {
+		fmt.Println(SeErr)
+		json.NewEncoder(w).Encode(SeErr)
+		return
+	}
+	if expectedPassword != user.PASSWORD {
+		json.NewEncoder(w).Encode("Error: usermail and password don't match")
+		return
+	}
+	var sesID = HandleSession(user.USERMAIL)
+	json.NewEncoder(w).Encode(sesID)
+	return
 }
 
 //HandleSession create a sesID and return it
@@ -76,17 +81,6 @@ func HandleSession(usermail string) int {
 	}
 	return newSesID
 }
-
-//checkIFExists a usermail when a account is created
-/*
-func checkIfExists(usermail string) bool {
-	_, serr := db.Query("SELECT * FROM users WHERE usermail= " + "'" + usermail + "';")
-	if serr == nil {
-		return false
-	}
-	fmt.Println(serr)
-	return true
-}*/
 
 func main() {
 	fmt.Println("Server listening in port 3001")

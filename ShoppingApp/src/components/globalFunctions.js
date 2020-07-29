@@ -54,23 +54,24 @@ const initState = _ => {
     */
 }
 
-const authentication = (usermail, password, sessionID) => {
-    /*
-    fetch('http://192.168.1.43:3001/login', {
+const authentication = async (usermail, password, sessionID) => {
+    const response = await fetch('http://192.168.1.43:3001/login', {
         method: 'POST',
         headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            usermail: user.usermail,
-            password: user.password,
+            usermail: usermail,
+            password: password,
         })
     })
-    .then((response) => response.json())
-    .then((responseData) => responseData)
-    */
-    return true
+    const responseData = await response.json()
+    if(typeof responseData == 'number'){
+        return responseData
+    }else{
+        return 'Error'
+    }
 }
 
 const createUser = (user, navigation) => {
@@ -109,18 +110,21 @@ const createUser = (user, navigation) => {
     
 }
 
-const loginFunc = (usermail, password, navigation) => {
-    let auth = authentication(usermail, password)
-    if (auth){
+const loginFunc = async (usermail, password, navigation) => {
+    const sesID = await authentication(usermail, password)
+    if(typeof sesID == 'number') {
+        navigation.navigate('Main')
+        store.dispatch({
+            type: 'EDIT_USERMAIL',
+            payload: usermail
+        })
         store.dispatch({
             type: 'EDIT_SESSION',
-            payload: auth
+            payload: sesID
         })
         initState() //descargar todos los datos de usuario al State de la DB
-        navigation.navigate('Main')
-    }
-    else{
-        navigation.navigate('Login')
+    }else{
+        Alert.alert('User or password are incorrect')
     }
 }
 
