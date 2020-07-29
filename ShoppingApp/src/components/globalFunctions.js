@@ -92,11 +92,15 @@ const createUser = (user, navigation) => {
     })
     .then((response)=>response.json())
     .then((responseData)=> {
-        if(responseData==="ACCOUNT SUCCESFULY CREATED"){
+        if(typeof responseData == 'number'){
             navigation.navigate('Main')
             store.dispatch({
                 type: 'EDIT_USERMAIL',
                 payload: user.usermail
+            })
+            store.dispatch({
+                type: 'EDIT_SESSION',
+                payload: responseData,
             })
         }else{
             console.log(responseData)

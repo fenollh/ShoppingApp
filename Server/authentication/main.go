@@ -31,12 +31,6 @@ type User struct {
 func CreateUser(w http.ResponseWriter, req *http.Request) {
 	var user User
 	_ = json.NewDecoder(req.Body).Decode(&user)
-	/*
-		var exists bool = checkIfExists(user.USERMAIL)
-		if exists {
-			json.NewEncoder(w).Encode("ERROR: USERMAIL ALREADY EXISTS")
-			return
-		}*/
 	var data string = "(" + "'" + user.USERMAIL + "'" + ", " + "'" + user.USERNAME + "'" + ", " + "'" + user.NAME + "'" + ", " + user.AGE + ", " + "'" + user.IMAGE + "'" + ", " + "5" + ");"
 	_, InsErr := db.Query("INSERT INTO users (usermail, username, name, age, image, stars) VALUES " + data)
 	if InsErr != nil {
@@ -45,8 +39,7 @@ func CreateUser(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 	var sesID = HandleSession(user.USERMAIL)
-	fmt.Println(sesID)
-	json.NewEncoder(w).Encode("ACCOUNT SUCCESFULY CREATED")
+	json.NewEncoder(w).Encode(sesID)
 	return
 }
 
@@ -68,6 +61,10 @@ func Login(w http.ResponseWriter, req *http.Request) {
 //HandleSession create a sesID and return it
 func HandleSession(usermail string) int {
 	rand.Seed(time.Now().UnixNano())
+	_, DelErr := db.Query("DELETE FROM sessions WHERE usermail='" + usermail + "';")
+	if DelErr != nil {
+		fmt.Println(DelErr)
+	}
 	var newSesID = rand.Intn(100000)
 	if newSesID == 0 {
 		newSesID = 1
@@ -100,7 +97,9 @@ func main() {
 
 	router := mux.NewRouter()
 
+	//endpoints
 	router.HandleFunc("/newuser", CreateUser).Methods("POST")
+	router.HandleFunc("/login", Login).Methods("POST")
 
 	log.Fatal(http.ListenAndServe(":3001", router))
 	defer db.Close()
