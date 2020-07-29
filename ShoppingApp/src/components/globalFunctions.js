@@ -25,16 +25,16 @@ const checkRegisterForm = (type, formData, formInputs) => {
         formInputs.pass2.clear()
         return false
     }
-    if(type = 'costumer'){
+    if(type == 'costumer'){
         if(!formData.usermail || !formData.username || !formData.name || !formData.age || !formData.password){
-            Alert.alert("complete all the fields after submitting")
+            Alert.alert("complete all the fields before submitting")
             return false
         }
         return true
     }
-    else if (type = 'shop'){
+    else if (type == 'shop'){
         if(!formData.usermail || !formData.username || !formData.name || !formData.password || !formData.shopType){
-            Alert.alert("complete all the fields after submitting")
+            Alert.alert("complete all the fields before submitting")
             return false
         }
         return true
@@ -42,15 +42,11 @@ const checkRegisterForm = (type, formData, formInputs) => {
 }
 
 const initState = _ => {
-    /*
-    fetch('http://192.168.1.43:3000/getUserData/user')
-    .then((response) => response.json())
-    .then((responseData) => {
-        store.dispatch({
-            type: 'GET_USER_DATA',
-            payload: responseData
-        })
-    })
+    /* 
+    1) get user data
+    2) get orders data
+    3) complete the rest of the filds
+    4) upload tge data to the state
     */
 }
 
@@ -74,22 +70,37 @@ const authentication = async (usermail, password, sessionID) => {
     }
 }
 
-const createUser = (user, navigation) => {
+const createUser = (user, shop, navigation) => {
     //subir todos estos datos a la DB
-    fetch('http://192.168.1.43:3001/newuser', {
-        method: 'POST',
-        headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
+    var route, data
+    if(user){
+        route = 'http://192.168.1.43:3001/newuser'
+        data={
             usermail: user.usermail,
             username: user.username,
             password: user.password,
             name: user.name,
             age: user.age,
             image: user.photo,
-        })
+        }
+    }else{
+        route = 'http://192.168.1.43:3001/newshop'
+        data={
+            shopmail: shop.usermail,
+            shopname: shop.username,
+            managername: shop.name,
+            password: shop.password,
+            shopType: shop.shopType,
+            image: shop.photo,
+        }
+    }
+    fetch(route, {
+        method: 'POST',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
     })
     .then((response)=>response.json())
     .then((responseData)=> {
@@ -97,7 +108,7 @@ const createUser = (user, navigation) => {
             navigation.navigate('Main')
             store.dispatch({
                 type: 'EDIT_USERMAIL',
-                payload: user.usermail
+                payload: (user)?user.usermail :shop.usermail
             })
             store.dispatch({
                 type: 'EDIT_SESSION',

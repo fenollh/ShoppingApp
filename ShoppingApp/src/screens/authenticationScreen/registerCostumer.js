@@ -42,7 +42,7 @@ export default class LoginScreen extends React.Component{
 
     checkForm = _ => {
         if(checkRegisterForm('costumer', this.state, {pass1: this.pass1, pass2: this.pass2})){
-            createUser(this.state, this.props.navigation)
+            createUser(this.state, _, this.props.navigation)
         }
     } 
     

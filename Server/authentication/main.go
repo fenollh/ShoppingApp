@@ -27,10 +27,25 @@ type User struct {
 	IMAGE    string `json:"image"`
 }
 
+//Shop class
+type Shop struct {
+	SHOPMAIL    string `json:"shopmail"`
+	SHOPNAME    string `json:"shopname"`
+	PASSWORD    string `json:"password"`
+	MANAGERNAME string `json:"managername"`
+	SHOPTYPE    string `json:"shopType"`
+	IMAGE       string `json:"image"`
+}
+
 //CreateUser receive the user json object and upload it to the DB
 func CreateUser(w http.ResponseWriter, req *http.Request) {
 	var user User
 	_ = json.NewDecoder(req.Body).Decode(&user)
+	userAvailable := CheckUsermail("user", user.USERMAIL)
+	if userAvailable == false {
+		json.NewEncoder(w).Encode("Error: This email has already been used")
+		return
+	}
 	var data string = "(" + "'" + user.USERMAIL + "'" + ", " + "'" + user.USERNAME + "'" + ", " + "'" + user.NAME + "'" + ", " + user.AGE + ", " + "'" + user.IMAGE + "'" + ", " + "5" + ", " + "'" + user.PASSWORD + "');"
 	_, InsErr := db.Query("INSERT INTO users (usermail, username, name, age, image, stars, password) VALUES " + data)
 	if InsErr != nil {
@@ -39,6 +54,27 @@ func CreateUser(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 	var sesID = HandleSession(user.USERMAIL)
+	json.NewEncoder(w).Encode(sesID)
+	return
+}
+
+//CreateShop receive the user json object and upload it to the DB
+func CreateShop(w http.ResponseWriter, req *http.Request) {
+	var shop Shop
+	_ = json.NewDecoder(req.Body).Decode(&shop)
+	userAvailable := CheckUsermail("shop", shop.SHOPMAIL)
+	if userAvailable == false {
+		json.NewEncoder(w).Encode("Error: This email has already been used")
+		return
+	}
+	var data string = "(" + "'" + shop.SHOPNAME + "'" + ", " + "'" + shop.SHOPMAIL + "'" + ", " + "'" + shop.MANAGERNAME + "'" + ", " + "5" + ", " + "'" + shop.IMAGE + "'" + ", " + "'" + shop.SHOPTYPE + "'" + ", " + "'" + shop.PASSWORD + "');"
+	_, InsErr := db.Query("INSERT INTO shops (name, email, managerName, stars, image, shopType, password) VALUES " + data)
+	if InsErr != nil {
+		fmt.Println(InsErr)
+		json.NewEncoder(w).Encode(InsErr)
+		return
+	}
+	var sesID = HandleSession(shop.SHOPMAIL)
 	json.NewEncoder(w).Encode(sesID)
 	return
 }
@@ -82,6 +118,30 @@ func HandleSession(usermail string) int {
 	return newSesID
 }
 
+//CheckUsermail comproves if the username is in use
+func CheckUsermail(usertype string, usermail string) bool {
+	var insertQuery string
+	var deleteQuery string
+	if usertype == "shop" {
+		insertQuery = "INSERT INTO users (usermail, username, name, age, stars, password) VALUES ('" + usermail + "', 'f', 'f', '1', '1', '1');"
+		deleteQuery = "DELETE FROM users WHERE usermail='" + usermail + "';"
+	} else {
+		insertQuery = "INSERT INTO shops (name, email, managerName, stars, shopType, password) VALUES ('n', '" + usermail + "', 'm', '1', 's', 'p');"
+		deleteQuery = "DELETE FROM shops WHERE email='" + usermail + "';"
+	}
+	_, InsErr := db.Query(insertQuery)
+	if InsErr != nil {
+		fmt.Println(InsErr)
+		return false
+	}
+	_, DeErr := db.Query(deleteQuery)
+	if DeErr != nil {
+		fmt.Println(DeErr)
+		return false
+	}
+	return true
+}
+
 func main() {
 	fmt.Println("Server listening in port 3001")
 	db, err = sql.Open("mysql", "root:@tcp(localhost:3306)/shoppingApp")
@@ -93,6 +153,7 @@ func main() {
 
 	//endpoints
 	router.HandleFunc("/newuser", CreateUser).Methods("POST")
+	router.HandleFunc("/newshop", CreateShop).Methods("POST")
 	router.HandleFunc("/login", Login).Methods("POST")
 
 	log.Fatal(http.ListenAndServe(":3001", router))

@@ -46,7 +46,7 @@ export default class RegisterShopScreen extends React.Component{
 
     checkForm = _ => {
         if(checkRegisterForm('shop', this.state, {pass1: this.pass1, pass2: this.pass2})){
-            createUser(this.state, this.props.navigation)
+            createUser(_, this.state, this.props.navigation)
         }
     } 
     
