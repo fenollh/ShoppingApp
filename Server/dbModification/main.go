@@ -6,13 +6,18 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-	"strconv"
 
 	"github.com/gorilla/mux"
 )
 
 var db *sql.DB
 var err error
+
+//Credentials the data needed for authentication
+type Credentials struct {
+	SESSIONID string `json:"sessionID"`
+	USERMAIL  string `json:"usermail"`
+}
 
 //ShopData all the data from a shop is public except for the password
 type ShopData struct {
@@ -62,16 +67,33 @@ func GetPublicUser(w http.ResponseWriter, req *http.Request) {
 
 // GetPrivateUser selects all the user's data. Authentication is required
 func GetPrivateUser(w http.ResponseWriter, req *http.Request) {
-	json.NewEncoder(w).Encode("hola")
+	var credentials Credentials
+	var data PrivateUserData
+	_ = json.NewDecoder(req.Body).Decode(&credentials)
+	auth := authenticate(credentials.USERMAIL, credentials.SESSIONID)
+	if auth == false {
+		json.NewEncoder(w).Encode("Error: Error while authenticating. This data is private")
+	}
+	SelErr := db.QueryRow("SELECT usermail, username, name, age, shoppingList, favShopsList, description, image, stars FROM users WHERE usermail=?", credentials.USERMAIL).Scan(&data.USERMAIL, &data.USERNAME, &data.NAME, &data.AGE, &data.SHOPPINGLIST, &data.FAVSHOPSLIST, &data.DESCRIPTION, &data.IMAGE, &data.STARS)
+	if SelErr != nil {
+		fmt.Println(SelErr)
+		json.NewEncoder(w).Encode("Error: Error while selecting data")
+	}
+	json.NewEncoder(w).Encode(data)
 	return
 }
 
-//GetWithID just for testing
-func GetWithID(w http.ResponseWriter, req *http.Request) {
-	params := mux.Vars(req)
-	index, _ := strconv.Atoi(params["id"])
-	json.NewEncoder(w).Encode(index)
-	return
+func authenticate(usermail string, sessionID string) bool {
+	var expectedSessionID string
+	SeSesErr := db.QueryRow("SELECT sessionID FROM sessions WHERE usermail=?", usermail).Scan(&expectedSessionID)
+	if SeSesErr != nil {
+		fmt.Println(SeSesErr)
+		return false
+	}
+	if sessionID != expectedSessionID {
+		return false
+	}
+	return true
 }
 func main() {
 	fmt.Println("Server listening in port 3000")
@@ -85,7 +107,6 @@ func main() {
 	//endpoints
 	router.HandleFunc("/getPublicUser", GetPublicUser).Methods("POST")
 	router.HandleFunc("/getPrivateUser", GetPrivateUser).Methods("POST")
-	//router.HandleFunc("/login", Login).Methods("POST")
 
 	log.Fatal(http.ListenAndServe(":3001", router))
 	defer db.Close()
