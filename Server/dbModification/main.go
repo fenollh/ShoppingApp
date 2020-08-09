@@ -16,7 +16,15 @@ var err error
 
 // GetPublicUser selects all  the ppublic data about a user without authentication
 func GetPublicUser(w http.ResponseWriter, req *http.Request) {
-	json.NewEncoder(w).Encode("hola")
+	var usermail string
+	var data PublicUserData
+	_ = json.NewDecoder(req.Body).Decode(&usermail)
+	SelErr := db.QueryRow("SELECT username, name, description, image, stars FROM users WHERE usermail=?", usermail).Scan(&data.USERNAME, &data.NAME, &data.DESCRIPTION, &data.IMAGE, &data.STARS)
+	if SelErr != nil {
+		fmt.Println(SelErr)
+		json.NewEncoder(w).Encode("Error: Error while selecting data")
+	}
+	json.NewEncoder(w).Encode(data)
 	return
 }
 
