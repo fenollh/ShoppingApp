@@ -1,11 +1,12 @@
 import React from 'react'
 import { Alert } from 'react-native'
 import { store } from '../redux/state'
+const serverRoute = 'http://192.168.43.9'
 
 /*
 fetch golang server example
     const route = '/0'
-    fetch('http://192.168.1.43:3000'+route)
+    fetch(serverRoute+':3000'+route)
     .then((response) => response.json())
     .then((responseData) => console.log(responseData))
 */
@@ -51,7 +52,7 @@ const initState = _ => {
 }
 
 const authentication = async (usermail, password, sessionID) => {
-    const response = await fetch('http://192.168.1.43:3001/login', {
+    const response = await fetch(serverRoute+':3001/login', {
         method: 'POST',
         headers: {
             Accept: 'application/json',
@@ -74,7 +75,7 @@ const createUser = (user, shop, navigation) => {
     //subir todos estos datos a la DB
     var route, data
     if(user){
-        route = 'http://192.168.1.43:3001/newuser'
+        route = +serverRoute+':3001/newuser'
         data={
             usermail: user.usermail,
             username: user.username,
@@ -84,7 +85,7 @@ const createUser = (user, shop, navigation) => {
             image: user.photo,
         }
     }else{
-        route = 'http://192.168.1.43:3001/newshop'
+        route = serverRoute+':3001/newshop'
         data={
             shopmail: shop.usermail,
             shopname: shop.username,

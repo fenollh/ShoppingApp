@@ -82,15 +82,19 @@ func CreateShop(w http.ResponseWriter, req *http.Request) {
 //Login g
 func Login(w http.ResponseWriter, req *http.Request) {
 	var user User
-	var expectedPassword string
+	var expectedPasswordUsr string
+	var expectedPasswordShp string
 	_ = json.NewDecoder(req.Body).Decode(&user)
-	SeErr := db.QueryRow("SELECT password FROM users WHERE usermail=?", user.USERMAIL).Scan(&expectedPassword)
-	if SeErr != nil {
-		fmt.Println(SeErr)
-		json.NewEncoder(w).Encode(SeErr)
+	SeUsrErr := db.QueryRow("SELECT password FROM users WHERE usermail=?", user.USERMAIL).Scan(&expectedPasswordUsr)
+	SeShpErr := db.QueryRow("SELECT password FROM shops WHERE mail=?", user.USERMAIL).Scan(&expectedPasswordShp)
+	if SeUsrErr != nil && SeShpErr != nil {
+		fmt.Println("Error: Error while selecting expected password")
+		fmt.Println(SeUsrErr)
+		fmt.Println(SeShpErr)
+		json.NewEncoder(w).Encode("Error: User  doesn't exists")
 		return
 	}
-	if expectedPassword != user.PASSWORD {
+	if expectedPasswordUsr != user.PASSWORD && expectedPasswordShp != user.PASSWORD {
 		json.NewEncoder(w).Encode("Error: usermail and password don't match")
 		return
 	}
