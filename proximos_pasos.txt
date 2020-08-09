@@ -21,3 +21,9 @@ details remaining:
 -loading page
 -cancel orders
 -UI
+
+security updates:
+-add passwords to the DB
+-hide all password and sensitive data as enviromental variables
+-protect the Db against SQL injections adding more complex input validation
+
