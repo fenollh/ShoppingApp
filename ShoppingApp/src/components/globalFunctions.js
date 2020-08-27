@@ -42,8 +42,14 @@ const checkRegisterForm = (type, formData, formInputs) => {
     }
 }
 
-const initState = async (usermail, sessionID) => {
-    const response = await fetch(serverRoute+':3000/getPrivateUser', {
+const initState = async (usermail, sessionID, type) => {
+    var link = ''
+    if (type === shop){
+        link=serverRoute+':3000/getPrivateShop'
+    }else {
+        link=serverRoute+':3000/getPrivateUser'
+    }
+    const response = await fetch(link, {
         method: 'POST',
         headers: {
             Accept: 'application/json',
@@ -137,7 +143,7 @@ const createUser = (user, shop, navigation) => {
 }
 
 const loginFunc = async (usermail, password, navigation) => {
-    const sesID = await authentication(usermail, password)
+    const sesID = await authentication(usermail, password) //necesito que tambien retorne el tipo de cuenta
     if(typeof sesID == 'number') {
         navigation.navigate('Main')
         store.dispatch({
@@ -148,7 +154,7 @@ const loginFunc = async (usermail, password, navigation) => {
             type: 'EDIT_SESSION',
             payload: sesID
         })
-        initState(usermail, sesID) //descargar todos los datos de usuario al State de la DB
+        initState(usermail, sesID, 'user') //descargar todos los datos de usuario al State de la DB
     }else{
         Alert.alert('User or password are incorrect')
     }

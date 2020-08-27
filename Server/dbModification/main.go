@@ -29,6 +29,10 @@ func GetPublicUser(w http.ResponseWriter, req *http.Request) {
 	return
 }
 
+// GetPublicShop selects all the shop's data. Authentication is required
+func GetPublicShop(w http.ResponseWriter, req *http.Request) {
+}
+
 // GetPrivateUser selects all the user's data. Authentication is required
 func GetPrivateUser(w http.ResponseWriter, req *http.Request) {
 	var credentials Credentials
@@ -48,10 +52,12 @@ func GetPrivateUser(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 	//fmt.Println(data)
-	fmt.Println("data")
-	json.NewEncoder(w).Encode("data")
-
+	json.NewEncoder(w).Encode(data)
 	return
+}
+
+// GetPrivateShop selects all the shop's data. Authentication is required
+func GetPrivateShop(w http.ResponseWriter, req *http.Request) {
 }
 
 func main() {
@@ -66,6 +72,8 @@ func main() {
 	//endpoints
 	router.HandleFunc("/getPublicUser", GetPublicUser).Methods("POST")
 	router.HandleFunc("/getPrivateUser", GetPrivateUser).Methods("POST")
+	router.HandleFunc("/getPublicShop", GetPublicShop).Methods("POST")
+	router.HandleFunc("/getPrivateShop", GetPrivateShop).Methods("POST")
 
 	log.Fatal(http.ListenAndServe(":3000", router))
 	defer db.Close()
