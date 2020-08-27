@@ -1,7 +1,7 @@
 import React from 'react'
 import { Alert } from 'react-native'
 import { store } from '../redux/state'
-const serverRoute = 'http://192.168.43.9'
+const serverRoute = 'http://192.168.1.43'
 
 /*
 fetch golang server example
@@ -52,7 +52,7 @@ const initState = _ => {
 }
 
 const authentication = async (usermail, password, sessionID) => {
-    const response = await fetch(serverRoute+':3001/login', {
+    const response = await fetch('http://192.168.1.43:3001/login', {
         method: 'POST',
         headers: {
             Accept: 'application/json',
@@ -75,7 +75,7 @@ const createUser = (user, shop, navigation) => {
     //subir todos estos datos a la DB
     var route, data
     if(user){
-        route = +serverRoute+':3001/newuser'
+        route = 'http://192.168.1.43:3001/newuser'
         data={
             usermail: user.usermail,
             username: user.username,

@@ -63,7 +63,7 @@ func Login(w http.ResponseWriter, req *http.Request) {
 	var expectedPasswordShp string
 	_ = json.NewDecoder(req.Body).Decode(&user)
 	SeUsrErr := db.QueryRow("SELECT password FROM users WHERE usermail=?", user.USERMAIL).Scan(&expectedPasswordUsr)
-	SeShpErr := db.QueryRow("SELECT password FROM shops WHERE mail=?", user.USERMAIL).Scan(&expectedPasswordShp)
+	SeShpErr := db.QueryRow("SELECT password FROM shops WHERE email=?", user.USERMAIL).Scan(&expectedPasswordShp)
 	if SeUsrErr != nil && SeShpErr != nil {
 		fmt.Println("Error: Error while selecting expected password")
 		fmt.Println(SeUsrErr)
@@ -82,7 +82,7 @@ func Login(w http.ResponseWriter, req *http.Request) {
 
 func main() {
 	fmt.Println("Server listening in port 3001")
-	db, err = sql.Open("mysql", "root:@tcp(localhost:3306)/shoppingApp")
+	db, err = sql.Open("mysql", "root:root@tcp(localhost:3306)/shoppingApp")
 	if err != nil {
 		panic(err.Error())
 	}
