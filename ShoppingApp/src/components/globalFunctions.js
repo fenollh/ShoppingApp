@@ -42,7 +42,20 @@ const checkRegisterForm = (type, formData, formInputs) => {
     }
 }
 
-const initState = _ => {
+const initState = async (usermail, sessionID) => {
+    const response = await fetch(serverRoute+':3000/getPrivateUser', {
+        method: 'POST',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            usermail: usermail,
+            sessionID: sessionID.toString(),
+        })
+    })
+    const responseData = await response.json()
+    console.log(responseData)
     /* 
     1) get user data
     2) get orders data
@@ -135,7 +148,7 @@ const loginFunc = async (usermail, password, navigation) => {
             type: 'EDIT_SESSION',
             payload: sesID
         })
-        initState() //descargar todos los datos de usuario al State de la DB
+        initState(usermail, sesID) //descargar todos los datos de usuario al State de la DB
     }else{
         Alert.alert('User or password are incorrect')
     }
