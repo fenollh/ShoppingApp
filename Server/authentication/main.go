@@ -23,8 +23,8 @@ func CreateUser(w http.ResponseWriter, req *http.Request) {
 		json.NewEncoder(w).Encode("Error: This email has already been used")
 		return
 	}
-	var data string = "(" + "'" + user.USERMAIL + "'" + ", " + "'" + user.USERNAME + "'" + ", " + "'" + user.NAME + "'" + ", " + user.AGE + ", " + "'" + user.IMAGE + "'" + ", " + "5" + ", " + "'" + user.PASSWORD + "');"
-	_, InsErr := db.Query("INSERT INTO users (usermail, username, name, age, image, stars, password) VALUES " + data)
+	var data string = "('" + user.USERMAIL + "', '" + user.USERNAME + "', '" + user.NAME + "', " + user.AGE + ", '', '', '', '" + user.IMAGE + "', 5, '" + user.PASSWORD + "');"
+	_, InsErr := db.Query("INSERT INTO users (usermail, username, name, age, shoppingList, favShopsList, decription, image, stars, password) VALUES " + data)
 	if InsErr != nil {
 		fmt.Println(InsErr)
 		json.NewEncoder(w).Encode(InsErr)
@@ -44,8 +44,8 @@ func CreateShop(w http.ResponseWriter, req *http.Request) {
 		json.NewEncoder(w).Encode("Error: This email has already been used")
 		return
 	}
-	var data string = "(" + "'" + shop.SHOPNAME + "'" + ", " + "'" + shop.SHOPMAIL + "'" + ", " + "'" + shop.MANAGERNAME + "'" + ", " + "5" + ", " + "'" + shop.IMAGE + "'" + ", " + "'" + shop.SHOPTYPE + "'" + ", " + "'" + shop.PASSWORD + "');"
-	_, InsErr := db.Query("INSERT INTO shops (name, email, managerName, stars, image, shopType, password) VALUES " + data)
+	var data string = "('" + shop.SHOPNAME + "', '" + shop.SHOPMAIL + "', '" + shop.MANAGERNAME + "', '', '', '', 5, '', " + "'" + shop.IMAGE + "', '', '', '', '" + shop.SHOPTYPE + "', '" + shop.PASSWORD + "');"
+	_, InsErr := db.Query("INSERT INTO shops (name, email, managerName, location, schedule, details, stars, description, image, tags, categories, stock, shopType, password) VALUES " + data)
 	if InsErr != nil {
 		fmt.Println(InsErr)
 		json.NewEncoder(w).Encode(InsErr)

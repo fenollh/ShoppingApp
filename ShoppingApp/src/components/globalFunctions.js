@@ -54,8 +54,8 @@ const initState = async (usermail, sessionID) => {
             sessionID: sessionID.toString(),
         })
     })
-    const responseData = await response.json()
-    console.log(responseData)
+    const data = await response.json()
+    console.log(data)
     /* 
     1) get user data
     2) get orders data

@@ -23,6 +23,7 @@ func GetPublicUser(w http.ResponseWriter, req *http.Request) {
 	if SelErr != nil {
 		fmt.Println(SelErr)
 		json.NewEncoder(w).Encode("Error: Error while selecting data")
+		return
 	}
 	json.NewEncoder(w).Encode(data)
 	return
@@ -31,21 +32,25 @@ func GetPublicUser(w http.ResponseWriter, req *http.Request) {
 // GetPrivateUser selects all the user's data. Authentication is required
 func GetPrivateUser(w http.ResponseWriter, req *http.Request) {
 	var credentials Credentials
-	//var data PrivateUserData
+	var data PrivateUserData
 	_ = json.NewDecoder(req.Body).Decode(&credentials)
 	auth := authenticate(credentials.USERMAIL, credentials.SESSIONID)
 	if auth == false {
 		json.NewEncoder(w).Encode("Error: Error while authenticating. This data is private")
+		return
 	}
-	json.NewEncoder(w).Encode("Succesfuly authenticated")
-	/*
-		SelErr := db.QueryRow("SELECT usermail, username, name, age, shoppingList, favShopsList, description, image, stars FROM users WHERE usermail=?", credentials.USERMAIL).Scan(&data.USERMAIL, &data.USERNAME, &data.NAME, &data.AGE, &data.SHOPPINGLIST, &data.FAVSHOPSLIST, &data.DESCRIPTION, &data.IMAGE, &data.STARS)
-		if SelErr != nil {
-			fmt.Println(SelErr)
-			json.NewEncoder(w).Encode("Error: Error while selecting data")
-		}
-		json.NewEncoder(w).Encode(data)
-	*/
+
+	SelErr := db.QueryRow("SELECT usermail, username, name, age, shoppingList, favShopsList, decription, image, stars FROM users WHERE usermail=?", credentials.USERMAIL).Scan(&data.USERMAIL, &data.USERNAME, &data.NAME, &data.AGE, &data.SHOPPINGLIST, &data.FAVSHOPSLIST, &data.DESCRIPTION, &data.IMAGE, &data.STARS)
+	if SelErr != nil {
+		fmt.Println(SelErr)
+		fmt.Println("Error: Error while selecting data")
+		json.NewEncoder(w).Encode("Error: Error while selecting data")
+		return
+	}
+	//fmt.Println(data)
+	fmt.Println("data")
+	json.NewEncoder(w).Encode("data")
+
 	return
 }
 
