@@ -46,13 +46,14 @@ const initState = _ => {
     /* 
     1) get user data
     2) get orders data
-    3) complete the rest of the filds
-    4) upload tge data to the state
+    3) cast all the data to a useful format
+    4) complete the rest of the filds
+    5) upload tge data to the state
     */
 }
 
 const authentication = async (usermail, password, sessionID) => {
-    const response = await fetch('http://192.168.1.43:3001/login', {
+    const response = await fetch(serverRoute+':3001/login', {
         method: 'POST',
         headers: {
             Accept: 'application/json',
@@ -75,7 +76,7 @@ const createUser = (user, shop, navigation) => {
     //subir todos estos datos a la DB
     var route, data
     if(user){
-        route = 'http://192.168.1.43:3001/newuser'
+        route = serverRoute+':3001/newuser'
         data={
             usermail: user.usermail,
             username: user.username,
