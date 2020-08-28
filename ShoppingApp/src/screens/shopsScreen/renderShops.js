@@ -22,17 +22,19 @@ export default class ShopsListSection extends React.Component {
     renderShop = (item) => {
         if (item.accountType != store.getState().selectedTag && store.getState().selectedTag != ' All ') return
         let servicesSec
+        const red='rgb(230,100,100)'
+        const green='rgb(100,230,100)'
         switch (item.accountType) {
             case 'Food':
                 servicesSec=(
                 <View style={{flex:1, alignItems: 'center', marginTop: '2%'}}>
                     <View style={{flex: 1, flexDirection: 'row'}}>
-                        <Entypo name='shopping-bag' color={(item.shopDetails.takeaway)?'green':'red'} size={30} style={{marginHorizontal: '1%'}}/>
-                        <MaterialIcons name='restaurant' color={(item.shopDetails.restaurant)?'green':'red'} size={30} style={{marginHorizontal: '1%'}}/>
+                        <Entypo name='shopping-bag' color={(item.shopDetails.takeaway)?green:red} size={30} style={{marginHorizontal: '1%'}}/>
+                        <MaterialIcons name='restaurant' color={(item.shopDetails.restaurant)?green:red} size={30} style={{marginHorizontal: '1%'}}/>
                     </View>
                     <View style={{flex: 1, flexDirection: 'row'}}>
-                        <MaterialCommunityIcons name='truck-delivery' color={(item.shopDetails.delivery)?'green':'red'} size={30} style={{marginHorizontal: '1%'}}/>
-                        <Entypo name='credit-card' color={(item.shopDetails.card)?'green':'red'} size={30} style={{marginHorizontal: '1%'}}/>
+                        <MaterialCommunityIcons name='truck-delivery' color={(item.shopDetails.delivery)?green:red} size={30} style={{marginHorizontal: '1%'}}/>
+                        <Entypo name='credit-card' color={(item.shopDetails.card)?green:red} size={30} style={{marginHorizontal: '1%'}}/>
                     </View>
                 </View>
                 )
@@ -41,12 +43,12 @@ export default class ShopsListSection extends React.Component {
                 servicesSec=(
                 <View style={{flex:1, alignItems: 'center', marginTop: '2%'}}>
                     <View style={{flex: 1, flexDirection: 'row'}}>
-                        <Entypo name='shop' color={(item.shopDetails.cafeteria)?'green':'red'} size={30} style={{marginHorizontal: '1%'}}/>
-                        <MaterialCommunityIcons name='toilet' color={(item.shopDetails.toilets)?'green':'red'} size={30} style={{marginHorizontal: '1%'}}/>
+                        <Entypo name='shop' color={(item.shopDetails.cafeteria)?green:red} size={30} style={{marginHorizontal: '1%'}}/>
+                        <MaterialCommunityIcons name='toilet' color={(item.shopDetails.toilets)?green:red} size={30} style={{marginHorizontal: '1%'}}/>
                     </View>
                     <View style={{flex: 1, flexDirection: 'row'}}>
-                        <MaterialIcons name='person' color={(item.shopDetails.instructors)?'green':'red'} size={30} style={{marginHorizontal: '1%'}}/>
-                        <Entypo name='credit-card' color={(item.shopDetails.card)?'green':'red'} size={30} style={{marginHorizontal: '1%'}}/>
+                        <MaterialIcons name='person' color={(item.shopDetails.instructors)?green:red} size={30} style={{marginHorizontal: '1%'}}/>
+                        <Entypo name='credit-card' color={(item.shopDetails.card)?green:red} size={30} style={{marginHorizontal: '1%'}}/>
                     </View>
                 </View>
                 )
@@ -90,7 +92,7 @@ export default class ShopsListSection extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingTop: '7%',
+        paddingTop: '3%',
         marginHorizontal: '1%',
     },
     shopBox: {

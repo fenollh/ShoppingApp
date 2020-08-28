@@ -31,8 +31,11 @@ export default class RenderProductsSection extends React.Component{
             itemsRemaining= <Text style={[styles.itemsRemaining, {color:'rgb(200,0,0)'}]}> Tan solo quedan {item.quantity} unidades </Text>
         }
         return(
-            <TouchableOpacity style={styles.productBox} activeOpacity={0.6}>
-                <View style={{flex:1.3}}>
+            <TouchableOpacity 
+                style={styles.productBox} 
+                activeOpacity={0.6} 
+                onPress={()=> {this.props.navigation.navigate('AddProduct', {item: item, shop:this.props.item})}}>
+                    <View style={{flex:1.3}}>
                     <Image
                     style={{height:100, width:100, resizeMode:'cover', borderRadius:10}}
                     source={{uri: item.image}}
@@ -52,9 +55,7 @@ export default class RenderProductsSection extends React.Component{
                             name='add-shopping-cart' 
                             size={40} 
                             color='rgb(80,130,255)' 
-                            onPress={()=> {
-                                this.props.navigation.navigate('AddProduct', {item: item, shop:this.props.item})
-                                }}/>
+                            />
                     </TouchableOpacity>
                 </View>
             </TouchableOpacity>
@@ -85,7 +86,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgb(240, 250, 255)',
         borderColor: 'rgb(100,150,200)',
         borderRadius: 10,
-        borderWidth: 0.3,
+        //borderWidth: 0.3,
         height: 110, 
         width: '100%', 
         padding: '2%'

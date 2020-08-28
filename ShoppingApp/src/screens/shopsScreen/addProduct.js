@@ -66,7 +66,7 @@ export default class AddProductScreen extends React.Component {
                 <View style={styles.mainBox}>
                     <View style={{flex:2, alignItems: 'center'}}>
                         <Image
-                        style={{height: 100, width: 100, borderRadius: 50, margin: '2%'}}
+                        style={{height: 100, width: 100, borderRadius: 50, marginTop: '7%', marginBottom: '2%'}}
                         source={{uri: item.image}}
                         />
                         <Text style ={{fontSize: 17, fontWeight: 'bold'}}>Order: {item.name}</Text>

@@ -6,7 +6,6 @@ import {
     FlatList,
     StyleSheet, 
     TouchableOpacity,
-    Alert,
 } from 'react-native'
 
 import AntDesign from 'react-native-vector-icons/AntDesign'

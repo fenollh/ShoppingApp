@@ -97,9 +97,10 @@ const styles = StyleSheet.create({
         height: 100, 
         width: 100, 
         borderRadius: 50, 
-        borderWidth: 1,
+        //borderWidth: 1,
         borderColor: 'rgb(0,0,0)', 
         margin: '5%',
+        marginTop: '20%',
         marginBottom: '15%'
     },
     buttonTxt: {
@@ -123,7 +124,7 @@ const styles = StyleSheet.create({
         borderRadius: 20, 
         alignSelf: 'center', 
         justifyContent: 'center',
-        backgroundColor: 'rgb(80,130,255)', 
+        backgroundColor: 'rgb(100,170,255)', 
     },  
     body: {
         flex: 3,
@@ -134,8 +135,8 @@ const styles = StyleSheet.create({
         marginTop:'2%',
         paddingStart: '2%', 
         justifyContent: 'center', 
-        borderBottomColor: 'black', 
-        borderBottomWidth:1
+        //borderBottomColor: 'black', 
+        //borderBottomWidth:1
     },
     reserveButton: {
         backgroundColor: 'rgb(80,130,255)', 
@@ -151,18 +152,5 @@ const styles = StyleSheet.create({
         fontWeight: 'bold', 
         fontSize:15,
         alignSelf:'center'
-    },
-    productBox: {
-        flex: 1,
-        marginVertical: '1%',
-        marginHorizontal: '1%',
-        flexDirection: 'row',
-        backgroundColor: 'rgb(240, 250, 255)',
-        borderColor: 'rgb(100,150,200)',
-        borderRadius: 10,
-        borderWidth: 0.3,
-        height: 100, 
-        width: '100%', 
-        padding: '2%'
     },
 })

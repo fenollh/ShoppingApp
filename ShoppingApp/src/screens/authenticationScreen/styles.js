@@ -24,13 +24,14 @@ const styles = StyleSheet.create({
         flex: 1,
         padding: '3%',
         borderRadius: 20,
-        borderColor: 'rgb(52,167,251)',
-        borderWidth: 1,
-        backgroundColor: 'rgb(220,230,255)'
+        backgroundColor: 'rgb(220,240,255)'
     },
     boton:{
-        flex:1,
+        //flex:1,
+        //backgroundColor: 'rgb(100,230,150)',
         borderRadius: 10,
+        height: 35,
+        width: '93%',
         margin: '3%',
         alignItems: 'center',
         justifyContent: 'center',

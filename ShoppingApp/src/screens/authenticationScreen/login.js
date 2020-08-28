@@ -49,7 +49,7 @@ export default class LoginScreen extends React.Component{
                 </View>
                 <View style={{height:'25%'}}>
                     <TouchableOpacity 
-                    style={[styles.boton, {backgroundColor: 'rgb(100,230,150)', marginTop: '10%', flex: 2}]} 
+                    style={[styles.boton, {backgroundColor: 'rgb(100,230,150)', marginTop: '10%'}]} 
                     activeOpacity={0.6} 
                     onPress={_=>loginFunc(this.state.usermail, this.state.password, this.props.navigation)}>
                         <Text style={styles.botonTxt}>LOGIN</Text>

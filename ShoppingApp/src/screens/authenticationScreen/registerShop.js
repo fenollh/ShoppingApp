@@ -129,7 +129,7 @@ export default class RegisterShopScreen extends React.Component{
                 </View>
                 <View style={{height:'8%'}}>
                     <TouchableOpacity 
-                    style={[styles.boton, {backgroundColor: 'rgb(100,230,150)', marginBottom: '0%'}]} 
+                    style={[styles.boton, {backgroundColor: 'rgb(100,230,150)'}]} 
                     activeOpacity={0.6}
                     onPress={_=>{this.checkForm()}} 
                     >
