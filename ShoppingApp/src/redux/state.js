@@ -6,7 +6,7 @@ let State = {
     sessionID: '12',
     username: 'fenollh',
     usermail: 'fenollh@gmail.com',
-    profileName: 'Hugo Fenoll',
+    profileName: 'Hugo',
     phone: '644-41-53-37',
     stars: 4, // de 0-5
     description: 'Estudiante y creador de esta app.  Esqui de montaña y tecnologia.  Hoyo de Manzanares',

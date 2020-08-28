@@ -49,7 +49,7 @@ export default class ProfileScreen extends React.Component{
                         <Text style={[styles.profileName, {fontWeight: 'normal'}]}>{Store.accountType}</Text>
                     </View>
                     <View style={{flex: 2.3}}>
-                        <Text style={styles.username}>{Store.usermail}</Text>
+                        <Text style={styles.username}>{Store.username}</Text>
                         <View style={{flex:1.8, alignItems: 'center', marginHorizontal: '5%'}}>
                             <Text style={{fontSize: 15}}>{Store.description}</Text>
                         </View>
@@ -85,8 +85,6 @@ const styles = StyleSheet.create({
         height: 100, 
         width: 100, 
         borderRadius: 50, 
-        borderWidth: 1,
-        borderColor: 'rgb(0,0,0)', 
         margin: '5%',
         marginBottom: '15%'
     },
