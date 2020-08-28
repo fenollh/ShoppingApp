@@ -12,6 +12,9 @@ import {
 export default class ProfileScreen extends React.Component{
     render(){
         let Store = store.getState()
+        store.subscribe(()=>{
+            if(Store.usermail != store.getState().usermail) this.forceUpdate()
+        })
         let valoraciones
         if(Store.accountType == 'Costumer'){
             valoraciones= 
@@ -19,7 +22,7 @@ export default class ProfileScreen extends React.Component{
                     <Text style={{flex:1, fontWeight: 'bold', textDecorationLine: 'underline'}}> RELIABILITY </Text>
                     <View style={{flex:2, flexDirection: 'row', alignItems: 'center'}}>
                         <StarsRating data={Store.stars} style={{flex:1}}/>
-                        <Text style={{marginLeft: '3%', fontSize: 20, flex:2}}>{Store.stars[0]+Store.stars[1]+Store.stars[2]+Store.stars[3]+Store.stars[4]}</Text>
+                        <Text style={{marginLeft: '3%', fontSize: 20, flex:2}}>{Store.stars}</Text>
                     </View>
                 </View>
         }
@@ -29,7 +32,7 @@ export default class ProfileScreen extends React.Component{
                 <Text style={{flex:1, fontWeight: 'bold', textDecorationLine: 'underline'}}> CUSTOMER RATINGS </Text>
                 <View style={{flex:2, flexDirection: 'row', alignItems: 'center'}}>
                     <StarsRating data={Store.stars} style={{flex:1}}/>
-                    <Text style={{marginLeft: '3%', fontSize: 20, flex:2}}>{Store.stars[0]+Store.stars[1]+Store.stars[2]+Store.stars[3]+Store.stars[4]}</Text>
+                    <Text style={{marginLeft: '3%', fontSize: 20, flex:2}}>{Store.stars}</Text>
                 </View>
             </View>
         }
@@ -46,11 +49,9 @@ export default class ProfileScreen extends React.Component{
                         <Text style={[styles.profileName, {fontWeight: 'normal'}]}>{Store.accountType}</Text>
                     </View>
                     <View style={{flex: 2.3}}>
-                        <Text style={styles.username}>{Store.username}</Text>
-                        <View style={{flex:1.8, alignItems: 'center'}}>
-                            <Text style={{fontSize: 15}}>{Store.profileDescription.profession}</Text>
-                            <Text style={{fontSize: 15}}>{Store.profileDescription.hobbies}</Text>
-                            <Text style={{fontSize: 15}}>{Store.profileDescription.location}</Text>
+                        <Text style={styles.username}>{Store.usermail}</Text>
+                        <View style={{flex:1.8, alignItems: 'center', marginHorizontal: '5%'}}>
+                            <Text style={{fontSize: 15}}>{Store.description}</Text>
                         </View>
                         <View style={{flex:1.2}}>
                             <TouchableOpacity style={styles.editButton}>

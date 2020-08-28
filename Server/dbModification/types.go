@@ -38,10 +38,10 @@ type PrivateUserData struct {
 	AGE          int    `json:"age"`
 	SHOPPINGLIST string `json:"shoppingList"`
 	FAVSHOPSLIST string `json:"favShopsList"`
-
-	USERNAME    string `json:"username"`
-	NAME        string `json:"name"`
-	DESCRIPTION string `json:"description"`
-	IMAGE       string `json:"image"`
-	STARS       int    `json:"stars"`
+	ACCOUNTTYPE  string `json:"accountType"`
+	USERNAME     string `json:"username"`
+	NAME         string `json:"name"`
+	DESCRIPTION  string `json:"description"`
+	IMAGE        string `json:"image"`
+	STARS        int    `json:"stars"`
 }

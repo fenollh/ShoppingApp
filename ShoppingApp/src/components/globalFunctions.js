@@ -44,7 +44,7 @@ const checkRegisterForm = (type, formData, formInputs) => {
 
 const initState = async (usermail, sessionID, type) => {
     var link = ''
-    if (type === shop){
+    if (type === 'shop'){
         link=serverRoute+':3000/getPrivateShop'
     }else {
         link=serverRoute+':3000/getPrivateUser'
@@ -61,13 +61,27 @@ const initState = async (usermail, sessionID, type) => {
         })
     })
     const data = await response.json()
-    console.log(data)
+    store.dispatch({
+        type: 'GET_USER_DATA',
+        payload: {
+            username: data.username,
+            usermail: data.usermail,
+            name: data.name,
+            age: data.age,
+            description: data.description,
+            image: data.image,
+            stars: data.stars,
+            favShopsList: data.favShopsList,
+            shoppingList: data.shoppingList,
+            accountType: data.accountType,
+        }
+    })
     /* 
-    1) get user data
+    1) get user data (done)
     2) get orders data
     3) cast all the data to a useful format
     4) complete the rest of the filds
-    5) upload tge data to the state
+    5) upload the data to the state (only user data)
     */
 }
 
@@ -146,15 +160,16 @@ const loginFunc = async (usermail, password, navigation) => {
     const sesID = await authentication(usermail, password) //necesito que tambien retorne el tipo de cuenta
     if(typeof sesID == 'number') {
         navigation.navigate('Main')
+        
         store.dispatch({
-            type: 'EDIT_USERMAIL',
-            payload: usermail
-        })
-        store.dispatch({
-            type: 'EDIT_SESSION',
-            payload: sesID
+            type: 'HANDLE_SESSION',
+            payload: {
+                usermail: usermail,
+                sessionID: sesID
+            }
         })
         initState(usermail, sesID, 'user') //descargar todos los datos de usuario al State de la DB
+
     }else{
         Alert.alert('User or password are incorrect')
     }

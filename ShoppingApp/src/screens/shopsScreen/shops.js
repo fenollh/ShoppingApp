@@ -15,10 +15,11 @@ export default class ShopsScreen extends React.Component{
     }
 
     render(){
+        let Store = store.getState()
         store.subscribe(()=>{
             if(Store.selectedTag != store.getState().selectedTag) this.forceUpdate()
         })
-        let Store = store.getState()
+        
         return(
             <View style={styles.container}>
                 <View style={{flex: 1}}>

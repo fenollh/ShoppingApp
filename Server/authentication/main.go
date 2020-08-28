@@ -62,8 +62,8 @@ func Login(w http.ResponseWriter, req *http.Request) {
 	var expectedPasswordUsr string
 	var expectedPasswordShp string
 	_ = json.NewDecoder(req.Body).Decode(&user)
-	SeUsrErr := db.QueryRow("SELECT password FROM users WHERE usermail=?", user.USERMAIL).Scan(&expectedPasswordUsr)
-	SeShpErr := db.QueryRow("SELECT password FROM shops WHERE email=?", user.USERMAIL).Scan(&expectedPasswordShp)
+	SeUsrErr := db.QueryRow("SELECT password FROM users WHERE usermail='" + user.USERMAIL + "';").Scan(&expectedPasswordUsr)
+	SeShpErr := db.QueryRow("SELECT password FROM shops WHERE email='" + user.USERMAIL + "';").Scan(&expectedPasswordShp)
 	if SeUsrErr != nil && SeShpErr != nil {
 		fmt.Println("Error: Error while selecting expected password")
 		fmt.Println(SeUsrErr)
@@ -72,6 +72,7 @@ func Login(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 	if expectedPasswordUsr != user.PASSWORD && expectedPasswordShp != user.PASSWORD {
+		fmt.Println("Error: usermail and password don't match")
 		json.NewEncoder(w).Encode("Error: usermail and password don't match")
 		return
 	}

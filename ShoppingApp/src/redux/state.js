@@ -8,8 +8,8 @@ let State = {
     usermail: 'fenollh@gmail.com',
     profileName: 'Hugo Fenoll',
     phone: '644-41-53-37',
-    stars: [1, 1, 1, 1, 1], // de 0-5
-    profileDescription: {profession: 'Estudiante y creador de esta app', hobbies: 'Esqui de montaña y tecnologia', location: 'Hoyo de Manzanares'},
+    stars: 4, // de 0-5
+    description: 'Estudiante y creador de esta app.  Esqui de montaña y tecnologia.  Hoyo de Manzanares',
     profileImage: 'https://www.skimostats.com/images/athletes/372-5e2587fe35036.png',
     accountType: 'Costumer', //Costumer / Other
     shopDetails: {takeaway: null, delivery: null ,restaurant: null}, //for costumer accounts the 3  fields are null

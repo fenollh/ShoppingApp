@@ -5,15 +5,23 @@ const reducer = (state=store.getState(), action) => {
             return {
                 ...state, 
                 username: action.payload.username, 
-                sessionID: action.payload.sessionID, 
                 usermail: action.payload.usermail,
                 profileName: action.payload.name,
                 age: action.payload.age,
+                description: action.payload.description,
                 profileImage: action.payload.image,
                 stars: action.payload.stars,
-                profileDescription: action.payload.description,
                 favouriteShops: action.payload.favShopsList,
                 shoppingList: action.payload.shoppingList,
+                accountType: action.payload.accountType,
+            }
+        case 'GET_SHOP_DATA':
+            return {...state}
+        case 'HANDLE_SESSION':
+            return {
+                ...state, 
+                usermail:action.payload.usermail, 
+                sessionID: action.payload.sessionID
             }
         case 'EDIT_USERNAME':
             return {...state, username: action.payload}
