@@ -1,10 +1,4 @@
 import React from 'react'
-import Entypo from 'react-native-vector-icons/Entypo'
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
-
-import { Shops } from '../../components/shopsList'
-import { store } from '../../redux/state'
 import {
     View,
     Text,
@@ -13,6 +7,13 @@ import {
     Image,
     StyleSheet
 } from 'react-native'
+
+import Entypo from 'react-native-vector-icons/Entypo'
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+
+import { Shops } from '../../components/shopsList'
+import { store } from '../../redux/state'
 
 export default class ShopsListSection extends React.Component {
     constructor(props){
@@ -98,8 +99,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         backgroundColor: 'rgb(240, 250, 255)',
         borderColor: 'rgb(100,150,200)',
-        borderRadius: 10,
-        borderWidth: 0.3,
+        borderRadius: 0,
+        //borderWidth: 0.3,
         height: 100, 
         width: '100%', 
         padding: '2%'

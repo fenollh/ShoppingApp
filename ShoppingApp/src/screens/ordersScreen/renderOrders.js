@@ -1,16 +1,17 @@
 import React from 'react'
-import { store } from '../../redux/state'
-import { Shops } from '../../components/shopsList'
-import AntDesign from 'react-native-vector-icons/AntDesign'
-
 import { 
     View,
     Text,
     FlatList,
     Image,
     TouchableOpacity,
-    StyleSheet,
 } from 'react-native'
+
+import AntDesign from 'react-native-vector-icons/AntDesign'
+
+import { store } from '../../redux/state'
+import { Shops } from '../../components/shopsList'
+import { styles } from './styles'
 
 export default class RenderOrdersSection extends React.Component{
     constructor(props){
@@ -34,10 +35,10 @@ export default class RenderOrdersSection extends React.Component{
                     />
                 </View>
                 <View style={{flex:2}}>
-                    <Text style={styles.txt}>{item.quantity} x {item.itemName}</Text>
-                    <Text style={styles.txt}>Coste: {item.itemCost*item.quantity}€</Text>
-                    <Text style={styles.txt}>Day: {item.hour.toString().slice(4,10)}</Text>
-                    <Text style={styles.txt}>Hour: {item.hour.toString().slice(15,21)}</Text>
+                    <Text style={styles.productTxt}>{item.quantity} x {item.itemName}</Text>
+                    <Text style={styles.productTxt}>Coste: {item.itemCost*item.quantity}€</Text>
+                    <Text style={styles.productTxt}>Day: {item.hour.toString().slice(4,10)}</Text>
+                    <Text style={styles.productTxt}>Hour: {item.hour.toString().slice(15,21)}</Text>
                 </View>
                 <TouchableOpacity style={{flex:1, alignItems:'center', justifyContent: 'center'}}>
                     <AntDesign 
@@ -68,26 +69,3 @@ export default class RenderOrdersSection extends React.Component{
         )
     }
 }
-const styles = StyleSheet.create({
-
-    productBox: {
-        flex: 1,
-        marginVertical: '1%',
-        marginHorizontal: '1%',
-        flexDirection: 'row',
-        backgroundColor: 'rgb(240, 250, 255)',
-        borderColor: 'rgb(100,150,200)',
-        borderRadius: 10,
-        borderWidth: 0.3,
-        height: 110, 
-        width: '98%', 
-        padding: '2%',
-    },
-    txt: {
-        marginStart: 10, 
-        flex:1, 
-        fontWeight: 'bold', 
-        fontSize: 17, 
-        alignSelf: 'center'
-    },
-})

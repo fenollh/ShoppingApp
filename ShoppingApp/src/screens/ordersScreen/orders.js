@@ -1,12 +1,13 @@
 import React from 'react'
-import { store } from '../../redux/state'
 import {
     View,
     Text, 
     Image,
-    StyleSheet,
 } from 'react-native'
+
 import RenderOrdersSection from './renderOrders'
+import { store } from '../../redux/state'
+import { styles } from './styles'
 
 export default class OrdersScreen extends React.Component{
 
@@ -30,7 +31,7 @@ export default class OrdersScreen extends React.Component{
                     <View style={{flex:8}}>
                         <RenderOrdersSection father={this}/>
                     </View>
-                    <View style={styles.costView}>
+                    <View style={{flex: 1, justifyContent: 'center'}}>
                         <Text style={styles.costTxt}>TOTAL COST: {this.calculateCost(Store)}€</Text>
                     </View>
                 </View>
@@ -53,20 +54,3 @@ export default class OrdersScreen extends React.Component{
         )
     }
 }
-const styles = StyleSheet.create({
-    container:{
-        flex: 1,
-        //padding: '3%',
-        backgroundColor: 'rgb(240,245,240)',
-    },
-    costView:{
-        flex:1,
-        justifyContent: 'center',
-    },  
-    costTxt: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        alignSelf: 'flex-end',
-        marginEnd: 30
-    },
-})

@@ -1,4 +1,5 @@
 import React from 'react'
+import RNDateTimePicker from '@react-native-community/datetimepicker';
 import {
     View,
     Text,
@@ -13,7 +14,6 @@ import AntDesign from 'react-native-vector-icons/AntDesign'
 
 import { addOrder } from '../../components/globalFunctions'
 import { store } from '../../redux/state'
-import RNDateTimePicker from '@react-native-community/datetimepicker';
 
 
 export default class AddProductScreen extends React.Component {

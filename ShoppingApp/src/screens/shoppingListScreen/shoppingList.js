@@ -1,6 +1,4 @@
 import React from 'react'
-import AntDesign from 'react-native-vector-icons/AntDesign'
-import { store } from '../../redux/state'
 import { 
     View,
     Text,
@@ -10,6 +8,10 @@ import {
     TouchableOpacity,
     Alert,
 } from 'react-native'
+
+import AntDesign from 'react-native-vector-icons/AntDesign'
+
+import { store } from '../../redux/state'
 
 export default class ShoppingList extends React.Component{
     constructor(props){

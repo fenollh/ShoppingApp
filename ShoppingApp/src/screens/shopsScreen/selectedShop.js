@@ -1,9 +1,4 @@
 import React from 'react'
-import StarsRating from '../../components/startsRating'
-import TagsSection from '../../components/tagsSec'
-import RenderProductsSection from './renderProducts' 
-import { store } from '../../redux/state'
-
 import {
     View,
     Text,
@@ -12,6 +7,11 @@ import {
     StyleSheet,
     Alert,
 } from 'react-native'
+
+import StarsRating from '../../components/startsRating'
+import TagsSection from '../../components/tagsSec'
+import RenderProductsSection from './renderProducts' 
+import { store } from '../../redux/state'
 
 export default class SelectedShopScreen extends React.Component{
     constructor(props){

@@ -6,8 +6,6 @@ import {
 } from 'react-native'
 
 import Router from './src/components/router'
-import Header from './src/components/header'
-
 
 
 export default class App extends React.Component {
@@ -16,7 +14,6 @@ export default class App extends React.Component {
   render(){
     return (
       <View style={styles.container}>
-        <Header/>
         <Router/>
       </View>
     )

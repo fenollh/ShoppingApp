@@ -7,8 +7,11 @@ import {
     FlatList,
     StyleSheet
 } from 'react-native'
-import { store } from '../../redux/state'
+
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
+
+import { store } from '../../redux/state'
+
 
 
 export default class RenderProductsSection extends React.Component{
