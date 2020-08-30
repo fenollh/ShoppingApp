@@ -18,12 +18,9 @@ let State = {
     selectedTag: ' All ',
     selectedCategorie: ' All ',
     favouriteShops: [],
-    shoppingList: { // in shops accounts this object is null
-        public: true,
-        users: ['fenollh@gmail.com', 'fenollmi@gmail.com', 'tejedorc@gmail.com', 'jafenoll@gmail.com'],
-        items: [
-            ]
-    },
+    shoppingList: [
+
+    ], // in shops accounts this object is null
     myOrders: [
         {costumermail: "fenollh@gmail.com", hour:new Date(Date.now()), itemCost: 15, itemName: "Pollo asado", quantity: 4, shop: "piopio@gmail.com", image: 'https://www.hola.com/imagenes/cocina/recetas/20200130159403/pollo-asado-en-horno-de-lena/0-779-940/pollo-asado-m.jpg'},
         {costumermail: "fenollh@gmail.com", hour:new Date(Date.now()), itemCost: 4, itemName: "Patatas", quantity: 2, shop: "piopio@gmail.com", image: 'https://cdn6.recetasdeescandalo.com/wp-content/uploads/2019/07/Patatas-fritas-al-horno-muy-ricas-y-sin-apenas-aceite.jpg'},

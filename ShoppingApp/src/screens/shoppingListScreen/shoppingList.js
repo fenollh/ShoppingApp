@@ -26,10 +26,14 @@ export default class ShoppingList extends React.Component{
         })
     }
 
+    addItem = () => {
+        
+    }
+
     renderListItem = (item, index) => {
         return(
             <View style={{flex:1, flexDirection:'row', marginVertical: 5}}>
-                <Text style={styles.listTxt}>{item.name}</Text>
+                <Text style={styles.listTxt}>{item}</Text>
                 <View style={{flex: 1}}>
                     <AntDesign name='delete' color='red' size={25} onPress={() => this.deleteItem(index)}/>
                 </View>
@@ -47,8 +51,8 @@ export default class ShoppingList extends React.Component{
             <View style={styles.container}>
                 <View style={styles.list}>
                     <FlatList
-                    data={store.getState().shoppingList.items}
-                    keyExtractor={item => item.id.toString()}
+                    data={Store.shoppingList}
+                    keyExtractor={(item, index) => index}
                     renderItem={({ item, index }) => this.renderListItem(item, index)}
                     />
                 </View>
@@ -66,7 +70,7 @@ export default class ShoppingList extends React.Component{
                             if(!state.newItem) return
                             store.dispatch({
                                 type: 'ADD_ITEM_SHOPPINGLIST',
-                                payload: {name: state.newItem, id: store.getState().shoppingList.items.length}
+                                payload: state.newItem,
                             })
                             this.textInput.clear()
                         }}>

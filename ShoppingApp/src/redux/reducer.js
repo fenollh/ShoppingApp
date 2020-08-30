@@ -36,9 +36,9 @@ const reducer = (state=store.getState(), action) => {
         case 'ADD_ORDER':
             return {...state, myOrders: [...state.myOrders, action.payload]}
         case 'ADD_ITEM_SHOPPINGLIST':
-            return {...state, shoppingList: {...state.shoppingList, items: [...state.shoppingList.items, action.payload]}}
+            return {...state, shoppingList: [...state.shoppingList, action.payload]}
         case 'REMOVE_ITEM_SHOPPINGLIST':
-            state.shoppingList.items.splice(action.payload, 1) //the payload is the index
+            state.shoppingList.splice(action.payload, 1) //the payload is the index
             return state 
         case 'REMOVE_ORDER':
             state.myOrders.splice(action.payload, 1) //the payload is the index

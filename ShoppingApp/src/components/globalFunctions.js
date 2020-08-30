@@ -61,6 +61,7 @@ const initState = async (usermail, sessionID, type) => {
         })
     })
     const data = await response.json()
+    var shoppingList = data.shoppingList.split('')
     store.dispatch({
         type: 'GET_USER_DATA',
         payload: {
@@ -72,7 +73,7 @@ const initState = async (usermail, sessionID, type) => {
             image: data.image,
             stars: data.stars,
             favShopsList: data.favShopsList,
-            shoppingList: data.shoppingList,
+            shoppingList: shoppingList,
             accountType: data.accountType,
         }
     })
