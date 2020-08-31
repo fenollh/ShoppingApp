@@ -22,9 +22,11 @@ func GetPublicUser(w http.ResponseWriter, req *http.Request) {
 	SelErr := db.QueryRow("SELECT username, name, description, image, stars FROM users WHERE usermail=?", usermail).Scan(&data.USERNAME, &data.NAME, &data.DESCRIPTION, &data.IMAGE, &data.STARS)
 	if SelErr != nil {
 		fmt.Println(SelErr)
-		json.NewEncoder(w).Encode("Error: Error while selecting data")
+		w.WriteHeader(http.StatusBadGateway)
+		json.NewEncoder(w).Encode("Error code 502: Error while selecting data")
 		return
 	}
+	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(data)
 	return
 }
@@ -40,19 +42,21 @@ func GetPrivateUser(w http.ResponseWriter, req *http.Request) {
 	_ = json.NewDecoder(req.Body).Decode(&credentials)
 	auth := authenticate(credentials.USERMAIL, credentials.SESSIONID)
 	if auth == false {
-		json.NewEncoder(w).Encode("Error: Error while authenticating. This data is private")
+		w.WriteHeader(http.StatusForbidden)
+		json.NewEncoder(w).Encode("Error code 403: Error while authenticating. This data is private")
 		return
 	}
 
 	SelErr := db.QueryRow("SELECT usermail, username, name, age, shoppingList, favShopsList, decription, image, stars FROM users WHERE usermail=?", credentials.USERMAIL).Scan(&data.USERMAIL, &data.USERNAME, &data.NAME, &data.AGE, &data.SHOPPINGLIST, &data.FAVSHOPSLIST, &data.DESCRIPTION, &data.IMAGE, &data.STARS)
 	if SelErr != nil {
 		fmt.Println(SelErr)
-		fmt.Println("Error: Error while selecting data")
-		json.NewEncoder(w).Encode("Error: Error while selecting data")
+		w.WriteHeader(http.StatusBadGateway)
+		json.NewEncoder(w).Encode("Error code 502: Error while selecting data")
 		return
 	}
 	//fmt.Println(data)
 	data.ACCOUNTTYPE = "Costumer"
+	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(data)
 	return
 }

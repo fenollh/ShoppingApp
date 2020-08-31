@@ -26,6 +26,7 @@ func EditUser(w http.ResponseWriter, req *http.Request) {
 
 	auth := authenticate(credentials.USERMAIL, credentials.SESSIONID)
 	if auth == false {
+		w.WriteHeader(http.StatusForbidden)
 		json.NewEncoder(w).Encode("Error: Sorry you dont have the permissions to modify this data")
 		return
 	}
@@ -33,6 +34,7 @@ func EditUser(w http.ResponseWriter, req *http.Request) {
 		UpdErr := db.QueryRow("UPDATE shops SET " + data.COLUMN + "=" + data.PAYLOAD + " WHERE email='" + credentials.USERMAIL + "';")
 		if UpdErr != nil {
 			fmt.Println(UpdErr)
+			w.WriteHeader(http.StatusBadGateway)
 			json.NewEncoder(w).Encode("Error: Error while updating the new data")
 			return
 		}
@@ -41,11 +43,12 @@ func EditUser(w http.ResponseWriter, req *http.Request) {
 		UpdErr := db.QueryRow("UPDATE users SET " + data.COLUMN + "=" + data.PAYLOAD + " WHERE usermail='" + credentials.USERMAIL + "';")
 		if UpdErr != nil {
 			fmt.Println(UpdErr)
+			w.WriteHeader(http.StatusBadGateway)
 			json.NewEncoder(w).Encode("Error: Error while updating the new data")
 			return
 		}
 	}
-
+	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode("Seccesfuly data edition")
 }
 

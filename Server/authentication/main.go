@@ -20,17 +20,20 @@ func CreateUser(w http.ResponseWriter, req *http.Request) {
 	_ = json.NewDecoder(req.Body).Decode(&user)
 	userAvailable := CheckUsermail("user", user.USERMAIL)
 	if userAvailable == false {
-		json.NewEncoder(w).Encode("Error: This email has already been used")
+		w.WriteHeader(http.StatusConflict)
+		json.NewEncoder(w).Encode("Error ode 409: This email has already been used")
 		return
 	}
 	var data string = "('" + user.USERMAIL + "', '" + user.USERNAME + "', '" + user.NAME + "', " + user.AGE + ", '', '', '', '" + user.IMAGE + "', 5, '" + user.PASSWORD + "');"
 	_, InsErr := db.Query("INSERT INTO users (usermail, username, name, age, shoppingList, favShopsList, decription, image, stars, password) VALUES " + data)
 	if InsErr != nil {
 		fmt.Println(InsErr)
-		json.NewEncoder(w).Encode(InsErr)
+		w.WriteHeader(http.StatusBadGateway)
+		json.NewEncoder(w).Encode("Error code 502: Error while inserting data")
 		return
 	}
 	var sesID = HandleSession(user.USERMAIL)
+	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(sesID)
 	return
 }
@@ -41,14 +44,16 @@ func CreateShop(w http.ResponseWriter, req *http.Request) {
 	_ = json.NewDecoder(req.Body).Decode(&shop)
 	userAvailable := CheckUsermail("shop", shop.SHOPMAIL)
 	if userAvailable == false {
-		json.NewEncoder(w).Encode("Error: This email has already been used")
+		w.WriteHeader(http.StatusConflict)
+		json.NewEncoder(w).Encode("Error code 409: This email has already been used")
 		return
 	}
 	var data string = "('" + shop.SHOPNAME + "', '" + shop.SHOPMAIL + "', '" + shop.MANAGERNAME + "', '', '', '', 5, '', " + "'" + shop.IMAGE + "', '', '', '', '" + shop.SHOPTYPE + "', '" + shop.PASSWORD + "');"
 	_, InsErr := db.Query("INSERT INTO shops (name, email, managerName, location, schedule, details, stars, description, image, tags, categories, stock, shopType, password) VALUES " + data)
 	if InsErr != nil {
 		fmt.Println(InsErr)
-		json.NewEncoder(w).Encode(InsErr)
+		w.WriteHeader(http.StatusBadGateway)
+		json.NewEncoder(w).Encode("Error code 502: Error while inserting data")
 		return
 	}
 	var sesID = HandleSession(shop.SHOPMAIL)
@@ -65,18 +70,20 @@ func Login(w http.ResponseWriter, req *http.Request) {
 	SeUsrErr := db.QueryRow("SELECT password FROM users WHERE usermail='" + user.USERMAIL + "';").Scan(&expectedPasswordUsr)
 	SeShpErr := db.QueryRow("SELECT password FROM shops WHERE email='" + user.USERMAIL + "';").Scan(&expectedPasswordShp)
 	if SeUsrErr != nil && SeShpErr != nil {
-		fmt.Println("Error: Error while selecting expected password")
 		fmt.Println(SeUsrErr)
 		fmt.Println(SeShpErr)
-		json.NewEncoder(w).Encode("Error: User  doesn't exists")
+		w.WriteHeader(http.StatusNotFound)
+		json.NewEncoder(w).Encode("Error code 404: User  doesn't exists")
 		return
 	}
 	if expectedPasswordUsr != user.PASSWORD && expectedPasswordShp != user.PASSWORD {
 		fmt.Println("Error: usermail and password don't match")
-		json.NewEncoder(w).Encode("Error: usermail and password don't match")
+		w.WriteHeader(http.StatusNotAcceptable)
+		json.NewEncoder(w).Encode("Error code 406: usermail and password don't match")
 		return
 	}
 	var sesID = HandleSession(user.USERMAIL)
+	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(sesID)
 	return
 }
