@@ -17,13 +17,16 @@ estimated time: 20 day
 
 details remaining:
 -complete the user data from profile(description, services ...)
--google and facebook login
 -loading page
 -cancel orders
 -UI
+-add the remember me functionality
+-add 'terms and conditions'
 
 security updates:
--add passwords to the DB
+-use OAuth 2.0 for authentication
+-hide al the DBs data
+-add pasword to mysql
 -hide all password and sensitive data as enviromental variables
 -protect the Db against SQL injections adding more complex input validation
 
