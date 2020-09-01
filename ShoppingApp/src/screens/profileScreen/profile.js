@@ -1,6 +1,6 @@
 import React from 'react'
-import { store } from '../redux/state'
-import StarsRating from '../components/startsRating'
+import { store } from '../../redux/state'
+import StarsRating from '../../components/startsRating'
 import {
     View,
     Text,
@@ -13,7 +13,7 @@ export default class ProfileScreen extends React.Component{
     render(){
         let Store = store.getState()
         store.subscribe(()=>{
-            if(Store.usermail != store.getState().usermail) this.forceUpdate()
+            if(Store.usermail != store.getState().usermail) this.forceUpdate() // add other parameters
         })
         let valoraciones
         if(Store.accountType == 'Costumer'){
