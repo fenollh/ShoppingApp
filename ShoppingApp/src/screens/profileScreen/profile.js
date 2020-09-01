@@ -43,9 +43,9 @@ export default class ProfileScreen extends React.Component{
                     <View style={{flex:1}}>
                         <Image
                             style={styles.profileImage}
-                            source={{uri: Store.profileImage}}
+                            source={{uri: Store.image}}
                         />
-                        <Text style={styles.profileName}>{Store.profileName}</Text>
+                        <Text style={styles.profileName}>{Store.name}</Text>
                         <Text style={[styles.profileName, {fontWeight: 'normal'}]}>{Store.accountType}</Text>
                     </View>
                     <View style={{flex: 2.3}}>

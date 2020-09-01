@@ -34,8 +34,8 @@ func CheckUsermail(usertype string, usermail string) bool {
 		insertQuery = "INSERT INTO users (usermail, username, name, age, stars, password) VALUES ('" + usermail + "', 'f', 'f', '1', '1', '1');"
 		deleteQuery = "DELETE FROM users WHERE usermail='" + usermail + "';"
 	} else {
-		insertQuery = "INSERT INTO shops (name, email, managerName, stars, shopType, password) VALUES ('n', '" + usermail + "', 'm', '1', 's', 'p');"
-		deleteQuery = "DELETE FROM shops WHERE email='" + usermail + "';"
+		insertQuery = "INSERT INTO shops (name, usermail, managerName, stars, accountType, password) VALUES ('n', '" + usermail + "', 'm', '1', 's', 'p');"
+		deleteQuery = "DELETE FROM shops WHERE usermail='" + usermail + "';"
 	}
 	_, InsErr := db.Query(insertQuery)
 	if InsErr != nil {

@@ -25,7 +25,7 @@ export default class RegisterShopScreen extends React.Component{
             password2: '',
             age: '',
             phone: '',
-            shopType: 'Food',
+            accountType: 'Food',
             photo: 'https://www.skimostats.com/images/athletes/372-5e2587fe35036.png',
         }
     }
@@ -115,9 +115,9 @@ export default class RegisterShopScreen extends React.Component{
                             <View style={styles.input}>
                                 <Text style={{flex:1}}>Shop type: </Text>
                                 <Picker
-                                    selectedValue={this.state.shopType}
+                                    selectedValue={this.state.accountType}
                                     style={{ flex:1, height:20 }}
-                                    onValueChange={(item) => this.setState({ shopType: item })}>
+                                    onValueChange={(item) => this.setState({ accountType: item })}>
                                     <Picker.Item label="Food" value="Food" />
                                     <Picker.Item label="Sport" value="Sport" />
                                     <Picker.Item label="Other" value="Other" />

@@ -34,7 +34,7 @@ const checkRegisterForm = (type, formData, formInputs) => {
         return true
     }
     else if (type == 'shop'){
-        if(!formData.usermail || !formData.username || !formData.name || !formData.password || !formData.shopType){
+        if(!formData.usermail || !formData.username || !formData.name || !formData.password || !formData.accountType){
             Alert.alert("complete all the fields before submitting")
             return false
         }
@@ -126,7 +126,7 @@ const createUser = (user, shop, navigation) => {
             shopname: shop.username,
             managername: shop.name,
             password: shop.password,
-            shopType: shop.shopType,
+            accountType: shop.accountType,
             image: shop.photo,
         }
     }

@@ -6,12 +6,12 @@ const reducer = (state=store.getState(), action) => {
                 ...state, 
                 username: action.payload.username, 
                 usermail: action.payload.usermail,
-                profileName: action.payload.name,
+                name: action.payload.name,
                 age: action.payload.age,
                 description: action.payload.description,
-                profileImage: action.payload.image,
+                image: action.payload.image,
                 stars: action.payload.stars,
-                favouriteShops: action.payload.favShopsList,
+                favShopsList: action.payload.favShopsList,
                 shoppingList: action.payload.shoppingList,
                 accountType: action.payload.accountType,
             }
@@ -30,7 +30,7 @@ const reducer = (state=store.getState(), action) => {
         case 'EDIT_DESCRIPTION':
             return {...state, description: action.payload}
         case 'EDIT_IMAGE':
-            return {...state, profileImage: action.payload}
+            return {...state, image: action.payload}
         case 'EDIT_NAME':
             return {...state, name: action.payload}
         case 'EDIT_SESSION':

@@ -166,7 +166,7 @@ export default class AddProductScreen extends React.Component {
                             style={[styles.button, {flexDirection: 'row'}]} 
                             activeOpacity={0.6}
                             onPress={()=>{
-                                addOrder(item.name, item.cost, shop.email, this.state.quantity, dateTime, store.getState().usermail, store.getState().username)
+                                addOrder(item.name, item.cost, shop.usermail, this.state.quantity, dateTime, store.getState().usermail, store.getState().username)
                                 this.props.props.navigation.goBack()
                                 }}>
                             <Text style={styles.buttonTxt}>ORDER</Text>

@@ -29,12 +29,12 @@ export default class ShopsListSection extends React.Component {
                 servicesSec=(
                 <View style={{flex:1, alignItems: 'center', marginTop: '2%'}}>
                     <View style={{flex: 1, flexDirection: 'row'}}>
-                        <Entypo name='shopping-bag' color={(item.shopDetails.takeaway)?green:red} size={30} style={{marginHorizontal: '1%'}}/>
-                        <MaterialIcons name='restaurant' color={(item.shopDetails.restaurant)?green:red} size={30} style={{marginHorizontal: '1%'}}/>
+                        <Entypo name='shopping-bag' color={(item.details.takeaway)?green:red} size={30} style={{marginHorizontal: '1%'}}/>
+                        <MaterialIcons name='restaurant' color={(item.details.restaurant)?green:red} size={30} style={{marginHorizontal: '1%'}}/>
                     </View>
                     <View style={{flex: 1, flexDirection: 'row'}}>
-                        <MaterialCommunityIcons name='truck-delivery' color={(item.shopDetails.delivery)?green:red} size={30} style={{marginHorizontal: '1%'}}/>
-                        <Entypo name='credit-card' color={(item.shopDetails.card)?green:red} size={30} style={{marginHorizontal: '1%'}}/>
+                        <MaterialCommunityIcons name='truck-delivery' color={(item.details.delivery)?green:red} size={30} style={{marginHorizontal: '1%'}}/>
+                        <Entypo name='credit-card' color={(item.details.card)?green:red} size={30} style={{marginHorizontal: '1%'}}/>
                     </View>
                 </View>
                 )
@@ -43,12 +43,12 @@ export default class ShopsListSection extends React.Component {
                 servicesSec=(
                 <View style={{flex:1, alignItems: 'center', marginTop: '2%'}}>
                     <View style={{flex: 1, flexDirection: 'row'}}>
-                        <Entypo name='shop' color={(item.shopDetails.cafeteria)?green:red} size={30} style={{marginHorizontal: '1%'}}/>
-                        <MaterialCommunityIcons name='toilet' color={(item.shopDetails.toilets)?green:red} size={30} style={{marginHorizontal: '1%'}}/>
+                        <Entypo name='shop' color={(item.details.cafeteria)?green:red} size={30} style={{marginHorizontal: '1%'}}/>
+                        <MaterialCommunityIcons name='toilet' color={(item.details.toilets)?green:red} size={30} style={{marginHorizontal: '1%'}}/>
                     </View>
                     <View style={{flex: 1, flexDirection: 'row'}}>
-                        <MaterialIcons name='person' color={(item.shopDetails.instructors)?green:red} size={30} style={{marginHorizontal: '1%'}}/>
-                        <Entypo name='credit-card' color={(item.shopDetails.card)?green:red} size={30} style={{marginHorizontal: '1%'}}/>
+                        <MaterialIcons name='person' color={(item.details.instructors)?green:red} size={30} style={{marginHorizontal: '1%'}}/>
+                        <Entypo name='credit-card' color={(item.details.card)?green:red} size={30} style={{marginHorizontal: '1%'}}/>
                     </View>
                 </View>
                 )
@@ -64,12 +64,12 @@ export default class ShopsListSection extends React.Component {
                 <View style={{flex:1}}>
                     <Image
                     style={{height: '100%', width: '100%', borderRadius: 10}}
-                    source={{uri: item.profileImage}}
+                    source={{uri: item.image}}
                     />
                 </View>
                 <View style={{flex:2, alignItems: 'center'}}>
                     <Text style={styles.title}>{item.name}</Text>
-                    <Text style={styles.description}>{item.profileDescription}</Text>
+                    <Text style={styles.description}>{item.description}</Text>
                 </View>
                 {servicesSec}
             </TouchableOpacity>

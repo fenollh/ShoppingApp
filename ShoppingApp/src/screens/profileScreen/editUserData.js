@@ -57,7 +57,7 @@ export default class EditDataScreen extends React.Component {
                 <View style={mainBox}>
                     <TouchableOpacity style={{height: '20%', justifyContent: 'center', alignItems: 'center'}}  onPress={()=>this.changeImage()}>
                         <Image
-                            source={{uri: Store,profileImage}}
+                            source={{uri: Store,image}}
                             style={{height: 100, width: 100, borderRadius: 50}}
                         />
                         <Text style={{marginTop: 10, fontWeight: 'bold'}}>CHANGE IMAGE</Text>
@@ -78,7 +78,7 @@ export default class EditDataScreen extends React.Component {
                         <TextInput 
                         value={this.state.name}
                         onChangeText={name=>this.setState({ name })}
-                        placeholder={Store.profileName}
+                        placeholder={Store.name}
                         autoCapitalize='none'
                         maxLength={20}
                         style={styles.input}

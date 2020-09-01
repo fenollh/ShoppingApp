@@ -42,7 +42,7 @@ export default class OrdersScreen extends React.Component{
                 <View style={{flex: 1, backgroundColor: 'blue'}}>
                     <Image
                     style={{ height: 100, width: 100, }}
-                    source={{ uri: Store.profileImage }}
+                    source={{ uri: Store.image }}
                     />
                 </View>
             )

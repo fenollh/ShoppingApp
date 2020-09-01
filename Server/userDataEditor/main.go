@@ -31,7 +31,7 @@ func EditUser(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 	if categorie == "shop" {
-		UpdErr := db.QueryRow("UPDATE shops SET " + data.COLUMN + "=" + data.PAYLOAD + " WHERE email='" + credentials.USERMAIL + "';")
+		UpdErr := db.QueryRow("UPDATE shops SET " + data.COLUMN + "=" + data.PAYLOAD + " WHERE usermail='" + credentials.USERMAIL + "';")
 		if UpdErr != nil {
 			fmt.Println(UpdErr)
 			w.WriteHeader(http.StatusBadGateway)

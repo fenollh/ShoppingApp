@@ -49,7 +49,7 @@ func CreateShop(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 	var data string = "('" + shop.SHOPNAME + "', '" + shop.SHOPMAIL + "', '" + shop.MANAGERNAME + "', '', '', '', 5, '', " + "'" + shop.IMAGE + "', '', '', '', '" + shop.SHOPTYPE + "', '" + shop.PASSWORD + "');"
-	_, InsErr := db.Query("INSERT INTO shops (name, email, managerName, location, schedule, details, stars, description, image, tags, categories, stock, shopType, password) VALUES " + data)
+	_, InsErr := db.Query("INSERT INTO shops (name, usermail, managerName, location, schedule, details, stars, description, image, tags, categories, stock, accountType, password) VALUES " + data)
 	if InsErr != nil {
 		fmt.Println(InsErr)
 		w.WriteHeader(http.StatusBadGateway)
@@ -68,7 +68,7 @@ func Login(w http.ResponseWriter, req *http.Request) {
 	var expectedPasswordShp string
 	_ = json.NewDecoder(req.Body).Decode(&user)
 	SeUsrErr := db.QueryRow("SELECT password FROM users WHERE usermail='" + user.USERMAIL + "';").Scan(&expectedPasswordUsr)
-	SeShpErr := db.QueryRow("SELECT password FROM shops WHERE email='" + user.USERMAIL + "';").Scan(&expectedPasswordShp)
+	SeShpErr := db.QueryRow("SELECT password FROM shops WHERE usermail='" + user.USERMAIL + "';").Scan(&expectedPasswordShp)
 	if SeUsrErr != nil && SeShpErr != nil {
 		fmt.Println(SeUsrErr)
 		fmt.Println(SeShpErr)

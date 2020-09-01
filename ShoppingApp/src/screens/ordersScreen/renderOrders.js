@@ -19,7 +19,7 @@ export default class RenderOrdersSection extends React.Component{
     }
 
     findImage = (item) => {
-        const shop = Shops.find(elem => elem.email == item.shop)
+        const shop = Shops.find(elem => elem.usermail == item.shop)
         const product = shop.stock.availableProducts.find(elem => elem.name==item.itemName)
         return product.image
     }

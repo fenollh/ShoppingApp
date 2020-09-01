@@ -6,21 +6,20 @@ let State = {
     sessionID: '12',
     username: 'fenollh',
     usermail: 'fenollh@gmail.com',
-    profileName: 'Hugo',
+    name: 'Hugo',
+    age: 17,
     phone: '644-41-53-37',
     stars: 4, // de 0-5
     description: 'Estudiante y creador de esta app.  Esqui de montaña y tecnologia.  Hoyo de Manzanares',
-    profileImage: 'https://www.skimostats.com/images/athletes/372-5e2587fe35036.png',
+    image: 'https://www.skimostats.com/images/athletes/372-5e2587fe35036.png',
     accountType: 'Costumer', //Costumer / Other
-    shopDetails: {takeaway: null, delivery: null ,restaurant: null}, //for costumer accounts the 3  fields are null
+    details: {takeaway: null, delivery: null ,restaurant: null}, //for costumer accounts the 3  fields are null
     renderedShops: [],
     tags: [' All ', 'Food', 'Sport',],
     selectedTag: ' All ',
     selectedCategorie: ' All ',
-    favouriteShops: [],
-    shoppingList: [
-
-    ], // in shops accounts this object is null
+    favShopsList: [],
+    shoppingList: [], // in shops accounts this object is null
     myOrders: [
         {costumermail: "fenollh@gmail.com", hour:new Date(Date.now()), itemCost: 15, itemName: "Pollo asado", quantity: 4, shop: "piopio@gmail.com", image: 'https://www.hola.com/imagenes/cocina/recetas/20200130159403/pollo-asado-en-horno-de-lena/0-779-940/pollo-asado-m.jpg'},
         {costumermail: "fenollh@gmail.com", hour:new Date(Date.now()), itemCost: 4, itemName: "Patatas", quantity: 2, shop: "piopio@gmail.com", image: 'https://cdn6.recetasdeescandalo.com/wp-content/uploads/2019/07/Patatas-fritas-al-horno-muy-ricas-y-sin-apenas-aceite.jpg'},

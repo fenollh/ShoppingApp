@@ -9,7 +9,7 @@ type Credentials struct {
 //ShopData all the data from a shop is public except for the password
 type ShopData struct {
 	SHOPNAME    string `json:"name"`
-	SHOPMAIL    string `json:"email"`
+	SHOPMAIL    string `json:"usermail"`
 	MANAGERNAME string `json:"managerName"`
 	LOCATION    string `json:"location"`
 	SCHEDULE    string `json:"schedule"`
@@ -20,7 +20,7 @@ type ShopData struct {
 	TAGS        string `json:"tags"`
 	CATEGORIES  string `json:"categories"`
 	STOCK       string `json:"stock"`
-	SHOPTYPE    string `json:"shopType"`
+	SHOPTYPE    string `json:"accountType"`
 }
 
 //PublicUserData the user data that doesn't need authentication to be accesed

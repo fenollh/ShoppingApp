@@ -26,7 +26,7 @@ export default class SelectedShopScreen extends React.Component{
         let spaceSection
         const {item} = this.props.route.params
 
-        if(item.shopDetails.restaurant && item.accountType == 'Food'){
+        if(item.details.restaurant && item.accountType == 'Food'){
             spaceSection = 
                 <View style={{flexDirection: 'row', }}>
                     <Text style={styles.availableTablesTxt}>Total number of tables: {item.stock.availableSpace}</Text>
@@ -43,7 +43,7 @@ export default class SelectedShopScreen extends React.Component{
                     <View style={{flex:1}}>
                         <Image
                             style={styles.profileImage}
-                            source={{uri: item.profileImage}}
+                            source={{uri: item.image}}
                         /> 
                         <StarsRating data={item.stars} style={{flex:1, marginStart: '7%'}}/>
                         <Text style={{alignSelf: 'center', flex:1}}>{item.stars[0]+item.stars[1]+item.stars[2]+item.stars[3]+item.stars[4]}</Text>
@@ -51,7 +51,7 @@ export default class SelectedShopScreen extends React.Component{
                     <View style={{flex: 2.3}}>
                         <Text style={styles.username}>{item.name}</Text>
                         <View style={{flex:1.8, alignItems: 'center'}}>
-                            <Text style={{fontSize: 15, textAlign: 'center'}}>{item.profileDescription}</Text>
+                            <Text style={{fontSize: 15, textAlign: 'center'}}>{item.description}</Text>
                         </View>
                         <View style={{flex:1.2, flexDirection: 'row'}}>
                             <TouchableOpacity style={styles.editButton} onPress={_=>Alert.alert(item.location)}>
