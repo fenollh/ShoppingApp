@@ -11,6 +11,7 @@ import {
 } from 'react-native'
 
 import { store } from '../../redux/state'
+import { editUserData } from '../../components/globalFunctions'
 
 export default class EditDataScreen extends React.Component {
     constructor(props){
@@ -34,6 +35,16 @@ export default class EditDataScreen extends React.Component {
         ImagePicker.showImagePicker(options, (response) => {
             if(response.uri) this.setState({ photo: response.uri })
         })
+    }
+
+    saveChanges = () => {
+        if(this.state.username) editUserData('username', this.state.username)
+        if(this.state.name) editUserData('name', this.state.name)
+        if(this.state.description) editUserData('name', this.state.description)
+        if(this.state.image) editUserData('image', this.state.image)
+        else{
+            this.props.navigation.goBack()
+        }
     }
 
     render(){
@@ -96,7 +107,7 @@ export default class EditDataScreen extends React.Component {
                     <TouchableOpacity
                     style={[styles.button, {backgroundColor: 'rgb(100,230, 100)'}]}
                     activeOpacity={0.6}
-                    onPress={_=> console.log('save changes button pressed')}
+                    onPress={_=> this.saveChanges()}
                     >
                         <Text> SAVE CHANGES </Text>
                     </TouchableOpacity>
@@ -138,5 +149,7 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         marginVertical: 5,
         marginHorizontal: 5,
+        alignItems: 'center',
+        justifyContent: 'center',
     }
 })

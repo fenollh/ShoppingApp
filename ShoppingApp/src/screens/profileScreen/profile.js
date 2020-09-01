@@ -54,7 +54,9 @@ export default class ProfileScreen extends React.Component{
                             <Text style={{fontSize: 15}}>{Store.description}</Text>
                         </View>
                         <View style={{flex:1.2}}>
-                            <TouchableOpacity style={styles.editButton}>
+                            <TouchableOpacity 
+                            style={styles.editButton} 
+                            onPress= {_=> this.props.navigation.navigate("EditUserData")}>
                                 <Text style={styles.profileName}>Edit profile</Text>
                             </TouchableOpacity>
                         </View>

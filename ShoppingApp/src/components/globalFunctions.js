@@ -201,8 +201,38 @@ const addOrder = (itemName, itemCost ,shopmail, quantity, hour, usermail) => {
     //State.myOrders.push(order)
 }
 
+const editUserData = (parameter, newData) => {
+    var Store = store.getState()
+    fetch(serverRoute+':3002/user', {
+        method: 'PUT',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            column: parameter,
+            payload: newData,
+            sessionID: Store.sessionID,
+            usermail: Store.usermail,
+        })
+    })
+    .then(response => {
+        if(response.status == 200){
+            store.dispatch({
+                type: 'EDIT_'+parameter.toUpperCase(),
+                payload: newData
+            })
+        }
+        else{
+            //handle error
+            return
+        }
+    })
+}
+
 export {loginFunc}
 export {createUser}
 export {filterData}
 export {addOrder}
 export {checkRegisterForm}
+export {editUserData}

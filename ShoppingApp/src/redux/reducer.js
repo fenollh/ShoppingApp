@@ -27,6 +27,12 @@ const reducer = (state=store.getState(), action) => {
             return {...state, username: action.payload}
         case 'EDIT_USERMAIL':
             return {...state, usermail: action.payload}
+        case 'EDIT_DESCRIPTION':
+            return {...state, description: action.payload}
+        case 'EDIT_IMAGE':
+            return {...state, profileImage: action.payload}
+        case 'EDIT_NAME':
+            return {...state, name: action.payload}
         case 'EDIT_SESSION':
             return {...state, sessionID: action.payload}
         case 'EDIT_SELECTEDTAG':

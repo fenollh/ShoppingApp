@@ -64,6 +64,6 @@ func main() {
 	//endpoints
 	router.HandleFunc("/{categorie}", EditUser).Methods("PUT")
 
-	log.Fatal(http.ListenAndServe(":3000", router))
+	log.Fatal(http.ListenAndServe(":3002", router))
 	defer db.Close()
 }
