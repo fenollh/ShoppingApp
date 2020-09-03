@@ -1,7 +1,7 @@
 import React from 'react'
 import { Alert } from 'react-native'
 import { store } from '../redux/state'
-const serverRoute = 'http://192.168.1.43'
+const serverRoute = 'http://192.168.43.9'
 
 /*
 fetch golang server example
@@ -87,6 +87,7 @@ const initState = async (usermail, sessionID, type) => {
 }
 
 const authentication = async (usermail, password, sessionID) => {
+    console.log(serverRoute+':3001/login')
     const response = await fetch(serverRoute+':3001/login', {
         method: 'POST',
         headers: {
@@ -202,6 +203,8 @@ const addOrder = (itemName, itemCost ,shopmail, quantity, hour, usermail) => {
 }
 
 const editUserData = (parameter, newData) => {
+    console.log(parameter)
+    console.log(newData)
     var Store = store.getState()
     fetch(serverRoute+':3002/user', {
         method: 'PUT',

@@ -46,7 +46,7 @@ export default class SelectedShopScreen extends React.Component{
                             source={{uri: item.image}}
                         /> 
                         <StarsRating data={item.stars} style={{flex:1, marginStart: '7%'}}/>
-                        <Text style={{alignSelf: 'center', flex:1}}>{item.stars[0]+item.stars[1]+item.stars[2]+item.stars[3]+item.stars[4]}</Text>
+                        <Text style={{alignSelf: 'center', flex:1}}>{item.stars}</Text>
                     </View>
                     <View style={{flex: 2.3}}>
                         <Text style={styles.username}>{item.name}</Text>

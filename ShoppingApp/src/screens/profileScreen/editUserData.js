@@ -33,7 +33,7 @@ export default class EditDataScreen extends React.Component {
             },
         };
         ImagePicker.showImagePicker(options, (response) => {
-            if(response.uri) this.setState({ photo: response.uri })
+            if(response.uri) this.setState({ image: response.uri })
         })
     }
 
@@ -49,15 +49,16 @@ export default class EditDataScreen extends React.Component {
 
     render(){
         let Store = store.getState()
+        //this.setState({ image: Store.image })
         return(
             <View style={styles.container}>
                 <View style={{flex:1}}>
                     <Text style={styles.titleTxt}>EDIT DATA</Text>
                 </View>
-                <View style={mainBox}>
-                    <TouchableOpacity style={{height: '20%', justifyContent: 'center', alignItems: 'center'}}  onPress={()=>this.changeImage()}>
+                <View style={styles.mainBox}>
+                    <TouchableOpacity style={{height: 130, justifyContent: 'center', alignItems: 'center'}}  onPress={()=>this.changeImage()}>
                         <Image
-                            source={{uri: Store,image}}
+                            source={{uri: (this.state.image) ?this.state.image :Store.image}}
                             style={{height: 100, width: 100, borderRadius: 50}}
                         />
                         <Text style={{marginTop: 10, fontWeight: 'bold'}}>CHANGE IMAGE</Text>
@@ -89,7 +90,8 @@ export default class EditDataScreen extends React.Component {
                         <TextInput 
                         value={this.state.description}
                         onChangeText={description=>this.setState({ description })}
-                        placeholder={Store.description}
+                        placeholder={(Store.description)?Store.description:'Description'}
+                        textAlignVertical={'top'}
                         multiline={true}
                         maxLength={500}
                         style={styles.input}
@@ -100,7 +102,7 @@ export default class EditDataScreen extends React.Component {
                     <TouchableOpacity
                     style={[styles.button, {backgroundColor: 'rgb(230,100,100)'}]}
                     activeOpacity={0.6}
-                    onPress={_=> console.log('cancel button pressed')}
+                    onPress={_=> this.props.navigation.goBack()}
                     >
                         <Text> CANCEL </Text>
                     </TouchableOpacity>
@@ -120,28 +122,36 @@ const styles = StyleSheet.create({
     container: {
         flex:1,
         flexDirection: 'column',
+        padding: 10,
         backgroundColor: 'rgb(255,255,255)',
     },
     titleTxt: {
-        fontSize: 15,
+        fontSize: 25,
         fontWeight: 'bold'
     },
     mainBox: {
+        padding: 10,
         flex:10,
         flexDirection: 'column',
-        borderColor: 'rgb(0,0,0)',
-        borderWidth: 1,
+        borderColor: 'rgb(0,0,255)',
+        //borderWidth: 1,
     },
     inputBox: {
-        flex:1,
+        flexDirection: 'column',
+        height: 50,
+        padding: 0,
+        marginVertical: 5,
         borderColor: 'rgb(0,0,0)',
-        borderWidth: 1,
+        //borderWidth: 1,
     },
     subtitle: {
+        flex:1,
         fontSize: 14,
         fontWeight: 'bold',
     },
     input: {
+        flex:1,
+        justifyContent: 'center'
 
     },
     button:{

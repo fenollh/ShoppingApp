@@ -50,13 +50,13 @@ export default class RenderProductsSection extends React.Component{
                 </View>
                 <View style={{flex:1, alignItems:'center', justifyContent: 'center'}}>
                     <Text style={{fontSize:30, flex:1}}>{item.cost}€</Text>
-                    <TouchableOpacity style={{flex:1}}>
+                    <View style={{flex:1}}>
                         <MaterialIcons 
                             name='add-shopping-cart' 
                             size={40} 
                             color='rgb(80,130,255)' 
                             />
-                    </TouchableOpacity>
+                    </View>
                 </View>
             </TouchableOpacity>
         )
