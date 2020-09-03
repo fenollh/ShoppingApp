@@ -25,7 +25,7 @@ func CreateUser(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 	var data string = "('" + user.USERMAIL + "', '" + user.USERNAME + "', '" + user.NAME + "', " + user.AGE + ", '', '', '', '" + user.IMAGE + "', 5, '" + user.PASSWORD + "');"
-	_, InsErr := db.Query("INSERT INTO users (usermail, username, name, age, shoppingList, favShopsList, decription, image, stars, password) VALUES " + data)
+	_, InsErr := db.Query("INSERT INTO users (usermail, username, name, age, shoppingList, favShopsList, description, image, stars, password) VALUES " + data)
 	if InsErr != nil {
 		fmt.Println(InsErr)
 		w.WriteHeader(http.StatusBadGateway)

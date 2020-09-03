@@ -203,9 +203,8 @@ const addOrder = (itemName, itemCost ,shopmail, quantity, hour, usermail) => {
 }
 
 const editUserData = (parameter, newData) => {
-    console.log(parameter)
-    console.log(newData)
     var Store = store.getState()
+    console.log(Store.sessionID)
     fetch(serverRoute+':3002/user', {
         method: 'PUT',
         headers: {
@@ -215,7 +214,7 @@ const editUserData = (parameter, newData) => {
         body: JSON.stringify({
             column: parameter,
             payload: newData,
-            sessionID: Store.sessionID,
+            sessionID: Store.sessionID.toString(),
             usermail: Store.usermail,
         })
     })

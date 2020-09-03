@@ -19,19 +19,17 @@ func EditUser(w http.ResponseWriter, req *http.Request) {
 	vars := mux.Vars(req)
 	categorie := vars["categorie"]
 	var data UserDataEdition
-	var credentials Credentials
 
 	json.NewDecoder(req.Body).Decode(&data)
-	json.NewDecoder(req.Body).Decode(&credentials)
 
-	auth := authenticate(credentials.USERMAIL, credentials.SESSIONID)
+	auth := authenticate(data.USERMAIL, data.SESSIONID)
 	if auth == false {
 		w.WriteHeader(http.StatusForbidden)
 		json.NewEncoder(w).Encode("Error: Sorry you dont have the permissions to modify this data")
 		return
 	}
 	if categorie == "shop" {
-		UpdErr := db.QueryRow("UPDATE shops SET " + data.COLUMN + "=" + data.PAYLOAD + " WHERE usermail='" + credentials.USERMAIL + "';")
+		UpdErr := db.QueryRow("UPDATE shops SET " + data.COLUMN + "='" + data.PAYLOAD + "' WHERE usermail='" + data.USERMAIL + "';")
 		if UpdErr != nil {
 			fmt.Println(UpdErr)
 			w.WriteHeader(http.StatusBadGateway)
@@ -39,14 +37,18 @@ func EditUser(w http.ResponseWriter, req *http.Request) {
 			return
 		}
 
-	} else {
-		UpdErr := db.QueryRow("UPDATE users SET " + data.COLUMN + "=" + data.PAYLOAD + " WHERE usermail='" + credentials.USERMAIL + "';")
+	} else if categorie == "user" {
+		UpdErr := db.QueryRow("UPDATE users SET " + data.COLUMN + "='" + data.PAYLOAD + "' WHERE usermail='" + data.USERMAIL + "';")
+		fmt.Println(UpdErr)
 		if UpdErr != nil {
-			fmt.Println(UpdErr)
+			//fmt.Println(UpdErr)
 			w.WriteHeader(http.StatusBadGateway)
 			json.NewEncoder(w).Encode("Error: Error while updating the new data")
 			return
 		}
+	} else {
+		fmt.Println("Error: The categorie value is incorrect")
+		return
 	}
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode("Seccesfuly data edition")

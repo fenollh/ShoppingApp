@@ -47,7 +47,7 @@ func GetPrivateUser(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 
-	SelErr := db.QueryRow("SELECT usermail, username, name, age, shoppingList, favShopsList, decription, image, stars FROM users WHERE usermail=?", credentials.USERMAIL).Scan(&data.USERMAIL, &data.USERNAME, &data.NAME, &data.AGE, &data.SHOPPINGLIST, &data.FAVSHOPSLIST, &data.DESCRIPTION, &data.IMAGE, &data.STARS)
+	SelErr := db.QueryRow("SELECT usermail, username, name, age, shoppingList, favShopsList, description, image, stars FROM users WHERE usermail=?", credentials.USERMAIL).Scan(&data.USERMAIL, &data.USERNAME, &data.NAME, &data.AGE, &data.SHOPPINGLIST, &data.FAVSHOPSLIST, &data.DESCRIPTION, &data.IMAGE, &data.STARS)
 	if SelErr != nil {
 		fmt.Println(SelErr)
 		w.WriteHeader(http.StatusBadGateway)
