@@ -47,7 +47,14 @@ export default class EditDataScreen extends React.Component {
 
     render(){
         let Store = store.getState()
-        //this.setState({ image: Store.image })
+        /*
+        this.setState({ 
+            username: Store.username, 
+            name: Store.name, 
+            description: Store.description, 
+            image: Store.image 
+        })*/
+
         return(
             <View style={styles.container}>
                 <View style={{flex:1}}>

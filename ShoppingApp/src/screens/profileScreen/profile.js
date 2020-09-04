@@ -16,7 +16,11 @@ export default class ProfileScreen extends React.Component{
             console.log(Store.description)
             console.log(store.getState().description)
             */
-            if(Store.description != store.getState().description){
+            if( Store.usermail != store.getState().usermail || 
+                Store.username != store.getState().username || 
+                Store.name != store.getState().name || 
+                Store.description != store.getState().description || 
+                Store.image != store.getState().image){
                 this.forceUpdate()
             } 
         })
