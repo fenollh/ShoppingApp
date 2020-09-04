@@ -66,7 +66,7 @@ export default class ProfileScreen extends React.Component{
                         <View style={{flex:1.2}}>
                             <TouchableOpacity 
                             style={styles.editButton} 
-                            onPress= {_=> this.props.navigation.navigate("EditUserData")}>
+                            onPress= {_=> (Store.accountType == 'Costumer') ?this.props.navigation.navigate("EditUserData"):this.props.navigation.navigate("EditShopData")}>
                                 <Text style={styles.profileName}>Edit profile</Text>
                             </TouchableOpacity>
                         </View>

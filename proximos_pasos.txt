@@ -4,7 +4,7 @@
 (done) 4) create 4 DB's (costumers, shops, orders, sessions) (1 day)
 (done) 5) Be able to modify the DB and allow the server to process the connection betweenn the UI and the DB (3 day)
 (done) 6) Create a simple login (2 day)
-6.2) Connect all the app functionalities with the backend (2 days)
+6.2) Connect all the app functionalities with the backend (---)
 At that point I will have a funtional app
 (done) 7) Create a better authentication and sessions system (3 day)
 8) Add some funtionality such us location, better sorting techniques and schedule block (5 day)
@@ -12,12 +12,12 @@ At that point I will have a funtional app
 10) Add and impove the last details (2 day)
 11) create a logo and a name (---)
 12) publish it in beta mode (1 day)
-
-estimated time: 20 day 
+ 
 
 details remaining:
 -complete the user data from profile(description, services ...)
 -loading page
+-reorder the router to be able to access the drawer navigator from more pages
 -cancel orders
 -UI
 -add the remember me functionality
@@ -25,7 +25,7 @@ details remaining:
 
 security updates:
 -use OAuth 2.0 for authentication
--hide al the DBs data
+-hide all the DBs data
 -add pasword to mysql
 -hide all password and sensitive data as enviromental variables
 -protect the Db against SQL injections adding more complex input validation

@@ -61,7 +61,7 @@ export default class EditDataScreen extends React.Component {
         return(
             <View style={styles.container}>
                 <View style={{flex:1}}>
-                    <Text style={styles.titleTxt}>EDIT PROFILE</Text>
+                    <Text style={styles.titleTxt}>EDIT SHOP</Text>
                 </View>
                 <View style={styles.mainBox}>
                     <TouchableOpacity style={{height: 130, justifyContent: 'center', alignItems: 'center'}}  onPress={()=>this.changeImage()}>

@@ -24,6 +24,7 @@ import OrdersScreen from '../screens/ordersScreen/orders'
 import SettingsScreen from '../screens/settings'
 import ProfileScreen from '../screens/profileScreen/profile'
 import EditUserData from '../screens/profileScreen/editUserData'
+import EditShopData from '../screens/profileScreen/editShopData'
 import AboutUsScreen from '../screens/aboutus'
 import ContactUsScreen from '../screens/contactus'
 import AddProductScreen from '../screens/shopsScreen/addProduct'
@@ -103,6 +104,7 @@ export default class Router extends React.Component{
                         <Stack.Screen name="SelectedShop" component={SelectedShopScreen} />
                         <Stack.Screen name="AddProduct" component={this.addProduct} />
                         <Stack.Screen name="EditUserData" component={EditUserData} />
+                        <Stack.Screen name="EditShopData" component={EditShopData} />
                     </Stack.Navigator>
                 </NavigationContainer>
             </View>
