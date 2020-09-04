@@ -11,10 +11,16 @@ import {
 
 export default class ProfileScreen extends React.Component{
     render(){
-        let Store = store.getState()
         store.subscribe(()=>{
-            if(Store.usermail != store.getState().usermail) this.forceUpdate() // add other parameters
+            /*
+            console.log(Store.description)
+            console.log(store.getState().description)
+            */
+            if(Store.description != store.getState().description){
+                this.forceUpdate()
+            } 
         })
+        let Store = store.getState()
         let valoraciones
         if(Store.accountType == 'Costumer'){
             valoraciones= 

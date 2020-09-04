@@ -29,7 +29,7 @@ func EditUser(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 	if categorie == "shop" {
-		UpdErr := db.QueryRow("UPDATE shops SET " + data.COLUMN + "='" + data.PAYLOAD + "' WHERE usermail='" + data.USERMAIL + "';")
+		_, UpdErr := db.Exec("UPDATE shops SET " + data.COLUMN + "='" + data.PAYLOAD + "' WHERE usermail='" + data.USERMAIL + "';")
 		if UpdErr != nil {
 			fmt.Println(UpdErr)
 			w.WriteHeader(http.StatusBadGateway)
@@ -38,10 +38,9 @@ func EditUser(w http.ResponseWriter, req *http.Request) {
 		}
 
 	} else if categorie == "user" {
-		UpdErr := db.QueryRow("UPDATE users SET " + data.COLUMN + "='" + data.PAYLOAD + "' WHERE usermail='" + data.USERMAIL + "';")
-		fmt.Println(UpdErr)
+		_, UpdErr := db.Exec("UPDATE users SET " + data.COLUMN + "='" + data.PAYLOAD + "' WHERE usermail='" + data.USERMAIL + "';")
 		if UpdErr != nil {
-			//fmt.Println(UpdErr)
+			fmt.Println(UpdErr)
 			w.WriteHeader(http.StatusBadGateway)
 			json.NewEncoder(w).Encode("Error: Error while updating the new data")
 			return

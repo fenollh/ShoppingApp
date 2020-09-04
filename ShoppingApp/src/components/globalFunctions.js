@@ -87,7 +87,6 @@ const initState = async (usermail, sessionID, type) => {
 }
 
 const authentication = async (usermail, password, sessionID) => {
-    console.log(serverRoute+':3001/login')
     const response = await fetch(serverRoute+':3001/login', {
         method: 'POST',
         headers: {
@@ -152,7 +151,6 @@ const createUser = (user, shop, navigation) => {
                 payload: responseData,
             })
         }else{
-            console.log(responseData)
         }
     })
     
@@ -204,7 +202,6 @@ const addOrder = (itemName, itemCost ,shopmail, quantity, hour, usermail) => {
 
 const editUserData = (parameter, newData) => {
     var Store = store.getState()
-    console.log(Store.sessionID)
     fetch(serverRoute+':3002/user', {
         method: 'PUT',
         headers: {
@@ -219,6 +216,7 @@ const editUserData = (parameter, newData) => {
         })
     })
     .then(response => {
+        console.log(response.status)
         if(response.status == 200){
             store.dispatch({
                 type: 'EDIT_'+parameter.toUpperCase(),

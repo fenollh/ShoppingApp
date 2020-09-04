@@ -26,8 +26,13 @@ export default class ShoppingList extends React.Component{
         })
     }
 
-    addItem = () => {
-        
+    addItem = (newItem, textInput) => {
+        if(!newItem) return
+        store.dispatch({
+            type: 'ADD_ITEM_SHOPPINGLIST',
+            payload: newItem,
+        })
+        textInput.clear()
     }
 
     renderListItem = (item, index) => {
@@ -66,14 +71,7 @@ export default class ShoppingList extends React.Component{
                     />
                     <TouchableOpacity  
                         style={{flex:1, alignItems: 'center', justifyContent: 'center'}} 
-                        onPress={_=> {
-                            if(!state.newItem) return
-                            store.dispatch({
-                                type: 'ADD_ITEM_SHOPPINGLIST',
-                                payload: state.newItem,
-                            })
-                            this.textInput.clear()
-                        }}>
+                        onPress={_=> this.addItem(state.newItem, this.textInput)}>
                             <AntDesign name='pluscircleo' size={50} color='rgb(52,167,251)'/>
                     </TouchableOpacity>
                 </View>
