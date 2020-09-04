@@ -17,6 +17,7 @@ export default class EditDataScreen extends React.Component {
     constructor(props){
         super(props)
         this.state={
+            Store: {},
             username: '',
             name: '',
             description: '',
@@ -45,15 +46,17 @@ export default class EditDataScreen extends React.Component {
         this.props.navigation.goBack()
     }
 
-    render(){
+    componentDidMount(){
         let Store = store.getState()
-        /*
-        this.setState({ 
+        this.setState({
+            Store: Store,
             username: Store.username, 
             name: Store.name, 
             description: Store.description, 
             image: Store.image 
-        })*/
+        })
+    }
+    render(){
 
         return(
             <View style={styles.container}>
@@ -63,7 +66,7 @@ export default class EditDataScreen extends React.Component {
                 <View style={styles.mainBox}>
                     <TouchableOpacity style={{height: 130, justifyContent: 'center', alignItems: 'center'}}  onPress={()=>this.changeImage()}>
                         <Image
-                            source={{uri: (this.state.image) ?this.state.image :Store.image}}
+                            source={{uri: (this.state.image) ?this.state.image :this.state.Store.image}}
                             style={{height: 100, width: 100, borderRadius: 50}}
                         />
                         <Text style={{marginTop: 10, fontWeight: 'bold'}}>CHANGE IMAGE</Text>
@@ -73,7 +76,7 @@ export default class EditDataScreen extends React.Component {
                         <TextInput 
                         value={this.state.username}
                         onChangeText={username=>this.setState({ username })}
-                        placeholder={Store.username}
+                        placeholder={this.state.Store.username}
                         autoCapitalize='none'
                         maxLength={20}
                         style={styles.input}
@@ -84,7 +87,7 @@ export default class EditDataScreen extends React.Component {
                         <TextInput 
                         value={this.state.name}
                         onChangeText={name=>this.setState({ name })}
-                        placeholder={Store.name}
+                        placeholder={this.state.Store.name}
                         autoCapitalize='none'
                         maxLength={20}
                         style={styles.input}
@@ -95,7 +98,7 @@ export default class EditDataScreen extends React.Component {
                         <TextInput 
                         value={this.state.description}
                         onChangeText={description=>this.setState({ description })}
-                        placeholder={(Store.description)?Store.description:'Description'}
+                        placeholder={(this.state.Store.description)?this.state.Store.description:'Description'}
                         textAlignVertical={'top'}
                         multiline={true}
                         maxLength={500}
