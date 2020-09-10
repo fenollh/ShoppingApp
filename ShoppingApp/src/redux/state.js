@@ -7,6 +7,7 @@ let State = {
     username: 'fenollh',
     usermail: 'fenollh@gmail.com',
     name: 'Hugo',
+    managerName: 'Hugo Fenoll',
     age: 17,
     phone: '644-41-53-37',
     stars: 4, // de 0-5

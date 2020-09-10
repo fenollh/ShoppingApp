@@ -200,9 +200,12 @@ const addOrder = (itemName, itemCost ,shopmail, quantity, hour, usermail) => {
     //State.myOrders.push(order)
 }
 
-const editUserData = (parameter, newData) => {
+const editUserData = (parameter, newData, categorie) => {
     var Store = store.getState()
-    fetch(serverRoute+':3002/user', {
+    var endpoint
+    if(categorie == 'user') endpoint='/user'
+    if(categorie == 'shop') endpoint='/shop'
+    fetch(serverRoute+':3002'+endpoint, {
         method: 'PUT',
         headers: {
             Accept: 'application/json',

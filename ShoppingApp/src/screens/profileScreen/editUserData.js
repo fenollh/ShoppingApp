@@ -39,10 +39,10 @@ export default class EditDataScreen extends React.Component {
     }
 
     saveChanges = () => {
-        if(this.state.username) editUserData('username', this.state.username)
-        if(this.state.name) editUserData('name', this.state.name)
-        if(this.state.description) editUserData('description', this.state.description)
-        if(this.state.image) editUserData('image', this.state.image)
+        if(this.state.username) editUserData('username', this.state.username, 'user')
+        if(this.state.name) editUserData('name', this.state.name, 'user')
+        if(this.state.description) editUserData('description', this.state.description, 'user')
+        if(this.state.image) editUserData('image', this.state.image, 'user')
         this.props.navigation.goBack()
     }
 

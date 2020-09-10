@@ -20,7 +20,7 @@ export default class EditDataScreen extends React.Component {
         this.state={
             Store: {},
             username: '',
-            name: '',
+            managerName: '',
             description: '',
             image: '',
         }
@@ -40,10 +40,10 @@ export default class EditDataScreen extends React.Component {
     }
 
     saveChanges = () => {
-        if(this.state.username) editUserData('username', this.state.username)
-        if(this.state.name) editUserData('name', this.state.name)
-        if(this.state.description) editUserData('description', this.state.description)
-        if(this.state.image) editUserData('image', this.state.image)
+        if(this.state.username) editUserData('username', this.state.username, 'shop')
+        if(this.state.name) editUserData('name', this.state.name, 'shop')
+        if(this.state.description) editUserData('description', this.state.description, 'shop')
+        if(this.state.image) editUserData('image', this.state.image, 'shop')
         this.props.navigation.goBack()
     }
 
@@ -52,7 +52,7 @@ export default class EditDataScreen extends React.Component {
         this.setState({
             Store: Store,
             username: Store.username, 
-            name: Store.name,
+            managerName: Store.managerName,
             schedule: Store.schedule,
             location: Store.location,
             description: Store.description, 
@@ -105,7 +105,7 @@ export default class EditDataScreen extends React.Component {
                     </TouchableOpacity>
                     <ScrollView>
                         <View style={styles.inputBox}>
-                            <Text style={styles.subtitle}>USERNAME</Text>
+                            <Text style={styles.subtitle}>SHOP NAME</Text>
                             <TextInput 
                             value={this.state.username}
                             onChangeText={username=>this.setState({ username })}
@@ -115,10 +115,10 @@ export default class EditDataScreen extends React.Component {
                             />
                         </View>
                         <View style={styles.inputBox}>
-                            <Text style={styles.subtitle}>NAME</Text>
+                            <Text style={styles.subtitle}>MANAGER NAME</Text>
                             <TextInput 
-                            value={this.state.name}
-                            onChangeText={name=>this.setState({ name })}
+                            value={this.state.managerName}
+                            onChangeText={managerName=>this.setState({ managerName })}
                             autoCapitalize='none'
                             maxLength={20}
                             style={styles.input}
