@@ -30,3 +30,8 @@ security updates:
 -hide all password and sensitive data as enviromental variables
 -protect the Db against SQL injections adding more complex input validation
 
+next day:
+-test and update the editShopData globalFunction
+-create a checkbox to edit details
+-create a login Shop functionality
+-create a stock handler
