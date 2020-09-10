@@ -8,6 +8,7 @@ import {
     Image,
     TouchableOpacity,
     StyleSheet,
+    ScrollView,
 } from 'react-native'
 
 import { store } from '../../redux/state'
@@ -51,13 +52,44 @@ export default class EditDataScreen extends React.Component {
         this.setState({
             Store: Store,
             username: Store.username, 
-            name: Store.name, 
+            name: Store.name,
+            schedule: Store.schedule,
+            location: Store.location,
             description: Store.description, 
             image: Store.image 
         })
     }
     render(){
-
+        let services
+        switch (this.state.Store.accountType) {
+            case 'Food':
+                services=
+                    <View style={{flexDirection: 'row', alignSelf: 'center', alignItems: 'center', flex:1}}>
+                        <View style={{flexDirection: 'column', marginHorizontal:5}}>
+                            <Text>TAKEWAY</Text>
+                            <Text style={{alignSelf: 'center'}}>{this.state.Store.details.takeaway?'true':'false'}</Text>
+                        </View>
+                        <View style={{flexDirection: 'column', marginHorizontal:5}}>
+                            <Text>DELIVERY</Text>
+                            <Text style={{alignSelf: 'center'}}>{this.state.Store.details.delivery?'true':'false'}</Text>
+                        </View>
+                        <View style={{flexDirection: 'column', marginHorizontal:5}}>
+                            <Text>RESTAURANT</Text>
+                            <Text style={{alignSelf: 'center'}}>{this.state.Store.details.restaurant?'true':'false'}</Text>
+                        </View>
+                        <View style={{flexDirection: 'column', marginHorizontal:5}}>
+                            <Text>CREDIT CARD</Text>
+                            <Text style={{alignSelf: 'center'}}>{this.state.Store.details.creditcard?'true':'false'}</Text>
+                        </View>
+                    </View>
+                break;
+            case 'Sport':
+                services=<View><Text> SPORT </Text></View>
+                break;
+            default:
+                services=<View><Text> SHOP </Text></View>
+                break;
+        }
         return(
             <View style={styles.container}>
                 <View style={{flex:1}}>
@@ -71,39 +103,65 @@ export default class EditDataScreen extends React.Component {
                         />
                         <Text style={{marginTop: 10, fontWeight: 'bold'}}>CHANGE IMAGE</Text>
                     </TouchableOpacity>
-                    <View style={styles.inputBox}>
-                        <Text style={styles.subtitle}>USERNAME</Text>
-                        <TextInput 
-                        value={this.state.username}
-                        onChangeText={username=>this.setState({ username })}
-                        autoCapitalize='none'
-                        maxLength={20}
-                        style={styles.input}
-                        />
-                    </View>
-                    <View style={styles.inputBox}>
-                        <Text style={styles.subtitle}>NAME</Text>
-                        <TextInput 
-                        value={this.state.name}
-                        onChangeText={name=>this.setState({ name })}
-                        autoCapitalize='none'
-                        maxLength={20}
-                        style={styles.input}
-                        />
-                    </View>
-                    <View style={[styles.inputBox, {flex:3}]}>
-                        <Text style={styles.subtitle}>DESCRIPTION</Text>
-                        <TextInput 
-                        textAlignVertical={'top'}
-                        value={this.state.description}
-                        onChangeText={description=>this.setState({ description })}
-                        placeholder={(this.state.Store.description)?this.state.Store.description:'Description'}
-                        textAlignVertical={'top'}
-                        multiline={true}
-                        maxLength={500}
-                        style={styles.input}
-                        />
-                    </View>
+                    <ScrollView>
+                        <View style={styles.inputBox}>
+                            <Text style={styles.subtitle}>USERNAME</Text>
+                            <TextInput 
+                            value={this.state.username}
+                            onChangeText={username=>this.setState({ username })}
+                            autoCapitalize='none'
+                            maxLength={20}
+                            style={styles.input}
+                            />
+                        </View>
+                        <View style={styles.inputBox}>
+                            <Text style={styles.subtitle}>NAME</Text>
+                            <TextInput 
+                            value={this.state.name}
+                            onChangeText={name=>this.setState({ name })}
+                            autoCapitalize='none'
+                            maxLength={20}
+                            style={styles.input}
+                            />
+                        </View>
+                        <View style={styles.inputBox}>
+                            <Text style={styles.subtitle}>SCHEDULE</Text>
+                            <TextInput 
+                            value={this.state.schedule}
+                            onChangeText={schedule=>this.setState({ schedule })}
+                            autoCapitalize='none'
+                            maxLength={100}
+                            style={styles.input}
+                            />
+                        </View>
+                        <View style={styles.inputBox}>
+                            <Text style={styles.subtitle}>LOCATION</Text>
+                            <TextInput 
+                            value={this.state.location}
+                            onChangeText={location=>this.setState({ location })}
+                            autoCapitalize='none'
+                            maxLength={100}
+                            style={styles.input}
+                            />
+                        </View>
+                        <View style={[styles.inputBox, {height: 75}]}>
+                            <Text style={styles.subtitle}>SERVICES</Text>
+                            {services}
+                        </View>
+                        <View style={[styles.inputBox, {height: 250}]}>
+                            <Text style={styles.subtitle}>DESCRIPTION</Text>
+                            <TextInput 
+                            textAlignVertical={'top'}
+                            value={this.state.description}
+                            onChangeText={description=>this.setState({ description })}
+                            placeholder={(this.state.Store.description)?this.state.Store.description:'Description'}
+                            textAlignVertical={'top'}
+                            multiline={true}
+                            maxLength={500}
+                            style={styles.input}
+                            />
+                        </View>
+                    </ScrollView>
                 </View>
                 <View style={{flex:1, flexDirection: 'row'}}>
                     <TouchableOpacity

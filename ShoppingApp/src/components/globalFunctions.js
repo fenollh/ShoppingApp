@@ -1,7 +1,7 @@
 import React from 'react'
 import { Alert } from 'react-native'
 import { store } from '../redux/state'
-const serverRoute = 'http://192.168.43.9'
+const serverRoute = 'http://192.168.1.43'
 
 /*
 fetch golang server example
