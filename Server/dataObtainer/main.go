@@ -55,7 +55,7 @@ func GetPrivateUser(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 	//fmt.Println(data)
-	data.ACCOUNTTYPE = "Costumer"
+	data.ACCOUNTTYPE = "Food"
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(data)
 	return

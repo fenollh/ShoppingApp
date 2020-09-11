@@ -12,7 +12,7 @@ let State = {
     stars: 4, // de 0-5
     description: 'Estudiante y creador de esta app.  Esqui de montaña y tecnologia.  Hoyo de Manzanares',
     image: 'https://www.skimostats.com/images/athletes/372-5e2587fe35036.png',
-    accountType: 'Costumer', //Costumer / Other
+    accountType: '', //Costumer / Other
     details: {takeaway: false, delivery: false ,restaurant: false, creditcard: true}, //for costumer accounts the 3  fields are null
     renderedShops: [],
     tags: [' All ', 'Food', 'Sport',],

@@ -33,6 +33,10 @@ const reducer = (state=store.getState(), action) => {
             return {...state, image: action.payload}
         case 'EDIT_NAME':
             return {...state, name: action.payload}
+        case 'EDIT_SCHEDULE':
+            return {...state, schedule: action.payload}
+        case 'EDIT_LOCATION':
+            return {...state, location: action.payload}
         case 'EDIT_SESSION':
             return {...state, sessionID: action.payload}
         case 'EDIT_SELECTEDTAG':

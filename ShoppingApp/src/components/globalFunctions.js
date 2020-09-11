@@ -219,7 +219,6 @@ const editUserData = (parameter, newData, categorie) => {
         })
     })
     .then(response => {
-        console.log(response.status)
         if(response.status == 200){
             store.dispatch({
                 type: 'EDIT_'+parameter.toUpperCase(),
@@ -227,7 +226,7 @@ const editUserData = (parameter, newData, categorie) => {
             })
         }
         else{
-            //handle error
+            console.log('Error: '+response.status)
             return
         }
     })
