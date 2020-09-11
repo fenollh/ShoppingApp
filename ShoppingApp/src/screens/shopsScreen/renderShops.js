@@ -68,7 +68,7 @@ export default class ShopsListSection extends React.Component {
                     />
                 </View>
                 <View style={{flex:2, alignItems: 'center'}}>
-                    <Text style={styles.title}>{item.name}</Text>
+                    <Text style={styles.title}>{item.username}</Text>
                     <Text style={styles.description}>{item.description}</Text>
                 </View>
                 {servicesSec}
@@ -82,7 +82,7 @@ export default class ShopsListSection extends React.Component {
             <View style={styles.container}>
                 <FlatList
                     data={Shops}
-                    keyExtractor={(item) => item.name}
+                    keyExtractor={(item) => item.username}
                     renderItem={({item}) => this.renderShop(item)}
                 />
             </View>

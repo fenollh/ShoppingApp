@@ -49,7 +49,7 @@ export default class SelectedShopScreen extends React.Component{
                         <Text style={{alignSelf: 'center', flex:1}}>{item.stars}</Text>
                     </View>
                     <View style={{flex: 2.3}}>
-                        <Text style={styles.username}>{item.name}</Text>
+                        <Text style={styles.username}>{item.username}</Text>
                         <View style={{flex:1.8, alignItems: 'center'}}>
                             <Text style={{fontSize: 15, textAlign: 'center'}}>{item.description}</Text>
                         </View>

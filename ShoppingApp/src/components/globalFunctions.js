@@ -123,8 +123,8 @@ const createUser = (user, shop, navigation) => {
         route = serverRoute+':3001/newshop'
         data={
             shopmail: shop.usermail,
-            shopname: shop.username,
-            managername: shop.name,
+            username: shop.username,
+            name: shop.name,
             password: shop.password,
             accountType: shop.accountType,
             image: shop.photo,

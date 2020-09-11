@@ -8,9 +8,9 @@ type Credentials struct {
 
 //ShopData all the data from a shop is public except for the password
 type ShopData struct {
-	SHOPNAME    string `json:"name"`
+	SHOPNAME    string `json:"username"`
 	SHOPMAIL    string `json:"usermail"`
-	MANAGERNAME string `json:"managerName"`
+	NAME        string `json:"name"`
 	LOCATION    string `json:"location"`
 	SCHEDULE    string `json:"schedule"`
 	DETAILS     string `json:"details"`

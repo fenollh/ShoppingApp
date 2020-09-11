@@ -12,10 +12,10 @@ type User struct {
 
 //Shop class
 type Shop struct {
-	SHOPMAIL    string `json:"shopmail"`
-	SHOPNAME    string `json:"shopname"`
-	PASSWORD    string `json:"password"`
-	MANAGERNAME string `json:"managername"`
-	SHOPTYPE    string `json:"accountType"`
-	IMAGE       string `json:"image"`
+	SHOPMAIL string `json:"shopmail"`
+	SHOPNAME string `json:"username"`
+	PASSWORD string `json:"password"`
+	NAME     string `json:"name"`
+	SHOPTYPE string `json:"accountType"`
+	IMAGE    string `json:"image"`
 }

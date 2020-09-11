@@ -8,10 +8,10 @@ este archivo dejara de existir.
 */
 
 const Shops = [
-    {name: 'Pio pio',
+    {username: 'Pio pio',
     usermail: 'piopio@gmail.com',
     phone: '644-41-53-37',
-    managerName: 'Pepe Gonzalez',
+    name: 'Pepe Gonzalez',
     accountType: 'Food',
     location: 'Hoyo de Manzanares C/Avenida Madrid Nº10',
     schedule: 'De martes a domingo de 12:00 a 22:00',
@@ -33,10 +33,10 @@ const Shops = [
     
     }
     },
-    {name: 'McDonals',
+    {username: 'McDonals',
     usermail: 'mcDonals@gmail.com',
     phone: '644-41-53-37',
-    managerName: 'Juan Jimenez',
+    name: 'Juan Jimenez',
     accountType: 'Food',
     location: 'Torrelodones Centro Comercial Nº3',
     schedule: '24 horas 7 dias a la semana',
@@ -58,10 +58,10 @@ const Shops = [
     
     }
     },
-    {name: 'Polideportivo de Hoyo',
+    {username: 'Polideportivo de Hoyo',
     usermail: 'poliHoyo@gmail.com',
     phone: '644-41-53-37',
-    managerName: 'Javi Jimenez',
+    name: 'Javi Jimenez',
     accountType: 'Sport',
     location: 'Hoyo de Manzanares C/Avenida Instituto Nº24',
     schedule: 'De lunes a sabado de 9:00 a 22:00',

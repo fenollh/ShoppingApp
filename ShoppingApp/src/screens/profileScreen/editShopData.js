@@ -20,7 +20,7 @@ export default class EditDataScreen extends React.Component {
         this.state={
             Store: {},
             username: '',
-            managerName: '',
+            name: '',
             description: '',
             image: '',
         }
@@ -52,7 +52,7 @@ export default class EditDataScreen extends React.Component {
         this.setState({
             Store: Store,
             username: Store.username, 
-            managerName: Store.managerName,
+            name: Store.name,
             schedule: Store.schedule,
             location: Store.location,
             description: Store.description, 
@@ -117,8 +117,8 @@ export default class EditDataScreen extends React.Component {
                         <View style={styles.inputBox}>
                             <Text style={styles.subtitle}>MANAGER NAME</Text>
                             <TextInput 
-                            value={this.state.managerName}
-                            onChangeText={managerName=>this.setState({ managerName })}
+                            value={this.state.name}
+                            onChangeText={name=>this.setState({ name })}
                             autoCapitalize='none'
                             maxLength={20}
                             style={styles.input}
