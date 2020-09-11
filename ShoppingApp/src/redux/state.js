@@ -16,6 +16,7 @@ let State = {
     details: [], //for costumer accounts the 3  fields are null
     renderedShops: [],
     tags: [' All ', 'Food', 'Sport',],
+    myTags: [],
     selectedTag: ' All ',
     selectedCategorie: ' All ',
     favShopsList: [],

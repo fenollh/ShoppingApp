@@ -27,7 +27,7 @@ const reducer = (state=store.getState(), action) => {
                 stars: action.payload.stars,
                 description: action.payload.description,
                 image: action.payload.image,
-                tags: action.payload.tags,
+                myTags: action.payload.tags,
                 categories: action.payload.categories,
                 stock: action.payload.stock,
                 accountType: action.payload.accountType,

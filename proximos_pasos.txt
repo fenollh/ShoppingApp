@@ -15,7 +15,6 @@ At that point I will have a funtional app
  
 
 details remaining:
--complete the user data from profile(description, services ...)
 -loading page
 -reorder the router to be able to access the drawer navigator from more pages
 -cancel orders
@@ -31,7 +30,7 @@ security updates:
 -protect the Db against SQL injections adding more complex input validation
 
 next day:
--test and update the editShopData globalFunction
 -create a checkbox to edit details
--create a login Shop functionality
--create a stock handler
+-create a stock handler in shop profile
+-stop using ShopList to use the shops DB
+-create a orders funtionality
