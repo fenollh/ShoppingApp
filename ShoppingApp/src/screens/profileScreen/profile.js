@@ -12,10 +12,6 @@ import {
 export default class ProfileScreen extends React.Component{
     render(){
         store.subscribe(()=>{
-            /*
-            console.log(Store.description)
-            console.log(store.getState().description)
-            */
             if( Store.usermail != store.getState().usermail || 
                 Store.username != store.getState().username || 
                 Store.name != store.getState().name || 
@@ -53,7 +49,7 @@ export default class ProfileScreen extends React.Component{
                     <View style={{flex:1}}>
                         <Image
                             style={styles.profileImage}
-                            source={{uri: Store.image}}
+                            source={{uri: (Store.image)?Store.image:null}}
                         />
                         <Text style={styles.profileName}>{Store.name}</Text>
                         <Text style={[styles.profileName, {fontWeight: 'normal'}]}>{Store.accountType}</Text>

@@ -29,12 +29,12 @@ export default class ShopsListSection extends React.Component {
                 servicesSec=(
                 <View style={{flex:1, alignItems: 'center', marginTop: '2%'}}>
                     <View style={{flex: 1, flexDirection: 'row'}}>
-                        <Entypo name='shopping-bag' color={(item.details.takeaway)?green:red} size={30} style={{marginHorizontal: '1%'}}/>
-                        <MaterialIcons name='restaurant' color={(item.details.restaurant)?green:red} size={30} style={{marginHorizontal: '1%'}}/>
+                        <Entypo name='shopping-bag' color={(item.details[0])?green:red} size={30} style={{marginHorizontal: '1%'}}/>
+                        <MaterialIcons name='restaurant' color={(item.details[1])?green:red} size={30} style={{marginHorizontal: '1%'}}/>
                     </View>
                     <View style={{flex: 1, flexDirection: 'row'}}>
-                        <MaterialCommunityIcons name='truck-delivery' color={(item.details.delivery)?green:red} size={30} style={{marginHorizontal: '1%'}}/>
-                        <Entypo name='credit-card' color={(item.details.card)?green:red} size={30} style={{marginHorizontal: '1%'}}/>
+                        <MaterialCommunityIcons name='truck-delivery' color={(item.details[2])?green:red} size={30} style={{marginHorizontal: '1%'}}/>
+                        <Entypo name='credit-card' color={(item.details[3])?green:red} size={30} style={{marginHorizontal: '1%'}}/>
                     </View>
                 </View>
                 )
@@ -43,12 +43,12 @@ export default class ShopsListSection extends React.Component {
                 servicesSec=(
                 <View style={{flex:1, alignItems: 'center', marginTop: '2%'}}>
                     <View style={{flex: 1, flexDirection: 'row'}}>
-                        <Entypo name='shop' color={(item.details.cafeteria)?green:red} size={30} style={{marginHorizontal: '1%'}}/>
-                        <MaterialCommunityIcons name='toilet' color={(item.details.toilets)?green:red} size={30} style={{marginHorizontal: '1%'}}/>
+                        <Entypo name='shop' color={(item.details[0])?green:red} size={30} style={{marginHorizontal: '1%'}}/>
+                        <MaterialCommunityIcons name='toilet' color={(item.details[1])?green:red} size={30} style={{marginHorizontal: '1%'}}/>
                     </View>
                     <View style={{flex: 1, flexDirection: 'row'}}>
-                        <MaterialIcons name='person' color={(item.details.instructors)?green:red} size={30} style={{marginHorizontal: '1%'}}/>
-                        <Entypo name='credit-card' color={(item.details.card)?green:red} size={30} style={{marginHorizontal: '1%'}}/>
+                        <MaterialIcons name='person' color={(item.details[2])?green:red} size={30} style={{marginHorizontal: '1%'}}/>
+                        <Entypo name='credit-card' color={(item.details[3])?green:red} size={30} style={{marginHorizontal: '1%'}}/>
                     </View>
                 </View>
                 )

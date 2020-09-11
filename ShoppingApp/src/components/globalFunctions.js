@@ -189,7 +189,7 @@ const loginFunc = async (usermail, password, navigation) => {
                 sessionID: sesID
             }
         })
-        initState(usermail, sesID, 'shop') //descargar todos los datos de usuario al State de la DB
+        initState(usermail, sesID, 'user') //descargar todos los datos de usuario al State de la DB
 
     }else{
         Alert.alert('User or password are incorrect')

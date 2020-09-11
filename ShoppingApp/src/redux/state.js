@@ -3,17 +3,17 @@ import { reducer } from './reducer'
 
 let store
 let State = {
-    sessionID: '12',
-    username: 'fenollh',
-    usermail: 'fenollh@gmail.com',
-    name: 'Hugo Fenoll',
-    age: 17,
-    phone: '644-41-53-37',
-    stars: 4, // de 0-5
-    description: 'Estudiante y creador de esta app.  Esqui de montaña y tecnologia.  Hoyo de Manzanares',
-    image: 'https://www.skimostats.com/images/athletes/372-5e2587fe35036.png',
+    sessionID: '',
+    username: '',
+    usermail: '',
+    name: '',
+    age: null,
+    phone: '',
+    stars: null, // de 0-5
+    description: '',
+    image: '',
     accountType: '', //Costumer / Other
-    details: {takeaway: false, delivery: false ,restaurant: false, creditcard: true}, //for costumer accounts the 3  fields are null
+    details: [], //for costumer accounts the 3  fields are null
     renderedShops: [],
     tags: [' All ', 'Food', 'Sport',],
     selectedTag: ' All ',
@@ -32,8 +32,8 @@ let State = {
             {name: 'lasana', description: '', image: '', cost: 4, quantity: 10 },
         ]
     },
-    schedule: 'lunes a viernes de 9 a 2, fines de semana de 10 a 1',
-    location: 'Plaza mayor de Hoyo de Manzanares',
+    schedule: '',
+    location: '',
 }
 store = createStore(
     reducer,

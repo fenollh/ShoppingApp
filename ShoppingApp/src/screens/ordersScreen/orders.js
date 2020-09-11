@@ -25,7 +25,7 @@ export default class OrdersScreen extends React.Component{
         })
         let Store = store.getState()
         let page
-        if(Store.accountType == 'Costumer'){
+        if(Store.accountType === 'Costumer'){
             page=(
                 <View style={{flex:1}}>
                     <View style={{flex:8}}>

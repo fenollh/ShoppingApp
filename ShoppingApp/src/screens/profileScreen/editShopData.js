@@ -83,7 +83,7 @@ export default class EditDataScreen extends React.Component {
                         </View>
                         <View style={{flexDirection: 'column', marginHorizontal:5}}>
                             <Text>CREDIT CARD</Text>
-                            <Text style={{alignSelf: 'center'}}>{this.state.Store.details.creditcard?'true':'false'}</Text>
+                            <Text style={{alignSelf: 'center'}}>{this.state.Store.details.card?'true':'false'}</Text>
                         </View>
                     </View>
                 break;

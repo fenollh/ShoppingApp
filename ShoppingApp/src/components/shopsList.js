@@ -15,7 +15,7 @@ const Shops = [
     accountType: 'Food',
     location: 'Hoyo de Manzanares C/Avenida Madrid Nº10',
     schedule: 'De martes a domingo de 12:00 a 22:00',
-    details: {takeaway: true, delivery: false ,restaurant: false, card: true},
+    details: [1, 0, 1, 1], //takeaway, restaurant, delivery, card
     stars: 5,
     description: 'Asador de pollos con servicio de comida para llevar ubicado en Hoyo de Manzanares.',
     image: 'https://media-cdn.tripadvisor.com/media/photo-s/06/e5/1c/29/getlstd-property-photo.jpg',
@@ -40,7 +40,7 @@ const Shops = [
     accountType: 'Food',
     location: 'Torrelodones Centro Comercial Nº3',
     schedule: '24 horas 7 dias a la semana',
-    details: {takeaway: true, delivery: false ,restaurant: true, card: true},
+    details: [1, 1, 0, 1], //takeaway, restaurant, delivery, card
     stars: 3,
     description: 'Restaurante de comida rapida ubicado en el centro comercial de Torrelodones',
     image: 'https://deresiduos.s3.amazonaws.com/uploads/news/image/14651/Mcdonalds-90s-logo.svg.png',
@@ -65,7 +65,7 @@ const Shops = [
     accountType: 'Sport',
     location: 'Hoyo de Manzanares C/Avenida Instituto Nº24',
     schedule: 'De lunes a sabado de 9:00 a 22:00',
-    details: {toilets: true, cafeteria: false, instructors: true, card: true},
+    details: [0, 1, 1, 1], //cafeteria, toilets, instructors, card
     stars: 4,
     description: 'Polideportivo municipal de Hoyo de Mazanares',
     profileImage: 'https://imesapi.es/wp-content/uploads/2018/11/POLIDEPORTIVO-HOYO-DE-MANZANARES.jpg',
