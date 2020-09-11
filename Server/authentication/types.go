@@ -19,3 +19,9 @@ type Shop struct {
 	SHOPTYPE string `json:"accountType"`
 	IMAGE    string `json:"image"`
 }
+
+//OutputObject the data that is sent to the client
+type OutputObject struct {
+	SESSID      int    `json:"sessID"`
+	ACCOUNTTYPE string `json:"accountType"`
+}

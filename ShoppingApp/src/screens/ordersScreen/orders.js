@@ -21,7 +21,7 @@ export default class OrdersScreen extends React.Component{
     
     render(){
         store.subscribe(()=>{
-            if(Store.myOrders != store.getState().myOrders) this.forceUpdate()
+            if(Store.myOrders != store.getState().myOrders || Store.accountType != store.getState().accountType) this.forceUpdate()
         })
         let Store = store.getState()
         let page

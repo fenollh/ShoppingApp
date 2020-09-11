@@ -66,6 +66,7 @@ func Login(w http.ResponseWriter, req *http.Request) {
 	var user User
 	var expectedPasswordUsr string
 	var expectedPasswordShp string
+	var output OutputObject
 	_ = json.NewDecoder(req.Body).Decode(&user)
 	SeUsrErr := db.QueryRow("SELECT password FROM users WHERE usermail='" + user.USERMAIL + "';").Scan(&expectedPasswordUsr)
 	SeShpErr := db.QueryRow("SELECT password FROM shops WHERE usermail='" + user.USERMAIL + "';").Scan(&expectedPasswordShp)
@@ -82,9 +83,14 @@ func Login(w http.ResponseWriter, req *http.Request) {
 		json.NewEncoder(w).Encode("Error code 406: usermail and password don't match")
 		return
 	}
-	var sesID = HandleSession(user.USERMAIL)
+	if SeUsrErr == nil {
+		output.ACCOUNTTYPE = "costumer"
+	} else {
+		output.ACCOUNTTYPE = "shop"
+	}
+	output.SESSID = HandleSession(user.USERMAIL)
 	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(sesID)
+	json.NewEncoder(w).Encode(output)
 	return
 }
 

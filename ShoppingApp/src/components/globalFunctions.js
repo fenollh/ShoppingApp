@@ -120,10 +120,10 @@ const authentication = async (usermail, password, sessionID) => {
         })
     })
     const responseData = await response.json()
-    if(typeof responseData == 'number'){
+    if(typeof responseData.sessID == 'number'){
         return responseData
     }else{
-        return 'Error'
+        return 'Error while authenticating'
     }
 }
 
@@ -178,18 +178,18 @@ const createUser = (user, shop, navigation) => {
 }
 
 const loginFunc = async (usermail, password, navigation) => {
-    const sesID = await authentication(usermail, password) //necesito que tambien retorne el tipo de cuenta
-    if(typeof sesID == 'number') {
+    const data = await authentication(usermail, password) //necesito que tambien retorne el tipo de cuenta
+    if(typeof data.sessID == 'number') {
         navigation.navigate('Main')
         
         store.dispatch({
             type: 'HANDLE_SESSION',
             payload: {
                 usermail: usermail,
-                sessionID: sesID
+                sessionID: data.sessID
             }
         })
-        initState(usermail, sesID, 'user') //descargar todos los datos de usuario al State de la DB
+        initState(usermail, data.sessID, data.accountType) //descargar todos los datos de usuario al State de la DB
 
     }else{
         Alert.alert('User or password are incorrect')
@@ -247,7 +247,7 @@ const editUserData = (parameter, newData, categorie) => {
             })
         }
         else{
-            console.log('Error: '+response.status)
+            //console.log('Error: '+response.status)
             return
         }
     })
