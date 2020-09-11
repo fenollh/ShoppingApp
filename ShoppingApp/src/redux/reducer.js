@@ -16,7 +16,22 @@ const reducer = (state=store.getState(), action) => {
                 accountType: action.payload.accountType,
             }
         case 'GET_SHOP_DATA':
-            return {...state}
+            return {
+                ...state, 
+                username: action.payload.username, 
+                usermail: action.payload.usermail,
+                name: action.payload.name,
+                location: action.payload.location,
+                schedule: action.payload.schedule,
+                details: action.payload.details,
+                stars: action.payload.stars,
+                description: action.payload.description,
+                image: action.payload.image,
+                tags: action.payload.tags,
+                categories: action.payload.categories,
+                stock: action.payload.stock,
+                accountType: action.payload.accountType,
+            }
         case 'HANDLE_SESSION':
             return {
                 ...state, 

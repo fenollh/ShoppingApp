@@ -55,7 +55,7 @@ func GetPrivateUser(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 	//fmt.Println(data)
-	data.ACCOUNTTYPE = "Food"
+	data.ACCOUNTTYPE = "Costumer"
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(data)
 	return
@@ -63,6 +63,25 @@ func GetPrivateUser(w http.ResponseWriter, req *http.Request) {
 
 // GetPrivateShop selects all the shop's data. Authentication is required
 func GetPrivateShop(w http.ResponseWriter, req *http.Request) {
+	var credentials Credentials
+	var data ShopData
+	_ = json.NewDecoder(req.Body).Decode(&credentials)
+	auth := authenticate(credentials.USERMAIL, credentials.SESSIONID)
+	if auth == false {
+		w.WriteHeader(http.StatusForbidden)
+		json.NewEncoder(w).Encode("Error code 403: Error while authenticating. This data is private")
+		return
+	}
+	SelErr := db.QueryRow("SELECT username, usermail, name, location, schedule, details, stars, description, image, tags, categories, stock, shopType FROM shops WHERE usermail=?", credentials.USERMAIL).Scan(&data.USERNAME, &data.USERMAIL, &data.NAME, &data.LOCATION, &data.SCHEDULE, &data.DETAILS, &data.STARS, &data.DESCRIPTION, &data.IMAGE, &data.TAGS, &data.CATEGORIES, &data.STOCK, &data.SHOPTYPE)
+	if SelErr != nil {
+		fmt.Println(SelErr)
+		w.WriteHeader(http.StatusBadGateway)
+		json.NewEncoder(w).Encode("Error code 502: Error while selecting data")
+		return
+	}
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(data)
+	return
 }
 
 func main() {

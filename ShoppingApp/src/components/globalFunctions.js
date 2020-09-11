@@ -61,22 +61,43 @@ const initState = async (usermail, sessionID, type) => {
         })
     })
     const data = await response.json()
-    var shoppingList = data.shoppingList.split('')
-    store.dispatch({
-        type: 'GET_USER_DATA',
-        payload: {
-            username: data.username,
-            usermail: data.usermail,
-            name: data.name,
-            age: data.age,
-            description: data.description,
-            image: data.image,
-            stars: data.stars,
-            favShopsList: data.favShopsList,
-            shoppingList: shoppingList,
-            accountType: data.accountType,
-        }
-    })
+    if (type === 'shop'){
+        store.dispatch({
+            type: 'GET_SHOP_DATA',
+            payload: {
+                username: data.username,
+                usermail: data.usermail,
+                name: data.name,
+                location: data.location,
+                schedule: data.schedule,
+                details: data.details,
+                stars: data.stars,
+                description: data.description,
+                image: data.image,
+                tags: data.tags,
+                categories: data.categories,
+                stock: data.stock,
+                accountType: data.shopType,
+            }
+        })
+    }else{
+        var shoppingList = data.shoppingList.split('')
+        store.dispatch({
+            type: 'GET_USER_DATA',
+            payload: {
+                username: data.username,
+                usermail: data.usermail,
+                name: data.name,
+                age: data.age,
+                description: data.description,
+                image: data.image,
+                stars: data.stars,
+                favShopsList: data.favShopsList,
+                shoppingList: shoppingList,
+                accountType: data.accountType,
+            }
+        })
+    }
     /* 
     1) get user data (done)
     2) get orders data
@@ -168,7 +189,7 @@ const loginFunc = async (usermail, password, navigation) => {
                 sessionID: sesID
             }
         })
-        initState(usermail, sesID, 'user') //descargar todos los datos de usuario al State de la DB
+        initState(usermail, sesID, 'shop') //descargar todos los datos de usuario al State de la DB
 
     }else{
         Alert.alert('User or password are incorrect')
