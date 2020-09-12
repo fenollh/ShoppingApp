@@ -52,6 +52,8 @@ const reducer = (state=store.getState(), action) => {
             return {...state, schedule: action.payload}
         case 'EDIT_LOCATION':
             return {...state, location: action.payload}
+        case 'EDIT_DETAILS':
+            return {...state, details: action.payload}
         case 'EDIT_SESSION':
             return {...state, sessionID: action.payload}
         case 'EDIT_SELECTEDTAG':

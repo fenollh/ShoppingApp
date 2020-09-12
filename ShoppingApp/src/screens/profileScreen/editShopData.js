@@ -1,5 +1,6 @@
 import React from 'react'
-import ImagePicker from 'react-native-image-picker';
+import ImagePicker from 'react-native-image-picker'
+import Fontisto from 'react-native-vector-icons/Fontisto'
 
 import {
     View,
@@ -25,6 +26,7 @@ export default class EditDataScreen extends React.Component {
             location: '',
             description: '',
             image: '',
+            details: [],
         }
     }
 
@@ -48,6 +50,7 @@ export default class EditDataScreen extends React.Component {
         if(this.state.username) editUserData('location', this.state.location, 'shop')
         if(this.state.description) editUserData('description', this.state.description, 'shop')
         if(this.state.image) editUserData('image', this.state.image, 'shop')
+        if(this.state.details) editUserData('details', this.state.details, 'shop')
         this.props.navigation.goBack()
     }
 
@@ -60,10 +63,22 @@ export default class EditDataScreen extends React.Component {
             schedule: Store.schedule,
             location: Store.location,
             description: Store.description, 
-            image: Store.image 
+            image: Store.image,
+            details: Store.details, 
         })
     }
     render(){
+        store.subscribe(()=>{
+            if( this.state.usermail != store.getState().usermail || 
+                this.state.username != store.getState().username || 
+                this.state.name != store.getState().name || 
+                this.state.description != store.getState().description || 
+                this.state.details != store.getState().details || 
+                this.state.Store.accountType != store.getState().accountType || 
+                this.state.image != store.getState().image){
+                this.forceUpdate()
+            } 
+        })
         let services
         switch (this.state.Store.accountType) {
             case 'Food':
@@ -71,19 +86,39 @@ export default class EditDataScreen extends React.Component {
                     <View style={{flexDirection: 'row', alignSelf: 'center', alignItems: 'center', flex:1}}>
                         <View style={{flexDirection: 'column', marginHorizontal:5}}>
                             <Text>TAKEWAY</Text>
-                            <Text style={{alignSelf: 'center'}}>{this.state.Store.details.takeaway?'true':'false'}</Text>
+                            <Fontisto 
+                                onPress={_=> this.setState({ details: [!this.state.details[0], this.state.details[1], this.state.details[2], this.state.details[3]] })}
+                                name={(this.state.details[0])?'checkbox-active':'checkbox-passive'} 
+                                size={20} 
+                                color={(this.state.details[0])?'green':'red'}
+                                style={{alignSelf: 'center'}}/>
                         </View>
                         <View style={{flexDirection: 'column', marginHorizontal:5}}>
                             <Text>DELIVERY</Text>
-                            <Text style={{alignSelf: 'center'}}>{this.state.Store.details.delivery?'true':'false'}</Text>
+                            <Fontisto 
+                                onPress={_=> this.setState({ details: [this.state.details[0], !this.state.details[1], this.state.details[2], this.state.details[3]] })}
+                                name={(this.state.details[1])?'checkbox-active':'checkbox-passive'} 
+                                size={20} 
+                                color={(this.state.details[1])?'green':'red'}
+                                style={{alignSelf: 'center'}}/>
                         </View>
                         <View style={{flexDirection: 'column', marginHorizontal:5}}>
                             <Text>RESTAURANT</Text>
-                            <Text style={{alignSelf: 'center'}}>{this.state.Store.details.restaurant?'true':'false'}</Text>
+                            <Fontisto
+                                onPress={_=> this.setState({ details: [this.state.details[0], this.state.details[1], !this.state.details[2], this.state.details[3]] })}
+                                name={(this.state.details[2])?'checkbox-active':'checkbox-passive'} 
+                                size={20} 
+                                color={(this.state.details[2])?'green':'red'}
+                                style={{alignSelf: 'center'}}/>
                         </View>
                         <View style={{flexDirection: 'column', marginHorizontal:5}}>
                             <Text>CREDIT CARD</Text>
-                            <Text style={{alignSelf: 'center'}}>{this.state.Store.details.card?'true':'false'}</Text>
+                            <Fontisto 
+                                onPress={_=> this.setState({ details: [this.state.details[0], this.state.details[1], this.state.details[2], !this.state.details[3]] })}
+                                name={(this.state.details[3])?'checkbox-active':'checkbox-passive'} 
+                                size={20} 
+                                color={(this.state.details[3])?'green':'red'}
+                                style={{alignSelf: 'center'}}/>
                         </View>
                     </View>
                 break;

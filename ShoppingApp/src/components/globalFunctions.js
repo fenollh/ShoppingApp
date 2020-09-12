@@ -3,13 +3,6 @@ import { Alert } from 'react-native'
 import { store } from '../redux/state'
 const serverRoute = 'http://192.168.1.43'
 
-/*
-fetch golang server example
-    const route = '/0'
-    fetch(serverRoute+':3000'+route)
-    .then((response) => response.json())
-    .then((responseData) => console.log(responseData))
-*/
 
 const checkRegisterForm = (type, formData, formInputs) => {
     if(formData.password.length < 5){
@@ -62,6 +55,7 @@ const initState = async (usermail, sessionID, type) => {
     })
     const data = await response.json()
     if (type === 'shop'){
+        var details = data.details.split(', ')
         store.dispatch({
             type: 'GET_SHOP_DATA',
             payload: {
@@ -70,14 +64,14 @@ const initState = async (usermail, sessionID, type) => {
                 name: data.name,
                 location: data.location,
                 schedule: data.schedule,
-                details: data.details,
+                details: details,
                 stars: data.stars,
                 description: data.description,
                 image: data.image,
                 tags: data.tags,
                 categories: data.categories,
                 stock: data.stock,
-                accountType: data.shopType,
+                accountType: data.accountType,
             }
         })
     }else{
@@ -98,13 +92,6 @@ const initState = async (usermail, sessionID, type) => {
             }
         })
     }
-    /* 
-    1) get user data (done)
-    2) get orders data
-    3) cast all the data to a useful format
-    4) complete the rest of the filds
-    5) upload the data to the state (only user data)
-    */
 }
 
 const authentication = async (usermail, password, sessionID) => {
@@ -149,6 +136,7 @@ const createUser = (user, shop, navigation) => {
             password: shop.password,
             accountType: shop.accountType,
             image: shop.photo,
+            details: [0, 0, 0, 0],
         }
     }
     fetch(route, {
@@ -173,12 +161,17 @@ const createUser = (user, shop, navigation) => {
             })
         }else{
         }
+        return responseData
+    })
+    .then(sessID=>{
+        if(user) initState(user.usermail, sessID, 'user')
+        if(shop) initState(shop.usermail, sessID, 'shop')
     })
     
 }
 
 const loginFunc = async (usermail, password, navigation) => {
-    const data = await authentication(usermail, password) //necesito que tambien retorne el tipo de cuenta
+    const data = await authentication(usermail, password)
     if(typeof data.sessID == 'number') {
         navigation.navigate('Main')
         
@@ -189,8 +182,7 @@ const loginFunc = async (usermail, password, navigation) => {
                 sessionID: data.sessID
             }
         })
-        initState(usermail, data.sessID, data.accountType) //descargar todos los datos de usuario al State de la DB
-
+        initState(usermail, data.sessID, data.accountType)
     }else{
         Alert.alert('User or password are incorrect')
     }

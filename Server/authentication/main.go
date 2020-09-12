@@ -48,8 +48,8 @@ func CreateShop(w http.ResponseWriter, req *http.Request) {
 		json.NewEncoder(w).Encode("Error code 409: This email has already been used")
 		return
 	}
-	var data string = "('" + shop.SHOPNAME + "', '" + shop.SHOPMAIL + "', '" + shop.NAME + "', '', '', '', 5, '', " + "'" + shop.IMAGE + "', '', '', '', '" + shop.SHOPTYPE + "', '" + shop.PASSWORD + "');"
-	_, InsErr := db.Query("INSERT INTO shops (username, usermail, name, location, schedule, details, stars, description, image, tags, categories, stock, accountType, password) VALUES " + data)
+	var data string = "('" + shop.SHOPNAME + "', '" + shop.SHOPMAIL + "', '" + shop.NAME + "', '', '', '" + shop.DETAILS + "', 5, '', " + "'" + shop.IMAGE + "', '', '', '', '" + shop.SHOPTYPE + "', '" + shop.PASSWORD + "');"
+	_, InsErr := db.Query("INSERT INTO shops (username, usermail, name, location, schedule, details, stars, description, image, tags, categories, stock, shopType, password) VALUES " + data)
 	if InsErr != nil {
 		fmt.Println(InsErr)
 		w.WriteHeader(http.StatusBadGateway)

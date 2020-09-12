@@ -17,6 +17,7 @@ type Shop struct {
 	PASSWORD string `json:"password"`
 	NAME     string `json:"name"`
 	SHOPTYPE string `json:"accountType"`
+	DETAILS  string `json:"details"`
 	IMAGE    string `json:"image"`
 }
 
