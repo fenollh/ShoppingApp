@@ -1,17 +1,9 @@
-(done) 1) upgrade the register page (0.75 day)
-(done) 2) add a photo picker to the register page (0.25 day)
-(done) 3) setup the server and check the connections (1 day)
-(done) 4) create 4 DB's (costumers, shops, orders, sessions) (1 day)
-(done) 5) Be able to modify the DB and allow the server to process the connection betweenn the UI and the DB (3 day)
-(done) 6) Create a simple login (2 day)
-6.2) Connect all the app functionalities with the backend (---)
-At that point I will have a funtional app
-(done) 7) Create a better authentication and sessions system (3 day)
-8) Add some funtionality such us location, better sorting techniques and schedule block (5 day)
-9) Improve the security (---)
-10) Add and impove the last details (2 day)
-11) create a logo and a name (---)
-12) publish it in beta mode (1 day)
+6.2) Connect all the app functionalities with the backend
+8) Add some funtionality such us location, better sorting techniques and schedule block
+9) Improve the security
+10) Add and impove the last details 
+11) create a logo and a name 
+12) publish it in beta mode
  
 
 details remaining:
@@ -19,6 +11,8 @@ details remaining:
 -reorder the router to be able to access the drawer navigator from more pages
 -cancel orders
 -UI
+-save the photos to be able to show it
+-handle errors
 -add the remember me functionality
 -add 'terms and conditions'
 
@@ -30,7 +24,6 @@ security updates:
 -protect the Db against SQL injections adding more complex input validation
 
 next day:
--create a checkbox to edit details
 -create a stock handler in shop profile
 -stop using ShopList to use the shops DB
 -create a orders funtionality

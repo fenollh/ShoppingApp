@@ -1,6 +1,4 @@
 import React from 'react'
-import { store } from '../../redux/state'
-import StarsRating from '../../components/startsRating'
 import {
     View,
     Text,
@@ -8,6 +6,10 @@ import {
     TouchableOpacity,
     StyleSheet,
 } from 'react-native'
+
+import { store } from '../../redux/state'
+import StarsRating from '../../components/startsRating'
+import StockSection from './stockSection'
 
 export default class ProfileScreen extends React.Component{
     render(){
@@ -21,7 +23,7 @@ export default class ProfileScreen extends React.Component{
             } 
         })
         let Store = store.getState()
-        let valoraciones
+        let valoraciones, stockSection
         if(Store.accountType == 'Costumer'){
             valoraciones= 
                 <View style={{margin: '2%', flex: 1}}>
@@ -31,6 +33,7 @@ export default class ProfileScreen extends React.Component{
                         <Text style={{marginLeft: '3%', fontSize: 20, flex:2}}>{Store.stars}</Text>
                     </View>
                 </View>
+            stockSection = <View/>
         }
         else{  
             valoraciones= 
@@ -41,6 +44,7 @@ export default class ProfileScreen extends React.Component{
                     <Text style={{marginLeft: '3%', fontSize: 20, flex:2}}>{Store.stars}</Text>
                 </View>
             </View>
+            stockSection = <StockSection/>
         }
 
         return(
@@ -72,6 +76,7 @@ export default class ProfileScreen extends React.Component{
                     {valoraciones}
                 </View>
                 <View style={styles.body}>
+                    {stockSection}
                 </View>
             </View>
         )
@@ -84,7 +89,7 @@ const styles = StyleSheet.create({
         backgroundColor:'rgb(240,245,240)',
     },
     header: {
-        flex:1,
+        height: 170,
         flexDirection: 'row',
         backgroundColor: 'rgb(230,245,255)',
     },
@@ -119,6 +124,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgb(80,130,255)', 
     },  
     body: {
-        flex: 2.5,
+        flex: 3.5,
+        padding: 10,
     },
 })
