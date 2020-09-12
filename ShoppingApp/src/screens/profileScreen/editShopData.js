@@ -80,55 +80,46 @@ export default class EditDataScreen extends React.Component {
             } 
         })
         let services
-        switch (this.state.Store.accountType) {
-            case 'Food':
-                services=
-                    <View style={{flexDirection: 'row', alignSelf: 'center', alignItems: 'center', flex:1}}>
-                        <View style={{flexDirection: 'column', marginHorizontal:5}}>
-                            <Text>TAKEWAY</Text>
-                            <Fontisto 
-                                onPress={_=> this.setState({ details: [!this.state.details[0], this.state.details[1], this.state.details[2], this.state.details[3]] })}
-                                name={(this.state.details[0])?'checkbox-active':'checkbox-passive'} 
-                                size={20} 
-                                color={(this.state.details[0])?'green':'red'}
-                                style={{alignSelf: 'center'}}/>
-                        </View>
-                        <View style={{flexDirection: 'column', marginHorizontal:5}}>
-                            <Text>DELIVERY</Text>
-                            <Fontisto 
-                                onPress={_=> this.setState({ details: [this.state.details[0], !this.state.details[1], this.state.details[2], this.state.details[3]] })}
-                                name={(this.state.details[1])?'checkbox-active':'checkbox-passive'} 
-                                size={20} 
-                                color={(this.state.details[1])?'green':'red'}
-                                style={{alignSelf: 'center'}}/>
-                        </View>
-                        <View style={{flexDirection: 'column', marginHorizontal:5}}>
-                            <Text>RESTAURANT</Text>
-                            <Fontisto
-                                onPress={_=> this.setState({ details: [this.state.details[0], this.state.details[1], !this.state.details[2], this.state.details[3]] })}
-                                name={(this.state.details[2])?'checkbox-active':'checkbox-passive'} 
-                                size={20} 
-                                color={(this.state.details[2])?'green':'red'}
-                                style={{alignSelf: 'center'}}/>
-                        </View>
-                        <View style={{flexDirection: 'column', marginHorizontal:5}}>
-                            <Text>CREDIT CARD</Text>
-                            <Fontisto 
-                                onPress={_=> this.setState({ details: [this.state.details[0], this.state.details[1], this.state.details[2], !this.state.details[3]] })}
-                                name={(this.state.details[3])?'checkbox-active':'checkbox-passive'} 
-                                size={20} 
-                                color={(this.state.details[3])?'green':'red'}
-                                style={{alignSelf: 'center'}}/>
-                        </View>
-                    </View>
-                break;
-            case 'Sport':
-                services=<View><Text> SPORT </Text></View>
-                break;
-            default:
-                services=<View><Text> SHOP </Text></View>
-                break;
-        }
+        services=(
+            <View style={{flexDirection: 'row', alignSelf: 'center', alignItems: 'center', flex:1}}>
+                <View style={{flexDirection: 'column', marginHorizontal:5}}>
+                    <Text>{(this.state.Store.accountType == 'Food')?'TAKEAWAY':'CAFETERIA'}</Text>
+                    <Fontisto 
+                        onPress={_=> this.setState({ details: [!this.state.details[0], this.state.details[1], this.state.details[2], this.state.details[3]] })}
+                        name={(this.state.details[0])?'checkbox-active':'checkbox-passive'} 
+                        size={20} 
+                        color={(this.state.details[0])?'green':'red'}
+                        style={{alignSelf: 'center'}}/>
+                </View>
+                <View style={{flexDirection: 'column', marginHorizontal:5}}>
+                    <Text>{(this.state.Store.accountType == 'Food')?'DELIVERY':'TOILETS'}</Text>
+                    <Fontisto 
+                        onPress={_=> this.setState({ details: [this.state.details[0], !this.state.details[1], this.state.details[2], this.state.details[3]] })}
+                        name={(this.state.details[1])?'checkbox-active':'checkbox-passive'} 
+                        size={20} 
+                        color={(this.state.details[1])?'green':'red'}
+                        style={{alignSelf: 'center'}}/>
+                </View>
+                <View style={{flexDirection: 'column', marginHorizontal:5}}>
+                    <Text>{(this.state.Store.accountType == 'Food')?'RESTAURANT':'INSTRUCTORS'}</Text>
+                    <Fontisto
+                        onPress={_=> this.setState({ details: [this.state.details[0], this.state.details[1], !this.state.details[2], this.state.details[3]] })}
+                        name={(this.state.details[2])?'checkbox-active':'checkbox-passive'} 
+                        size={20} 
+                        color={(this.state.details[2])?'green':'red'}
+                        style={{alignSelf: 'center'}}/>
+                </View>
+                <View style={{flexDirection: 'column', marginHorizontal:5}}>
+                    <Text>{(this.state.Store.accountType == 'Food')?'CREDIT CARD':'CREDIT CARD'}</Text>
+                    <Fontisto 
+                        onPress={_=> this.setState({ details: [this.state.details[0], this.state.details[1], this.state.details[2], !this.state.details[3]] })}
+                        name={(this.state.details[3])?'checkbox-active':'checkbox-passive'} 
+                        size={20} 
+                        color={(this.state.details[3])?'green':'red'}
+                        style={{alignSelf: 'center'}}/>
+                </View>
+            </View>
+        )
         return(
             <View style={styles.container}>
                 <View style={{flex:1}}>
