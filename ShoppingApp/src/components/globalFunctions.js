@@ -239,7 +239,6 @@ const editUserData = (parameter, newData, categorie) => {
             })
         }
         else{
-            //console.log('Error: '+response.status)
             return
         }
     })
