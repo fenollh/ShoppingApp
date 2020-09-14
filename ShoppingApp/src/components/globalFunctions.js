@@ -70,7 +70,7 @@ const initState = async (usermail, sessionID, type) => {
                 image: data.image,
                 tags: data.tags,
                 categories: data.categories,
-                stock: data.stock,
+                stock:  JSON.parse(data.stock),
                 accountType: data.accountType,
             }
         })
@@ -245,9 +245,31 @@ const editUserData = (parameter, newData, categorie) => {
     })
 }
 
+const addStockProduct = (product) => {
+    var Store = store.getState()
+    var data = {
+        availableTables: (Store.stock.availableTables)?Store.stock.availableTables:0,
+        availableProducts: (Store.stock.availableProducts)?[...Store.stock.availableProducts, product]:[product],
+    }
+    fetch(serverRoute+':3002/shop', {
+        method: 'PUT',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            column: 'stock',
+            payload: JSON.stringify(data),
+            sessionID: Store.sessionID.toString(),
+            usermail: Store.usermail
+        })
+    })
+}
+
 export {loginFunc}
 export {createUser}
 export {filterData}
 export {addOrder}
 export {checkRegisterForm}
 export {editUserData}
+export {addStockProduct}

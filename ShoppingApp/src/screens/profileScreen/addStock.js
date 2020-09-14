@@ -7,12 +7,14 @@ import {
     StyleSheet,
     Image,
     TouchableOpacity,
-    TextInput
+    TextInput, Alert
 } from 'react-native'
 
 import AntDesign from 'react-native-vector-icons/AntDesign'
 import Entypo from 'react-native-vector-icons/Entypo'
 import Ionicons from 'react-native-vector-icons/Ionicons'
+
+import { addStockProduct } from '../../components/globalFunctions';
 
 
 export default class AddStock extends React.Component {
@@ -22,7 +24,7 @@ export default class AddStock extends React.Component {
             image: '',
             name: '',
             description: '',
-            cost: 1,
+            cost: '',
             quantity: 1,
             max: 10,
             tags: []
@@ -107,7 +109,13 @@ export default class AddStock extends React.Component {
                         <TouchableOpacity 
                             style={[styles.button, {flexDirection: 'row'}]} 
                             activeOpacity={0.6}
-                            onPress={()=>console.log('changes saved')}>
+                            onPress={()=>{
+                                if(this.state.name && this.state.cost) {
+                                    addStockProduct(this.state)
+                                    this.props.navigation.goBack()
+                                }
+                                else Alert.alert('You must complete name and prize fields')
+                            }}>
                             <Text style={styles.buttonTxt}>ORDER</Text>
                             <Ionicons name='ios-add' size={50} color='rgb(0,255,0)' style={styles.icon}/>
                         </TouchableOpacity>
