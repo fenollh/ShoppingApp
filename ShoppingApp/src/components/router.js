@@ -28,6 +28,7 @@ import EditShopData from '../screens/profileScreen/editShopData'
 import AboutUsScreen from '../screens/aboutus'
 import ContactUsScreen from '../screens/contactus'
 import AddProductScreen from '../screens/shopsScreen/addProduct'
+import AddStockScreen from '../screens/profileScreen/addStock'
 
 
 const Tab = createMaterialTopTabNavigator();
@@ -105,6 +106,7 @@ export default class Router extends React.Component{
                         <Stack.Screen name="AddProduct" component={this.addProduct} />
                         <Stack.Screen name="EditUserData" component={EditUserData} />
                         <Stack.Screen name="EditShopData" component={EditShopData} />
+                        <Stack.Screen name="AddStock" component={AddStockScreen} />
                     </Stack.Navigator>
                 </NavigationContainer>
             </View>

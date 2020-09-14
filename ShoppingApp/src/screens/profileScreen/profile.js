@@ -44,7 +44,7 @@ export default class ProfileScreen extends React.Component{
                     <Text style={{marginLeft: '3%', fontSize: 20, flex:2}}>{Store.stars}</Text>
                 </View>
             </View>
-            stockSection = <StockSection/>
+            stockSection = <StockSection navigation={this.props.navigation}/>
         }
 
         return(
