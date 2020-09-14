@@ -3,6 +3,7 @@ import { Alert } from 'react-native'
 import { store } from '../redux/state'
 const serverRoute = 'http://192.168.1.43'
 
+//////////////////////////////                             CHECK FORM FUNCTIONS                    /////////////////////////////////////
 
 const checkRegisterForm = (type, formData, formInputs) => {
     if(formData.password.length < 5){
@@ -34,7 +35,7 @@ const checkRegisterForm = (type, formData, formInputs) => {
         return true
     }
 }
-
+/////////////////////////////////                              GET DATA FUNCTIONS                         ///////////////////////////////////////
 const initState = async (usermail, sessionID, type) => {
     var link = ''
     if (type === 'shop'){
@@ -94,6 +95,9 @@ const initState = async (usermail, sessionID, type) => {
     }
 }
 
+
+////////////////////////////////////////////////                    AUTHENTICATION FUNCTIONS                   ////////////////////////////////////////
+
 const authentication = async (usermail, password, sessionID) => {
     const response = await fetch(serverRoute+':3001/login', {
         method: 'POST',
@@ -114,8 +118,25 @@ const authentication = async (usermail, password, sessionID) => {
     }
 }
 
+const loginFunc = async (usermail, password, navigation) => {
+    const data = await authentication(usermail, password)
+    if(typeof data.sessID == 'number') {
+        navigation.navigate('Main')
+        
+        store.dispatch({
+            type: 'HANDLE_SESSION',
+            payload: {
+                usermail: usermail,
+                sessionID: data.sessID
+            }
+        })
+        initState(usermail, data.sessID, data.accountType)
+    }else{
+        Alert.alert('User or password are incorrect')
+    }
+}
+
 const createUser = (user, shop, navigation) => {
-    //subir todos estos datos a la DB
     var route, data
     if(user){
         route = serverRoute+':3001/newuser'
@@ -170,48 +191,8 @@ const createUser = (user, shop, navigation) => {
     
 }
 
-const loginFunc = async (usermail, password, navigation) => {
-    const data = await authentication(usermail, password)
-    if(typeof data.sessID == 'number') {
-        navigation.navigate('Main')
-        
-        store.dispatch({
-            type: 'HANDLE_SESSION',
-            payload: {
-                usermail: usermail,
-                sessionID: data.sessID
-            }
-        })
-        initState(usermail, data.sessID, data.accountType)
-    }else{
-        Alert.alert('User or password are incorrect')
-    }
-}
 
-const filterData = (type, data) => { //el parametro data es la totalidad de los datos y type el criterio que se usara para filtar
-    if(data === 'Shops') store.dispatch({type: 'EDIT_SELECTEDTAG', payload: type})
-    else if(data== 'Categories') store.dispatch({type: 'EDIT_SELECTEDCATEGORIE', payload: type})
-    return true
-}
-
-const addOrder = (itemName, itemCost ,shopmail, quantity, hour, usermail) => {
-    if(quantity < 1) return
-    authentication(usermail, store.getState().sessionID)
-    const order = {
-        itemName:itemName,
-        itemCost: itemCost,
-        shop: shopmail,
-        quantity: quantity,
-        hour: hour,
-        costumermail: usermail
-    }
-    store.dispatch({
-        type: 'ADD_ORDER',
-        payload: order
-    })
-    //Se crea una entrada en la tabla 'Orders' con el objeto order
-    //State.myOrders.push(order)
-}
+////////////////////////////////////////////////////                 EDIT DATA FUNCTIONS                   /////////////////////////////////////////////////////
 
 const editUserData = (parameter, newData, categorie) => {
     var Store = store.getState()
@@ -264,6 +245,37 @@ const addStockProduct = (product) => {
         })
     })
 }
+
+const addOrder = (itemName, itemCost ,shopmail, quantity, hour, usermail) => {
+    if(quantity < 1) return
+    authentication(usermail, store.getState().sessionID)
+    const order = {
+        itemName:itemName,
+        itemCost: itemCost,
+        shop: shopmail,
+        quantity: quantity,
+        hour: hour,
+        costumermail: usermail
+    }
+    store.dispatch({
+        type: 'ADD_ORDER',
+        payload: order
+    })
+}
+
+
+
+
+
+///////////////////////////////                               HANDLE DATA FUNCTIONS
+
+const filterData = (type, data) => { //el parametro data es la totalidad de los datos y type el criterio que se usara para filtar
+    if(data === 'Shops') store.dispatch({type: 'EDIT_SELECTEDTAG', payload: type})
+    else if(data== 'Categories') store.dispatch({type: 'EDIT_SELECTEDCATEGORIE', payload: type})
+    return true
+}
+
+
 
 export {loginFunc}
 export {createUser}
