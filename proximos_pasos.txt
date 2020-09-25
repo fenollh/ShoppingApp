@@ -24,8 +24,7 @@ security updates:
 -protect the Db against SQL injections adding more complex input validation
 
 next day:
--render the stock in the profile screen
--be able to edit products
 -stop using ShopList to use the shops DB
 -create a orders funtionality
--create a review system 
+-create a review system
+-add a server functionality to store the images 
