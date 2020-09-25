@@ -27,9 +27,7 @@ let State = {
     ],
     stock: {
         availableTables: 10,
-        availableProducts: [
-            {name: 'pollo', description: '', image: '', cost: 15, quantity: -1, max:10, tags:['pollo'] }, //si en el parametro quantity se pone un numero negativo la cantidad del producto es indefinida
-        ]
+        availableProducts: []
     },
     schedule: '',
     location: '',

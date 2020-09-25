@@ -71,7 +71,7 @@ const initState = async (usermail, sessionID, type) => {
                 image: data.image,
                 tags: data.tags,
                 categories: data.categories,
-                stock:  JSON.parse(data.stock),
+                stock: (data.stock)?JSON.parse(data.stock):[],
                 accountType: data.accountType,
             }
         })
