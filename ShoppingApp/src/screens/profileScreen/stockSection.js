@@ -3,29 +3,49 @@ import {
     View,
     ScrollView,
     StyleSheet,
-    TouchableOpacity
+    TouchableOpacity,
+    FlatList,
+    Image,
 } from 'react-native'
 
 import AntDesign from 'react-native-vector-icons/AntDesign'
 
+import { store } from '../../redux/state'
+import {removeStockProduct} from '../../components/globalFunctions'
 
 export default class StockSection extends React.Component {
     constructor(props){
         super(props)
     }
 
+    deleteItem = (index) => {
+        removeStockProduct(index)
+    }
+
+    renderProduct = (item, index) => {
+        return(
+            <TouchableOpacity 
+                style={styles.box}
+                onPress={()=> this.deleteItem(index)}
+                >
+                <Image
+                    style={{height: 150, width: 150}}
+                    source={{uri: (item.image)?item.image:'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/User_font_awesome.svg/1024px-User_font_awesome.svg.png'}}
+                />
+            </TouchableOpacity>
+        )
+    }
     render(){
+        let Store = store.getState()
+        let {stock} = Store
         return(
             <View style={{flex:1}}>
-                <ScrollView contentContainerStyle={styles.container} style={{flex:1}}>
-                    <View style={styles.box}/>
-                    <View style={styles.box}/>
-                    <View style={styles.box}/>
-                    <View style={styles.box}/>
-                    <View style={styles.box}/>
-                    <View style={styles.box}/>
-                    <View style={styles.box}/>
-                </ScrollView>
+                <FlatList
+                numColumns={2}
+                data={stock.availableProducts}
+                keyExtractor={({index}) => index}
+                renderItem={({item, index}) => this.renderProduct(item, index)}
+                />
                 <TouchableOpacity style={styles.addButton} onPress={_=>this.props.navigation.navigate('AddStock')}>
                     <AntDesign name='plus' size={45} color={'black'}/>
                 </TouchableOpacity>
@@ -43,7 +63,8 @@ const styles = StyleSheet.create({
         height: 150, 
         width: 150,
         margin: 5,
-        backgroundColor: 'red',
+        borderColor: 'black',
+        //borderWidth: 1
     },
     addButton: {
         height:70, 

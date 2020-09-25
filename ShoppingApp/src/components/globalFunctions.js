@@ -244,6 +244,37 @@ const addStockProduct = (product) => {
             usermail: Store.usermail
         })
     })
+    .then(()=> {
+        store.dispatch({
+            type: 'EDIT_STOCK',
+            payload: data
+        })
+    } )
+}
+
+const removeStockProduct = (index) => {
+    let Store = store.getState()
+    Store.stock.availableProducts.splice(index, 1)
+    console.log(Store.stock.availableProducts)
+    fetch(serverRoute+':3002/shop', {
+        method: 'PUT',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            column: 'stock',
+            payload: JSON.stringify(Store.stock),
+            sessionID: Store.sessionID.toString(),
+            usermail: Store.usermail
+        })
+    })
+    .then(()=> {
+        store.dispatch({
+            type: 'EDIT_STOCK',
+            payload: Store.stock
+        })
+    })
 }
 
 const addOrder = (itemName, itemCost ,shopmail, quantity, hour, usermail) => {
@@ -284,3 +315,4 @@ export {addOrder}
 export {checkRegisterForm}
 export {editUserData}
 export {addStockProduct}
+export {removeStockProduct}

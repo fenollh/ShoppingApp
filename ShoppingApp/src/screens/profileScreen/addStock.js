@@ -165,7 +165,7 @@ export default class AddStock extends React.Component {
                                 }
                                 else Alert.alert('You must complete name and prize fields')
                             }}>
-                            <Text style={styles.buttonTxt}>ORDER</Text>
+                            <Text style={styles.buttonTxt}>ADD</Text>
                             <Ionicons name='ios-add' size={50} color='rgb(0,255,0)' style={styles.icon}/>
                         </TouchableOpacity>
                     </View>

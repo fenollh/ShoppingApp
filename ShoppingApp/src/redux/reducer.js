@@ -70,7 +70,8 @@ const reducer = (state=store.getState(), action) => {
         case 'REMOVE_ORDER':
             state.myOrders.splice(action.payload, 1) //the payload is the index
             return state 
-
+        case 'EDIT_STOCK':
+            return {...state, stock: action.payload}
         default:
             return state
     }
