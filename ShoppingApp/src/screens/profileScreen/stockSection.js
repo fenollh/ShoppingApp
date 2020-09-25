@@ -26,7 +26,7 @@ export default class StockSection extends React.Component {
         return(
             <TouchableOpacity 
                 style={styles.box}
-                onPress={()=> this.deleteItem(index)}
+                onPress={()=> this.props.navigation.navigate('EditStockProduct', {item:item, index:index})}
                 >
                 <Image
                     style={{height: 150, width: 150}}
@@ -36,6 +36,11 @@ export default class StockSection extends React.Component {
         )
     }
     render(){
+        store.subscribe(()=>{
+            if(Store.stock != store.getState().stock){
+                this.forceUpdate()
+            } 
+        })
         let Store = store.getState()
         let {stock} = Store
         return(

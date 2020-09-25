@@ -255,7 +255,30 @@ const addStockProduct = (product) => {
 const removeStockProduct = (index) => {
     let Store = store.getState()
     Store.stock.availableProducts.splice(index, 1)
-    console.log(Store.stock.availableProducts)
+    fetch(serverRoute+':3002/shop', {
+        method: 'PUT',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            column: 'stock',
+            payload: JSON.stringify(Store.stock),
+            sessionID: Store.sessionID.toString(),
+            usermail: Store.usermail
+        })
+    })
+    .then(()=> {
+        store.dispatch({
+            type: 'EDIT_STOCK',
+            payload: Store.stock
+        })
+    })
+}
+
+const editStockProduct = (item, index) => {
+    let Store = store.getState()
+    Store.stock.availableProducts[index] = item
     fetch(serverRoute+':3002/shop', {
         method: 'PUT',
         headers: {
@@ -294,6 +317,20 @@ const addOrder = (itemName, itemCost ,shopmail, quantity, hour, usermail) => {
     })
 }
 
+const addShoppingListItem = (item) => {
+    store.dispatch({
+        type: 'ADD_ITEM_SHOPPINGLIST',
+        payload: item,
+    })
+}
+
+const removeShoppingListItem = (index) => {
+    store.dispatch({
+        type: 'REMOVE_ITEM_SHOPPINGLIST',
+        payload: index
+    })
+}
+
 
 
 
@@ -316,3 +353,6 @@ export {checkRegisterForm}
 export {editUserData}
 export {addStockProduct}
 export {removeStockProduct}
+export {addShoppingListItem}
+export {removeShoppingListItem}
+export {editStockProduct}

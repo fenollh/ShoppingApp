@@ -11,6 +11,7 @@ import {
 import AntDesign from 'react-native-vector-icons/AntDesign'
 
 import { store } from '../../redux/state'
+import { addShoppingListItem, removeShoppingListItem } from '../../components/globalFunctions'
 
 export default class ShoppingList extends React.Component{
     constructor(props){
@@ -19,20 +20,13 @@ export default class ShoppingList extends React.Component{
             newItem: '',
         }
     }
-    deleteItem = (index) => {
-        store.dispatch({
-            type: 'REMOVE_ITEM_SHOPPINGLIST',
-            payload: index
-        })
-    }
+    deleteItem = (index) => removeShoppingListItem(index)
 
-    addItem = (newItem, textInput) => {
-        if(!newItem) return
-        store.dispatch({
-            type: 'ADD_ITEM_SHOPPINGLIST',
-            payload: newItem,
-        })
+    addItem = (item, textInput) => {
+        if(!item) return
+        addShoppingListItem(item)
         textInput.clear()
+        this.setState({newItem: ''})
     }
 
     renderListItem = (item, index) => {
