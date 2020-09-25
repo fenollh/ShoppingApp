@@ -33,6 +33,11 @@ func GetPublicUser(w http.ResponseWriter, req *http.Request) {
 
 // GetPublicShop selects all the shop's data. Authentication is required
 func GetPublicShop(w http.ResponseWriter, req *http.Request) {
+	/*
+		1- leo en los parametros cuantos registros quiere (x)
+		2- ordeno la tabla de la manera pertinente (mas adelante)
+		3- devuelvo los x primeros registros (SELECT * FROM table WHERE condition LIMIT x;)
+	*/
 }
 
 // GetPrivateUser selects all the user's data. Authentication is required
@@ -96,7 +101,7 @@ func main() {
 	//endpoints
 	router.HandleFunc("/getPublicUser", GetPublicUser).Methods("POST")
 	router.HandleFunc("/getPrivateUser", GetPrivateUser).Methods("POST")
-	router.HandleFunc("/getPublicShop", GetPublicShop).Methods("POST")
+	router.HandleFunc("/getPublicShop", GetPublicShop).Methods("GET")
 	router.HandleFunc("/getPrivateShop", GetPrivateShop).Methods("POST")
 
 	log.Fatal(http.ListenAndServe(":3000", router))

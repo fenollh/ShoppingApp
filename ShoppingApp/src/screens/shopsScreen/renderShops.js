@@ -78,6 +78,7 @@ export default class ShopsListSection extends React.Component {
     
     
     render(){
+        //let Shops = getShops()
         return(
             <View style={styles.container}>
                 <FlatList

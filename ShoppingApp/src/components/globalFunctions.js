@@ -95,6 +95,14 @@ const initState = async (usermail, sessionID, type) => {
     }
 }
 
+const getShops = () => {
+    /*
+        1- selecciono cuantos registros quiero
+        2- selecciono los criterios de orden (mas adelante)
+        3- hago una peticion GET con esos parametros
+        4- retorno un array con los datos
+    */
+}
 
 ////////////////////////////////////////////////                    AUTHENTICATION FUNCTIONS                   ////////////////////////////////////////
 
