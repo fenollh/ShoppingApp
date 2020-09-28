@@ -26,10 +26,10 @@ export default class SelectedShopScreen extends React.Component{
         let spaceSection
         const {item} = this.props.route.params
 
-        if(item.details.restaurant && item.accountType == 'Food'){
+        if(item.stock.availableTables && item.accountType == 'Food'){
             spaceSection = 
                 <View style={{flexDirection: 'row', }}>
-                    <Text style={styles.availableTablesTxt}>Total number of tables: {item.stock.availableSpace}</Text>
+                    <Text style={styles.availableTablesTxt}>Total number of tables: {item.stock.availableTables}</Text>
                     <TouchableOpacity style={styles.reserveButton}><Text style={styles.availableTablesTxt}>Reserve</Text></TouchableOpacity>
                 </View>
         }else if(item.accountType == 'Food'){

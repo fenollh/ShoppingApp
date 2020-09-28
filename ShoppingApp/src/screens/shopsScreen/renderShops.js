@@ -12,7 +12,7 @@ import Entypo from 'react-native-vector-icons/Entypo'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 
-import { Shops } from '../../components/shopsList'
+//import { Shops } from '../../components/shopsList'
 import { store } from '../../redux/state'
 
 export default class ShopsListSection extends React.Component {
@@ -79,10 +79,14 @@ export default class ShopsListSection extends React.Component {
     
     render(){
         //let Shops = getShops()
+        store.subscribe(()=> {
+            if(Store.shopsList != store.getState().shopsList) this.forceUpdate
+        })
+        let Store = store.getState()
         return(
             <View style={styles.container}>
                 <FlatList
-                    data={Shops}
+                    data={Store.shopsList}
                     keyExtractor={(item) => item.username}
                     renderItem={({item}) => this.renderShop(item)}
                 />

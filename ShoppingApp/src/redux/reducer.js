@@ -38,6 +38,8 @@ const reducer = (state=store.getState(), action) => {
                 usermail:action.payload.usermail, 
                 sessionID: action.payload.sessionID
             }
+        case 'GET_SHOPS_LIST':
+            return {...state, shopsList: action.payload}
         case 'EDIT_USERNAME':
             return {...state, username: action.payload}
         case 'EDIT_USERMAIL':

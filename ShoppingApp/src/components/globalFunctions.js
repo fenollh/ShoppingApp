@@ -100,7 +100,10 @@ const getShops = async () => {
     const criteria = 'no-criteria'
     const response = await fetch(serverRoute+':3000/getPublicShop/'+criteria)
     const responseData = await response.json()
-    console.log(typeof responseData)
+    store.dispatch({
+        type: 'GET_SHOPS_LIST',
+        payload: responseData,
+    })
 
     /*
         1- selecciono cuantos registros quiero
