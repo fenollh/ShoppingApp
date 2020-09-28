@@ -33,10 +33,28 @@ func GetPublicUser(w http.ResponseWriter, req *http.Request) {
 
 // GetPublicShop selects all the shop's data. Authentication is required
 func GetPublicShop(w http.ResponseWriter, req *http.Request) {
-	vars := mux.Vars(req)
-	criteria := vars["criteria"]
-	fmt.Println(criteria)
-	json.NewEncoder(w).Encode("Response")
+	//vars := mux.Vars(req)
+	//criteria := vars["criteria"]
+	var shopsList []ShopData
+
+	rows, SelErr := db.Query("SELECT username, usermail, name, location, schedule, details, stars, description, image, tags, categories, stock, shopType FROM shops LIMIT 2;")
+	if SelErr != nil {
+		fmt.Println("Error while selecting")
+		json.NewEncoder(w).Encode("Error while selecting")
+		return
+	}
+	for rows.Next() {
+		var shop ShopData
+		ScanErr := rows.Scan(&shop.USERNAME, &shop.USERMAIL, &shop.NAME, &shop.LOCATION, &shop.SCHEDULE, &shop.DETAILS, &shop.STARS, &shop.DESCRIPTION, &shop.IMAGE, &shop.TAGS, &shop.CATEGORIES, &shop.STOCK, &shop.SHOPTYPE)
+		if ScanErr != nil {
+			fmt.Println(ScanErr)
+			json.NewEncoder(w).Encode("Error while scaning")
+			return
+		}
+		shopsList = append(shopsList, shop)
+	}
+	fmt.Println(shopsList)
+	json.NewEncoder(w).Encode(shopsList)
 	/*
 		1- leo en los parametros cuantos registros quiere (x)
 		2- ordeno la tabla de la manera pertinente (mas adelante)
