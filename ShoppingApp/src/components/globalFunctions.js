@@ -95,7 +95,13 @@ const initState = async (usermail, sessionID, type) => {
     }
 }
 
-const getShops = () => {
+const getShops = async () => {
+    //const registers = 5
+    const criteria = 'no-criteria'
+    const response = await fetch(serverRoute+':3000/getPublicShop/'+criteria)
+    const responseData = await response.json()
+    console.log(responseData)
+
     /*
         1- selecciono cuantos registros quiero
         2- selecciono los criterios de orden (mas adelante)
@@ -364,3 +370,4 @@ export {removeStockProduct}
 export {addShoppingListItem}
 export {removeShoppingListItem}
 export {editStockProduct}
+export {getShops}

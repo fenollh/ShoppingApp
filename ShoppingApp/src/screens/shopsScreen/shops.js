@@ -7,17 +7,23 @@ import {
 import TagsSection from '../../components/tagsSec'
 import ShopsListSection from './renderShops'
 import { store } from '../../redux/state'
+import { getShops } from '../../components/globalFunctions'
 
 export default class ShopsScreen extends React.Component{
     
     constructor(props){
         super(props)
     }
-
+    componentDidMount = () => {
+        getShops()
+    }
     render(){
         let Store = store.getState()
         store.subscribe(()=>{
-            if(Store.selectedTag != store.getState().selectedTag) this.forceUpdate()
+            if( Store.selectedTag != store.getState().selectedTag ||
+                Store.shopsList != store.getState().shopsList){
+                    this.forceUpdate()
+                } 
         })
         
         return(

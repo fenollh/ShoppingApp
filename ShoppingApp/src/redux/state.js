@@ -31,6 +31,7 @@ let State = {
     },
     schedule: '',
     location: '',
+    shopsList: [],
 }
 store = createStore(
     reducer,
